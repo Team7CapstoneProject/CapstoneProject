@@ -15,3 +15,8 @@ body {
   display: flex;
   align-items: center;
 }
+
+.logo {
+  color: white;
+  text-decoration: none;
+}

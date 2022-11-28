@@ -1,2 +1,14 @@
-export {default as Main} from './Main'
-export {default as Navbar} from './Navbar'
+export { default as Main } from "./Main";
+export { default as Navbar } from "./Navbar";
+export { default as LogIn } from "./LogIn";
+export { default as Register } from "./Register";
+export { default as Account } from "./Account";
+export { default as Home } from "./Home";
+export { default as AccessUsers } from "./admin/AccessUsers";
+export { default as AddProduct } from "./admin/AddProduct";
+export { default as EditProduct } from "./admin/EditProduct";
+export { default as Cart } from "./cart/Cart";
+export { default as CompletedCarts } from "./cart/CompletedCarts";
+export { default as Product } from "./products/Product";
+export { default as Products } from "./products/Products";
+export { default as SearchProducts } from "./products/SearchProducts";
