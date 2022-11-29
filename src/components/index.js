@@ -1,8 +1,12 @@
 //-----------ADMIN FOLDER-------------
-export { default as AccessUsers } from "./admin/AccessUsers";
+export { default as AccessUsers } from "./admin/User";
 export { default as AddProduct } from "./admin/AddProduct";
 export { default as EditProduct } from "./admin/EditProduct";
 export { default as AdminDashboard } from "./admin/AdminDashboard";
+export { default as Users } from "./admin/Users";
+export { default as User } from "./admin/User";
+
+
 
 //-----------CART FOLDER-------------
 export { default as Cart } from "./cart/Cart";
