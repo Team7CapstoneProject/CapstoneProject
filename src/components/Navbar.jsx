@@ -20,6 +20,9 @@ const Navbar = () => {
         <Link to={"/products"}>
           <button>products</button>
         </Link>
+        <Link to={"/admin"}>
+          <button>admin dashboard</button>
+        </Link>
       </div>
       <Outlet />
     </>
