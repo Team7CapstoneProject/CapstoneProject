@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Navbar,
   Home,
   LogIn,
   Register,
   Account,
-  Products,
+  ProductsSearch,
   Cart,
   CompletedCarts,
   EditProduct,
@@ -16,8 +16,19 @@ import {
   createBrowserRouter,
   Route,
 } from "react-router-dom";
+import { getAllProducts } from "../api";
 
 const Main = () => {
+  //-----------GET PRODUCTS DATA------------------------------
+  const [allProducts, setAllProducts] = useState([]);
+  useEffect(() => {
+    async function fetchAllProducts() {
+      const productResponse = await getAllProducts();
+      setAllProducts(productResponse);
+    }
+    fetchAllProducts();
+  }, []);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
@@ -25,7 +36,10 @@ const Main = () => {
         <Route path="/login" element={<LogIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/products" element={<Products />} />
+        <Route
+          path="/products"
+          element={<ProductsSearch allProducts={allProducts} />}
+        />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route path="/admin" element={<EditProduct />} />
