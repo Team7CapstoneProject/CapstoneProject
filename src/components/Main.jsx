@@ -19,7 +19,7 @@ import {
 import { getAllProducts } from "../api";
 
 const Main = () => {
-  //-----------GET PRODUCTS DATA------------------------------
+  //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
     async function fetchAllProducts() {
@@ -29,6 +29,7 @@ const Main = () => {
     fetchAllProducts();
   }, []);
 
+  //-----------ROUTES------------------
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Navbar />}>
