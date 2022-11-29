@@ -1,5 +1,23 @@
 const BASE_URL = "https://capstone-backend-team7.onrender.com";
 
+export async function logInUser(email, password) {
+  console.log(email, password);
+  let options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  };
+  let response = await fetch(`${BASE_URL}/api/users/login`, options);
+  let result = await response.json();
+  console.log(result);
+  return result;
+}
+
 export async function getAllProducts() {
   const options = {
     headers: {
