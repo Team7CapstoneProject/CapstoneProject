@@ -16,10 +16,28 @@ import {
   createBrowserRouter,
   Route,
 } from "react-router-dom";
-import { getAllProducts } from "../api";
-import AdminDashboard from "./admin/AdminDashboard";
+
+import { myAccount, createCart, getAllProducts } from "../api";
+
 
 const Main = () => {
+  //------------VISITING USER---------------------
+  // const [unregisteredUser, setUnregisteredUser] = useState([]);
+  // useEffect(()=>{
+  //   const visitingUser =
+  //   setUnregisteredUser(visitingUser)
+  // }, [])
+
+  //------------GET MY ACCOUNT--------------------
+  const [userAccount, setUserAccount] = useState([]);
+  useEffect(() => {
+    async function fetchUserAccount() {
+      const accountOfUser = await myAccount();
+      setUserAccount(accountOfUser);
+    }
+    fetchUserAccount();
+  }, []);
+
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
@@ -28,6 +46,20 @@ const Main = () => {
       setAllProducts(productResponse);
     }
     fetchAllProducts();
+  }, []);
+
+  //-----------CREATE CART DATA------------------
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    async function fetchCart() {
+      const token = localStorage.getItem("token");
+      const user_id = localStorage.getItem("userId");
+
+      const userCart = await createCart(token, user_id);
+      console.log(userCart, "this is usercart");
+      setCart(userCart);
+    }
+    fetchCart();
   }, []);
 
   //-----------ROUTES------------------
@@ -40,7 +72,13 @@ const Main = () => {
         <Route path="/account" element={<Account />} />
         <Route
           path="/products"
-          element={<ProductsSearch allProducts={allProducts} />}
+          element={
+            <ProductsSearch
+              allProducts={allProducts}
+              cart={cart}
+              setCart={setCart}
+            />
+          }
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />

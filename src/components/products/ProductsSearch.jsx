@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Products } from "../";
 import "./CSS/products.css";
 
-const ProductsSearch = ({ allProducts }) => {
+const ProductsSearch = ({ allProducts, cart, setCart }) => {
   const [products, setProducts] = useState(allProducts);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const ProductsSearch = ({ allProducts }) => {
             <input className="productSearchInput" type="text" placeholder="Search in GuitarStop" onChange={handleChange} autoFocus/>
           </form>
         </div>
-        <Products products={products} />
+        <Products products={products} cart={cart} setCart={setCart}/>
       </div>
     </>
   );

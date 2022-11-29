@@ -31,6 +31,8 @@
 /* ---------------------- In Product.jsx ---------------------- */
 
 .productCard {
+  display: flex;
+  flex-direction: column;
   background-color: white;
   margin: 10px;
   padding: 10px;
@@ -99,6 +101,8 @@
   color: white;
   padding: 5px;
   margin-top: 10px;
+  justify-content: flex-end;
+  align-self: flex-start;
 }
 
 .buttonAddToCart:hover {
