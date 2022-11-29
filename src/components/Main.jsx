@@ -9,7 +9,7 @@ import {
   Cart,
   CompletedCarts,
   EditProduct,
-  AdminDashboard
+  AdminDashboard,
 } from "./";
 import {
   createRoutesFromElements,
@@ -18,8 +18,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import { myAccount, createCart, getAllProducts } from "../api";
-
+import { myAccount, createCart, getAllProducts, getCartByUserId } from "../api";
 
 const Main = () => {
   //------------VISITING USER---------------------
@@ -59,11 +58,24 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
 
       const userCart = await createCart(token, user_id);
-      // console.log(userCart, "this is usercart");
       setCart(userCart);
     }
     fetchCart();
   }, []);
+
+  //-----------GET CART BY USERID ------------------
+
+  const [userCart, setUserCart] = useState([cart]);
+  useEffect(() => {
+    async function fetchUserCart() {
+      const user_id = localStorage.getItem("userId");
+      const token = localStorage.getItem("token");
+      const userIdCart = await getCartByUserId(user_id, token);
+      console.log(userIdCart, "USERIDCART");
+      setUserCart(userIdCart);
+    }
+    fetchUserCart();
+  }, [cart]);
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
@@ -83,7 +95,17 @@ const Main = () => {
             />
           }
         />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              // userCart={userCart}
+              // setUserCart={setUserCart}
+            />
+          }
+        />
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Route>
