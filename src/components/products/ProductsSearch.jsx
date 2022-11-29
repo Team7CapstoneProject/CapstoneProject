@@ -30,13 +30,14 @@ const ProductsSearch = ({ allProducts }) => {
 
   return (
     <>
-      <div>
-        <form>
-          <label htmlFor="search"> Search: </label>
-          <input type="text" onChange={handleChange} />
-        </form>
+      <div className="productPage">
+        <div>
+          <form className="productSearchForm">
+            <input className="productSearchInput" type="text" placeholder="Search in GuitarStop" onChange={handleChange} autoFocus/>
+          </form>
+        </div>
+        <Products products={products} />
       </div>
-      <Products products={products} />
     </>
   );
 };
