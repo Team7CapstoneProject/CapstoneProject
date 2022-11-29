@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 const User = ({ user }) => {
-  console.log(user, "this is user");
   return (
     <>
       <div>
