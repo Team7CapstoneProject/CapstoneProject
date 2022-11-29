@@ -1,7 +1,7 @@
 const BASE_URL = "https://capstone-backend-team7.onrender.com";
 
 export async function logInUser(email, password) {
-  console.log(email, password);
+  //   console.log(email, password);
   let options = {
     method: "POST",
     headers: {
