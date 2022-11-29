@@ -220,3 +220,117 @@ export async function deleteCartProduct(token, cartProductId) {
 }
 
 //----------------ADMIN ADAPTERS----------------
+
+export async function createProduct(
+  token,
+  name,
+  description,
+  price,
+  image_url,
+  inventory,
+  on_sale,
+  sale_percentage
+) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      price: price,
+      image_url: image_url,
+      inventory: inventory,
+      on_sale: on_sale,
+      sale_percentage: sale_percentage,
+    }),
+  };
+  const response = await fetch(`${BASE_URL}/api/admin/products`, options);
+  const result = await response.json();
+  return result;
+}
+
+export async function deleteProduct(token, productId) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/admin/products/${productId}`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
+export async function updateProduct(
+  token,
+  productId,
+  name,
+  description,
+  price,
+  image_url,
+  inventory,
+  on_sale,
+  sale_percentage
+) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      price: price,
+      image_url: image_url,
+      inventory: inventory,
+      on_sale: on_sale,
+      sale_percentage: sale_percentage,
+    }),
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/admin/products/${productId}`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
+export async function getAllUsers(token) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/admin/users`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
+export async function getUserByUserId(token, userId) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/admin/users/${userId}`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
