@@ -16,9 +16,26 @@ import {
   createBrowserRouter,
   Route,
 } from "react-router-dom";
-import { getAllProducts } from "../api";
+import { myAccount, createCart, getAllProducts } from "../api";
 
 const Main = () => {
+  //------------VISITING USER---------------------
+// const [unregisteredUser, setUnregisteredUser] = useState([]);
+// useEffect(()=>{
+//   const visitingUser = 
+//   setUnregisteredUser(visitingUser)
+// }, [])
+
+  //------------GET MY ACCOUNT--------------------
+  const [userAccount, setUserAccount] = useState([]);
+  useEffect(()=>{
+    async function fetchUserAccount() {
+      const accountOfUser = await myAccount();
+      setUserAccount(accountOfUser)
+    }
+    fetchUserAccount();
+  }, [])
+
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
@@ -28,6 +45,21 @@ const Main = () => {
     }
     fetchAllProducts();
   }, []);
+
+  //-----------CREATE CART DATA------------------
+  const [cart, setCart] = useState([]);
+  useEffect(()=>{
+    async function fetchCart(){
+      const token = localStorage.getItem("token")
+      console.log()
+      //user_id : need to get user and use the state in main as user.id 
+      const userCart = await createCart(token, user_id);
+      setCart(userCart)
+    }
+    fetchCart();
+  }, [])
+
+
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
@@ -39,7 +71,7 @@ const Main = () => {
         <Route path="/account" element={<Account />} />
         <Route
           path="/products"
-          element={<ProductsSearch allProducts={allProducts} />}
+          element={<ProductsSearch allProducts={allProducts} cart={cart} setCart={setCart}/>}
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />

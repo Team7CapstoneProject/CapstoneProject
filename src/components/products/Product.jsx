@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductAddToCart } from "../";
 
-const Product = ({ product }) => {
+const Product = ({ product, cart, setCart }) => {
   let salePrice;
   let finalSalePrice;
 
@@ -47,7 +47,7 @@ const Product = ({ product }) => {
               <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           )}
-          <ProductAddToCart />
+          <ProductAddToCart product={product} cart={cart} setCart={setCart}/>
         </div>
       </div>
     </>
