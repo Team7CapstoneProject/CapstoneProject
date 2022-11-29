@@ -44,7 +44,9 @@ const Main = () => {
   useEffect(() => {
     async function fetchAllProducts() {
       const productResponse = await getAllProducts();
+      // console.log("all product data", productResponse)
       setAllProducts(productResponse);
+      
     }
     fetchAllProducts();
   }, []);
@@ -57,7 +59,7 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
 
       const userCart = await createCart(token, user_id);
-      console.log(userCart, "this is usercart");
+      // console.log(userCart, "this is usercart");
       setCart(userCart);
     }
     fetchCart();
