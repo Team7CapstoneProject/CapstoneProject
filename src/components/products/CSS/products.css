@@ -1,9 +1,34 @@
+/* ---------------------- In ProductSearch.jsx ---------------------- */
+.productPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* -------Search bar------- */
+
+.productSearchForm {
+  margin: 10px;
+}
+.productSearchInput {
+  background-color: rgb(228, 228, 228);
+  width: 500px;
+  padding: 15px;
+  border: none;
+}
+
+/* ---------------------- In Products.jsx ---------------------- */
+
 .products {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  width: 90vw;
   border: 3px solid red;
 }
+
+/* ---------------------- In Product.jsx ---------------------- */
 
 .productCard {
   background-color: white;
@@ -15,16 +40,12 @@
   box-shadow: 0px 0px 10px darkgray;
 }
 
-.productInfo {
-}
+/* -------General Product Info------- */
 
 .productImage {
 }
 
-.productInitialPrice {
-    color: grey;
-    font-size: 15px;
-    margin-left: 5px;
+.productInfo {
 }
 
 .productFinalPrice {
@@ -34,21 +55,21 @@
   font-weight: 500;
 }
 
-.productInventory{
-    margin: 3px;
-    font-size: 15px;
+.productInventory {
+  margin: 3px;
+  font-size: 15px;
 }
-
+/* -------If product.on_sale === true------- */
 .productSale {
 }
 
-.saleCard{
-    display: flex;
-    width: 150px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    /* border: 1px solid black; */
+.discountRow {
+  display: flex;
+  width: 150px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* border: 1px solid black; */
 }
 
 .salePercentage {
@@ -60,5 +81,31 @@
   padding: 5px;
 }
 
+.productInitialPrice {
+  color: grey;
+  font-size: 15px;
+  margin-left: 5px;
+}
+/* -------If product.on_sale === false------- */
+
 .productNoSale {
+}
+
+/* ---------------------- In ProductAddToCart.jsx ---------------------- */
+
+.buttonAddToCart {
+  border: none;
+  background-color: darkorange;
+  color: white;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.buttonAddToCart:hover {
+  background-color: rgb(126, 194, 126);
+  transform: scale(1.1);
+}
+
+.buttonAddToCart:active {
+  transform: scale(1);
 }

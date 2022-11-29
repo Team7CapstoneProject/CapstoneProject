@@ -1,15 +1,16 @@
 import React from "react";
+import { ProductAddToCart } from "../";
+
 const Product = ({ product }) => {
-  
-  let salePrice
+  let salePrice;
   let finalSalePrice;
 
   if (product.on_sale === true) {
     let percentageConversion = product.sale_percentage * 0.01;
     salePrice = product.price * (1 - percentageConversion);
-    //.toFixed rounds up the number to the nearest 2 decimal places. 
+    //.toFixed rounds up the number to the nearest 2 decimal places.
     //finalSalePrice needs to be force coerced into a number since .toFixed returns a string.
-    finalSalePrice = Number(salePrice.toFixed(2))
+    finalSalePrice = Number(salePrice.toFixed(2));
   } else {
     finalSalePrice = product.price;
   }
@@ -18,9 +19,9 @@ const Product = ({ product }) => {
     <>
       <div className="productCard">
         <img
-          src={product.image_url}
-          alt={product.name}
           className="productImage"
+          src={product.image_url}
+          alt={`${product.name} Image`}
         />
 
         <div className="productInfo">
@@ -32,7 +33,7 @@ const Product = ({ product }) => {
           {product.on_sale === true ? (
             <div className="productSale">
               <div className="productFinalPrice">{`$${finalSalePrice}`}</div>
-              <div className="saleCard">
+              <div className="discountRow">
                 <div className="salePercentage">{`${product.sale_percentage}% off!`}</div>
                 <div className="productInitialPrice">
                   <strike>{`$${product.price}`}</strike>
@@ -46,6 +47,7 @@ const Product = ({ product }) => {
               <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           )}
+          <ProductAddToCart />
         </div>
       </div>
     </>
