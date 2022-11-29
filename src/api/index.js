@@ -10,3 +10,21 @@ export async function getAllProducts() {
   const result = await response.json();
   return result;
 }
+
+export async function register(first_name, last_name, email, password) {
+  const options = {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: password,
+      is_admin: false
+    })
+  };
+  const response = await fetch(`${BASE_URL}/api/users/register`, options)
+  const result = await response.json();
+  return result;
+}
