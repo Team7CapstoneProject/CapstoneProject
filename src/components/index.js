@@ -2,6 +2,7 @@
 export { default as AccessUsers } from "./admin/AccessUsers";
 export { default as AddProduct } from "./admin/AddProduct";
 export { default as EditProduct } from "./admin/EditProduct";
+export { default as AdminDashboard } from "./admin/AdminDashboard";
 
 //-----------CART FOLDER-------------
 export { default as Cart } from "./cart/Cart";

@@ -16,7 +16,9 @@ import {
   createBrowserRouter,
   Route,
 } from "react-router-dom";
+
 import { myAccount, createCart, getAllProducts } from "../api";
+
 
 const Main = () => {
   //------------VISITING USER---------------------
@@ -80,7 +82,7 @@ const Main = () => {
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />
-        <Route path="/admin" element={<EditProduct />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Route>
     )
   );

@@ -304,6 +304,7 @@ export async function updateProduct(
 }
 
 export async function getAllUsers(token) {
+  // const token = localStorage.getItem("token")
   const options = {
     method: "GET",
     headers: {
