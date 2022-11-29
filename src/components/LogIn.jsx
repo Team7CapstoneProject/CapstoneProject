@@ -16,19 +16,19 @@ const LogIn = () => {
     event.preventDefault();
     const { email, password } = logInInfo;
 
-    console.log(logInInfo);
     const registeredUser = await logInUser(email, password);
-    console.log(registeredUser);
+    console.log(registeredUser, "this is registeredUser");
 
     if (registeredUser.error) {
       throw error;
       // replace above with corresponding error message
     } else {
-      const token = registeredUser.token;
       localStorage.removeItem("token");
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", registeredUser.token);
       localStorage.removeItem("email");
-      localStorage.setItem("email", email);
+      localStorage.setItem("email", registeredUser.user.email);
+      localStorage.removeItem("userId");
+      localStorage.setItem("userId", registeredUser.user.id);
       setLogInInfo({ email: "", password: "" });
     }
   };
@@ -60,7 +60,7 @@ const LogIn = () => {
       <div>
         <Link to="/users/register">
           {" "}
-          <button>not registered? create account here.</button>{" "}
+          <button>Not registered? Create account here.</button>{" "}
         </Link>
       </div>
     </>

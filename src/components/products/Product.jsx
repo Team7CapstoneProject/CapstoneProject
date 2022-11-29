@@ -47,8 +47,8 @@ const Product = ({ product, cart, setCart }) => {
               <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           )}
-          <ProductAddToCart product={product} cart={cart} setCart={setCart}/>
         </div>
+        <ProductAddToCart product={product} cart={cart} setCart={setCart} />
       </div>
     </>
   );
