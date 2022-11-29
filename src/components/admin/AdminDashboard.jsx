@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsers, getAllProducts } from "../../api";
-import {Users, Products} from "../";
+import {Users, AdminProducts} from "../";
 
 const AdminDashboard = () => {
   // console.log("all product data!", allAdminProducts)
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
     <>
       <div>
         <Users allUsers={allUsers}/>
-        <Products allAdminProducts={allAdminProducts}/>
+        <AdminProducts allAdminProducts={allAdminProducts}/>
       </div>
     </>
   );
