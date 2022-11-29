@@ -31,6 +31,7 @@ export async function getAllProducts() {
 
 export async function register(first_name, last_name, email, password) {
   const options = {
+    method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
