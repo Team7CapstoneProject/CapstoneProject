@@ -17,6 +17,7 @@ import {
   Route,
 } from "react-router-dom";
 import { getAllProducts } from "../api";
+import AdminDashboard from "./admin/AdminDashboard";
 
 const Main = () => {
   //-----------GET PRODUCTS DATA------------------
@@ -43,7 +44,7 @@ const Main = () => {
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />
-        <Route path="/admin" element={<EditProduct />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Route>
     )
   );
