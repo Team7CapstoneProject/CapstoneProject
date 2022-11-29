@@ -135,9 +135,8 @@ export async function getCartByEmail(token) {
 }
 
 //GET CART BY USER ID
-export async function getCartByUserId(token) {
+export async function getCartByUserId(user_id, token) {
   const options = {
-    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -312,10 +311,7 @@ export async function getAllUsers(token) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await fetch(
-    `${BASE_URL}/api/admin/users`,
-    options
-  );
+  const response = await fetch(`${BASE_URL}/api/admin/users`, options);
   const result = await response.json();
   return result;
 }
