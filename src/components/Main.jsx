@@ -9,6 +9,7 @@ import {
   Cart,
   CompletedCarts,
   EditProduct,
+  AdminDashboard
 } from "./";
 import {
   createRoutesFromElements,
