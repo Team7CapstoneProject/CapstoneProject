@@ -148,6 +148,20 @@ export async function getCartByUserId(token) {
   return result;
 }
 
+//UPDATE CART COMPLETION
+export async function updateCartCompletion(cart_id) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(`${BASE_URL}/api/carts/${cart_id}`, options);
+  const result = await response.json();
+  return result;
+}
+
 //DELETE USER CART
 export async function deleteCart(token, cartId) {
   const options = {
