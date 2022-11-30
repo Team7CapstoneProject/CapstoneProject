@@ -5,10 +5,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   function onClickLogOut(event) {
     event.preventDefault();
-    localStorage.removeItem("userId");
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("userId");
     localStorage.removeItem("isAdmin");
+    localStorage.removeItem("first_name");
     navigate("/");
   }
 
