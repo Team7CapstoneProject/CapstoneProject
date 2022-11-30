@@ -1,5 +1,5 @@
 import React from "react";
-import { EditProduct } from "../";
+// import { EditProduct } from "../";
 
 const AdminProduct = ({ adminProduct }) => {
   // console.log("adminProduct data", adminProduct);
