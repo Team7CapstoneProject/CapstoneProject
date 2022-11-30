@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { logInUser } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
-  const [logInMessage, setLogInMessage] = useState("Login Below")
+  const navigate = useNavigate();
+  const [logInMessage, setLogInMessage] = useState("Login Below");
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -30,7 +31,10 @@ const LogIn = () => {
       localStorage.setItem("token", registeredUser.token);
       localStorage.setItem("email", registeredUser.user.email);
       localStorage.setItem("userId", registeredUser.user.id);
-      setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`)
+      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
+      navigate("/");
+
       setLogInInfo({ email: "", password: "" });
     }
   };

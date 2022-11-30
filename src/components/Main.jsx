@@ -29,10 +29,12 @@ const Main = () => {
   // }, [])
 
   //------------GET MY ACCOUNT--------------------
+
+  let token = localStorage.getItem("token");
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
     async function fetchUserAccount() {
-      const accountOfUser = await myAccount();
+      const accountOfUser = await myAccount(token);
       setUserAccount(accountOfUser);
     }
     fetchUserAccount();
@@ -45,7 +47,6 @@ const Main = () => {
       const productResponse = await getAllProducts();
       // console.log("all product data", productResponse)
       setAllProducts(productResponse);
-      
     }
     fetchAllProducts();
   }, []);

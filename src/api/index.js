@@ -53,6 +53,22 @@ export async function myAccount(token) {
   return result;
 }
 
+//GET USER BY USER ID
+export async function getUserById(userId) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/users/${userId}`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
 //DELETE MY ACCOUNT
 export async function deleteMyAccount(token) {
   const options = {
@@ -326,22 +342,6 @@ export async function getAllUsers(token) {
     },
   };
   const response = await fetch(`${BASE_URL}/api/admin/users`, options);
-  const result = await response.json();
-  return result;
-}
-
-export async function getUserByUserId(token, userId) {
-  const options = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const response = await fetch(
-    `${BASE_URL}/api/admin/users/${userId}`,
-    options
-  );
   const result = await response.json();
   return result;
 }

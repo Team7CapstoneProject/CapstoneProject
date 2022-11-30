@@ -1,28 +1,53 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  function onClickLogOut(event) {
+    event.preventDefault();
+    localStorage.removeItem("userId");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("isAdmin");
+    navigate("/");
+  }
+
   return (
     <>
       <div id="navbar">
         <Link to={"/"} className="logo">
           <h2>GuitarStop</h2>
         </Link>
-        <Link to={"/login"}>
-          <button>login</button>
-        </Link>
-        <Link to={"/register"}>
-          <button>register</button>
+
+        <Link to={"/products"}>
+          <button>Products</button>
         </Link>
         <Link to={"/cart"}>
-          <button>cart</button>
+          <button>Cart</button>
         </Link>
-        <Link to={"/products"}>
-          <button>products</button>
-        </Link>
-        <Link to={"/admin"}>
-          <button>admin dashboard</button>
-        </Link>
+
+        <div>
+          <Link to={"/admin"}>
+            <button>Admin Dashboard</button>
+          </Link>
+        </div>
+
+        <div>
+          {!localStorage.getItem("token") ? (
+            <div>
+              <Link to={"/login"}>
+                <button>Login</button>
+              </Link>
+              <Link to={"/register"}>
+                <button>Register</button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <button onClick={onClickLogOut}>Log Out</button>
+            </div>
+          )}
+        </div>
       </div>
       <Outlet />
     </>
