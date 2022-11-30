@@ -17,7 +17,8 @@ const LogIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = logInInfo;
-
+    console.log(logInInfo);
+    console.log(email, password);
     const registeredUser = await logInUser(email, password);
     console.log(registeredUser, "this is registeredUser");
 
@@ -25,13 +26,14 @@ const LogIn = () => {
       throw error;
       // replace above with corresponding error message
     } else {
+      const token = registeredUser.token;
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("userId");
       localStorage.removeItem("isAdmin");
       localStorage.removeItem("first_name");
-      localStorage.setItem("token", registeredUser.token);
-      localStorage.setItem("email", registeredUser.user.email);
+      localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
       localStorage.setItem("userId", registeredUser.user.id);
       localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("first_name", registeredUser.user.first_name);
@@ -67,7 +69,7 @@ const LogIn = () => {
         </form>{" "}
       </div>
       <div>
-        <Link to="/users/register">
+        <Link to="/register">
           {" "}
           <button>Not registered? Create account here.</button>{" "}
         </Link>
