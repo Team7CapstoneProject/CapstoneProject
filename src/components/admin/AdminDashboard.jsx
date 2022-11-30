@@ -3,8 +3,8 @@ import { getAllUsers, getAllProducts } from "../../api";
 import {Users, AdminProducts, CreateProduct} from "../";
 
 const AdminDashboard = () => {
-  // console.log("all product data!", allAdminProducts)
 
+  //this state contains any products fetched from the use effect set up here
   const [allAdminProducts, setAllAdminProducts] = useState([]);
   useEffect(() => {
     async function fetchAllAdminProducts() {
@@ -16,6 +16,7 @@ const AdminDashboard = () => {
     fetchAllAdminProducts();
   }, []);
 
+  //this state contains any users fetched from the use effect set up here
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     async function fetchAllUsers() {
@@ -25,6 +26,8 @@ const AdminDashboard = () => {
     fetchAllUsers();
   }, []);
 
+  //currently just have 2 buttons for specific admin functionality 
+  //passing both pieces of state to respective components 
   return (
     <>
       <div>
