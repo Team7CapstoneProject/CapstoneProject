@@ -71,7 +71,7 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
       const userIdCart = await getCartByUserId(user_id, token);
-      console.log(userIdCart, "USERIDCART");
+      // console.log(userIdCart, "USERIDCART");
       setUserCart(userIdCart);
     }
     fetchUserCart();
