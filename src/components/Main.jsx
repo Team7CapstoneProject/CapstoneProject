@@ -18,7 +18,13 @@ import {
   Route,
 } from "react-router-dom";
 
-import { myAccount, createCart, getAllProducts, getCartByUserId } from "../api";
+import {
+  myAccount,
+  createCart,
+  getAllProducts,
+  getCartByUserId,
+  getCartProductsByCart,
+} from "../api";
 
 const Main = () => {
   //------------VISITING USER---------------------
@@ -59,24 +65,25 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
 
       const userCart = await createCart(token, user_id);
+
       setCart(userCart);
     }
     fetchCart();
   }, []);
+  console.log(cart);
+  //-----------GET CARTPRODUCTS BY CART ------------------
 
-  //-----------GET CART BY USERID ------------------
-
-  const [userCart, setUserCart] = useState([cart]);
+  const [cartProducts, setCartProducts] = useState();
   useEffect(() => {
-    async function fetchUserCart() {
-      const user_id = localStorage.getItem("userId");
-      const token = localStorage.getItem("token");
-      const userIdCart = await getCartByUserId(user_id, token);
-      // console.log(userIdCart, "USERIDCART");
-      setUserCart(userIdCart);
+    async function fetchCartProducts() {
+      const cart_id = cart.id;
+      const productsInCart = await getCartProductsByCart(cart_id);
+      console.log(productsInCart);
+      setCartProducts(productsInCart);
+      console.log(productsInCart);
     }
-    fetchUserCart();
-  }, [cart]);
+    fetchCartProducts();
+  }, []);
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(

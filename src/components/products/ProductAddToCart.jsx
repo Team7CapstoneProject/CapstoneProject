@@ -3,15 +3,13 @@ import { addProductToCart } from "../../api";
 
 const ProductAddToCart = ({ product, cart, setCart }) => {
   const [addCart, setAddCart] = useState(cart);
-
-  useEffect(() => {});
+  const [attachToCart, setAttachToCart] = useState({});
 
   //take the product id and set it in the cart
 
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    console.log(token);
     const cart_id = cart.id;
 
     console.log(cart);
