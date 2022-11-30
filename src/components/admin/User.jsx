@@ -2,7 +2,6 @@ import React from "react";
 import { DeleteUser } from "../";
 
 const User = ({ user }) => {
-  
   return (
     <>
       <div>
@@ -12,7 +11,9 @@ const User = ({ user }) => {
           <div>{`Last Name: ${user.last_name}`}</div>
           <div>{`Email: ${user.email}`}</div>
           <div>{`Admin: ${user.is_admin}`}</div>
-          <DeleteUser user={user}/>
+          <div>
+            {user.is_admin === true ? <></> : <DeleteUser user={user} />}
+          </div>
         </div>
       </div>
     </>
