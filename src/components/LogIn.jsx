@@ -32,6 +32,7 @@ const LogIn = () => {
       localStorage.setItem("email", registeredUser.user.email);
       localStorage.setItem("userId", registeredUser.user.id);
       localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      localStorage.setItem("first_name", registeredUser.user.first_name);
       setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
       navigate("/");
 

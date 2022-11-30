@@ -12,6 +12,7 @@ const Navbar = () => {
     navigate("/");
   }
 
+  const firstName = localStorage.getItem("first_name");
   return (
     <>
       <div id="navbar">
@@ -48,6 +49,8 @@ const Navbar = () => {
             </div>
           )}
         </div>
+
+        <div>{firstName ? <div className="logo">{`Hello ${firstName}!`}</div> : <></>}</div>
       </div>
       <Outlet />
     </>
