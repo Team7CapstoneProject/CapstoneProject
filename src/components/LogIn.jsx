@@ -64,7 +64,7 @@ const LogIn = () => {
         </form>{" "}
       </div>
       <div>
-        <Link to="/users/register">
+        <Link to="/register">
           {" "}
           <button>Not registered? Create account here.</button>{" "}
         </Link>
