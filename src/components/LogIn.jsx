@@ -28,6 +28,8 @@ const LogIn = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("userId");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("first_name");
       localStorage.setItem("token", registeredUser.token);
       localStorage.setItem("email", registeredUser.user.email);
       localStorage.setItem("userId", registeredUser.user.id);
