@@ -1,17 +1,22 @@
 import React from "react";
+import {EditProduct} from "../"
 
 const AdminProduct = ({ adminProduct }) => {
-    console.log("adminProduct data", adminProduct)
   return (
     <>
       <div>
-        <div> Hello there!
-          {/* <div>{`AdminProduct ID: ${user.id}`}</div>
-          <div>{`First Name: ${user.first_name}`}</div>
+        <div>
+          <div>{`Product ID: ${adminProduct.id}`}</div>
+          <div>{`Product Name: ${adminProduct.name}`}</div>
+          <div>{`Product Price: $${adminProduct.price}`}</div>
+
+
+          {/* <div>{`First Name: ${user.first_name}`}</div>
           <div>{`Last Name: ${user.last_name}`}</div>
           <div>{`Email: ${user.email}`}</div>
           <div>{`Admin: ${user.is_admin}`}</div> */}
         </div>
+        <EditProduct adminProduct={adminProduct}/>
       </div>
     </>
   );

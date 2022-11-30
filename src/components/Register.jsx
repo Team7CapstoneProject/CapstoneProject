@@ -1,7 +1,8 @@
-import React from "react";
-import { register } from '../api';
+import React, { useState } from "react";
+import { register } from "../api";
 
 const Register = () => {
+  const [registerMessage, setRegisterMessage] = useState("Register here!");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -11,34 +12,44 @@ const Register = () => {
     const password = event.target[3].value;
     const registerUser = await register(first_name, last_name, email, password);
     const token = registerUser.token;
-    console.log(registerUser)
-    console.log(token, "THIS IS THE TOKEN")
-    if(token){
-      console.log(`${first_name} user account created`)
-    }else {
-      console.log("failed :(")
+    console.log(registerUser);
+    console.log(token, "THIS IS THE TOKEN");
+
+    if (password.length < 8){
+      setRegisterMessage(`Password must 8 characters or more`)
+    }
+    if (token) {
+      console.log(`${first_name}'s user account created`);
+      setRegisterMessage(`Thanks ${first_name} for registering with us!`);
+      event.target[0].value = null;
+      event.target[1].value = null;
+      event.target[2].value = null;
+      event.target[3].value = null;
+    } else {
+      console.log("failed :(");
+      setRegisterMessage(`Email account ${email} is already taken!`)
     }
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
   }
 
-
   return (
     <>
       <div className="Register">
-      <form onSubmit={handleSubmit}>
-        <label>First Name:</label>
-        <input htmlFor="first_name" placeholder="First Name" required></input>
-        <label>Last Name:</label>
-        <input htmlFor="last_name" placeholder="Last Name"required></input>
-        <label>Email:</label>
-        <input htmlFor="email" placeholder="Email" required></input>
-        <label>Password:</label>
-        <input htmlFor="password" placeholder="Password" required></input>
-        <button className="registerButton" type="submit">
-          Register
-        </button>
-      </form>
+        <h3>{registerMessage}</h3>
+        <form onSubmit={handleSubmit}>
+          <label>First Name:</label>
+          <input htmlFor="first_name" placeholder="First Name" required></input>
+          <label>Last Name:</label>
+          <input htmlFor="last_name" placeholder="Last Name" required></input>
+          <label>Email:</label>
+          <input htmlFor="email" placeholder="Email" required></input>
+          <label>Password:</label>
+          <input htmlFor="password" placeholder="Password" required></input>
+          <button className="registerButton" type="submit">
+            Register
+          </button>
+        </form>
       </div>
     </>
   );
