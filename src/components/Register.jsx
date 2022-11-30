@@ -15,8 +15,8 @@ const Register = () => {
     console.log(registerUser);
     console.log(token, "THIS IS THE TOKEN");
 
-    if (password.length < 8){
-      setRegisterMessage(`Password must 8 characters or more`)
+    if (password.length < 8) {
+      setRegisterMessage(`Password must 8 characters or more`);
     }
     if (token) {
       console.log(`${first_name}'s user account created`);
@@ -27,7 +27,7 @@ const Register = () => {
       event.target[3].value = null;
     } else {
       console.log("failed :(");
-      setRegisterMessage(`Email account ${email} is already taken!`)
+      setRegisterMessage(`Email account ${email} is already taken!`);
     }
     localStorage.removeItem("token");
     localStorage.setItem("token", token);
@@ -45,7 +45,12 @@ const Register = () => {
           <label>Email:</label>
           <input htmlFor="email" placeholder="Email" required></input>
           <label>Password:</label>
-          <input htmlFor="password" placeholder="Password" required></input>
+          <input
+            htmlFor="password"
+            type="password"
+            placeholder="Password"
+            required
+          ></input>
           <button className="registerButton" type="submit">
             Register
           </button>
