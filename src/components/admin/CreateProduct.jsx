@@ -42,9 +42,10 @@ const CreateProduct = () => {
       event.target[2].value = null;
       event.target[3].value = null;
       event.target[4].value = null;
-    } else {
-      console.log("Product could not be created");
     }
+    // } else {
+    //   console.log("Product could not be created");
+    // }
   }
   return (
     <>
