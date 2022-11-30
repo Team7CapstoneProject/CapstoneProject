@@ -3,6 +3,13 @@ import { register } from "../api";
 
 const Register = () => {
   const [registerMessage, setRegisterMessage] = useState("Register here!");
+  const [registerInfo, setRegisterInfo] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+  })
+  //useState would be way nicer than the event.target[].value
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,10 +28,6 @@ const Register = () => {
     if (token) {
       console.log(`${first_name}'s user account created`);
       setRegisterMessage(`Thanks ${first_name} for registering with us!`);
-      event.target[0].value = null;
-      event.target[1].value = null;
-      event.target[2].value = null;
-      event.target[3].value = null;
     } else {
       console.log("failed :(");
       setRegisterMessage(`Email account ${email} is already taken!`);
