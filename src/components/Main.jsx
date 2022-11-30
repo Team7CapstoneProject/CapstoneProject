@@ -29,10 +29,12 @@ const Main = () => {
   // }, [])
 
   //------------GET MY ACCOUNT--------------------
+
+  let token = localStorage.getItem("token");
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
     async function fetchUserAccount() {
-      const accountOfUser = await myAccount();
+      const accountOfUser = await myAccount(token);
       setUserAccount(accountOfUser);
     }
     fetchUserAccount();
@@ -43,6 +45,7 @@ const Main = () => {
   useEffect(() => {
     async function fetchAllProducts() {
       const productResponse = await getAllProducts();
+      // console.log("all product data", productResponse)
       setAllProducts(productResponse);
     }
     fetchAllProducts();
@@ -56,7 +59,6 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
 
       const userCart = await createCart(token, user_id);
-      console.log(userCart, "this is user cart");
       setCart(userCart);
     }
     fetchCart();
@@ -70,7 +72,7 @@ const Main = () => {
       const user_id = localStorage.getItem("userId");
       const token = localStorage.getItem("token");
       const userIdCart = await getCartByUserId(user_id, token);
-      console.log(userIdCart, "USERIDCART");
+      // console.log(userIdCart, "USERIDCART");
       setUserCart(userIdCart);
     }
     fetchUserCart();

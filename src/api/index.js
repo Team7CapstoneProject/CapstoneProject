@@ -53,6 +53,36 @@ export async function myAccount(token) {
   return result;
 }
 
+//GET USER BY USER ID
+export async function getUserById(userId) {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/users/${userId}`,
+    options
+  );
+  const result = await response.json();
+  return result;
+}
+
+//DELETE MY ACCOUNT
+export async function deleteMyAccount(token) {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(`${BASE_URL}/api/users/me`, options);
+  const result = await response.json();
+  return result;
+}
+
 //----------------PRODUCTS ADAPTERS----------------
 //POST ALL PRODUCTS
 export async function getAllProducts() {
@@ -231,7 +261,7 @@ export async function createProduct(
   sale_percentage
 ) {
   const options = {
-    method: "PATCH",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -316,9 +346,10 @@ export async function getAllUsers(token) {
   return result;
 }
 
-export async function getUserByUserId(token, userId) {
+//DELETE USER ACCOUNT
+export async function deleteUserAccountAsAdmin(token, userId) {
   const options = {
-    method: "GET",
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

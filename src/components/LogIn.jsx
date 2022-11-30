@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { logInUser } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
+  const navigate = useNavigate();
+  const [logInMessage, setLogInMessage] = useState("Login Below");
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -24,18 +26,22 @@ const LogIn = () => {
       // replace above with corresponding error message
     } else {
       localStorage.removeItem("token");
-      localStorage.setItem("token", registeredUser.token);
       localStorage.removeItem("email");
-      localStorage.setItem("email", registeredUser.user.email);
       localStorage.removeItem("userId");
+      localStorage.setItem("token", registeredUser.token);
+      localStorage.setItem("email", registeredUser.user.email);
       localStorage.setItem("userId", registeredUser.user.id);
+      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
+      navigate("/");
+
       setLogInInfo({ email: "", password: "" });
     }
   };
 
   return (
     <>
-      <h3>Login below</h3>
+      <h3>{logInMessage}</h3>
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">email:</label>
