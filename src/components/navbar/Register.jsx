@@ -8,7 +8,7 @@ const Register = () => {
     last_name: "",
     email: "",
     password: "",
-  })
+  });
   //useState would be way nicer than the event.target[].value
 
   async function handleSubmit(event) {
@@ -17,23 +17,31 @@ const Register = () => {
     const last_name = event.target[1].value;
     const email = event.target[2].value;
     const password = event.target[3].value;
-    const registerUser = await register(first_name, last_name, email, password);
-    const token = registerUser.token;
-    console.log(registerUser);
-    console.log(token, "THIS IS THE TOKEN");
+    const registeredUser = await register(
+      first_name,
+      last_name,
+      email,
+      password
+    );
 
-    if (password.length < 8) {
-      setRegisterMessage(`Password must 8 characters or more`);
+    setRegisterMessage(registeredUser.message);
+    
+    if (!registeredUser.error) {
+      localStorage.removeItem("userId");
+      localStorage.removeItem("first_name");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("token");
+      localStorage.setItem("userId", registeredUser.user.id);
+      localStorage.setItem("first_name", registeredUser.user.first_name);
+      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      localStorage.setItem("token", registeredUser.token);
+      // setRegisterInfo({
+      //   first_name: "",
+      //   last_name: "",
+      //   email: "",
+      //   password: "",
+      // });
     }
-    if (token) {
-      console.log(`${first_name}'s user account created`);
-      setRegisterMessage(`Thanks ${first_name} for registering with us!`);
-    } else {
-      console.log("failed :(");
-      setRegisterMessage(`Email account ${email} is already taken!`);
-    }
-    localStorage.removeItem("token");
-    localStorage.setItem("token", token);
   }
 
   return (

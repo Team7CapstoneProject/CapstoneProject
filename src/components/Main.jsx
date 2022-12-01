@@ -26,6 +26,9 @@ import {
 } from "../api";
 
 const Main = () => {
+
+const[navGreeting, setNavGreeting] = useState("")
+
   //------------VISITING USER---------------------
   // const [unregisteredUser, setUnregisteredUser] = useState([]);
   // useEffect(()=>{
@@ -89,9 +92,9 @@ const Main = () => {
   //-----------ROUTES------------------
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Navbar />}>
+      <Route path="/" element={<Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting}/>}>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LogIn />} />
+        <Route path="/login" element={<LogIn setNavGreeting={setNavGreeting}/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/account" element={<Account />} />
         <Route

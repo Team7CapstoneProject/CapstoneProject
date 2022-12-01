@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { logInUser } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 
-const LogIn = () => {
+const LogIn = ({setNavGreeting}) => {
   const navigate = useNavigate();
   const [logInMessage, setLogInMessage] = useState("Login Below");
   const [logInInfo, setLogInInfo] = useState({
@@ -35,6 +35,7 @@ const LogIn = () => {
       localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", token);
 
+      setNavGreeting(registeredUser.message)
       setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
       navigate("/");
 

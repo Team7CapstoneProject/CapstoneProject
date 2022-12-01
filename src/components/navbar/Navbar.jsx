@@ -2,7 +2,7 @@ import React from "react";
 import "./CSS/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({navGreeting, setNavGreeting}) => {
   const navigate = useNavigate();
   function onClickLogOut(event) {
     event.preventDefault();
@@ -11,6 +11,7 @@ const Navbar = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("token");
+    setNavGreeting("")
     navigate("/");
   }
 
@@ -24,17 +25,11 @@ const Navbar = () => {
           <h1 className="logo">GuitarStop</h1>
         </Link>
 
-
         <div className="navButtonGroup">
-
-        <div>
-            {firstName ? (
-              <h3 className="navGreeting">{`Hello ${firstName}!`}</h3>
-            ) : (
-              <></>
-            )}
+          <div>
+            <h3 className="navGreeting">{navGreeting}</h3>
           </div>
-          
+
           <Link to={"/products"}>
             <button className="navButton">Products</button>
           </Link>
@@ -72,8 +67,6 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
-       
         </div>
       </div>
       <Outlet />
