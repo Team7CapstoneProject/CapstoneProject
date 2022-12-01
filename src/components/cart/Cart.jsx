@@ -1,27 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { getCartByUserId, updateCartProductQuantity } from "../../api";
+import React, { useState } from "react";
+import { updateCartProductQuantity } from "../../api";
 import { Link } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
-  // let token = localStorage.getItem("token");
-  // const [myCart, setMyCart] = useState([]);
+  const [quantity, setQuantity] = useState();
 
-  const [quantity, setQuantity] = useState({ quantity: 1 });
+async function increment(cartProductId, quantity){
+try {
+  const token = localStorage.getItem("token")
+  const updateQuantity = await updateCartProductQuantity(
+    token,
+    cartProductId,
+    quantity)
+    JSON.parse(JSON.stringify(cart));
+    const newQuantity = updateQuantity + 1
+    setQuantity(newQuantity)
+} catch (error) {
+  throw error;
+}
+}
 
-  const handleChange = async (event) => {
-    event.preventDefault();
-    setQuantity({ ...quantity, [event.target.name]: event.target.value });
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const token = localStorage.getItem("token");
-    const updatedQuantity = await updateCartProductQuantity(
-      token,
-      cart.products.id,
-      quantity
-    );
-    setQuantity({ quantity: 1 });
-  };
+async function decrement(cartProductId, quantity){
+  //make a patch request to db to update cart item
+  //change quantity
+  //quantity - 1
+  //make a copy of cart
+  //JSON.parse(JSON.stringify(object_to_copy))
+  //decrease quantity here by 1
+  //reset the state
+try {
+  const token = localStorage.getItem("token")
+  const updateQuantity = await updateCartProductQuantity(
+    token,
+    cartProductId,
+    quantity)
+    JSON.parse(JSON.stringify(cart));
+    const newQuantity = updateQuantity - 1
+    setQuantity(newQuantity)
+} catch (error) {
+  throw error;
+}
+}
   console.log(cart);
   return (
     <>
@@ -29,6 +48,7 @@ const Cart = ({ cart, setCart }) => {
       <div>
         {cart.products ? (
           cart.products.map((product) => {
+            console.log(product, "THIS IS PRODUCT 35")
             return (
               <div key={`product-${product.id}`}>
                 <h3>{product.name}</h3>
@@ -38,27 +58,16 @@ const Cart = ({ cart, setCart }) => {
                   alt={`${product.name} Image`}
                 />
                 <p>${product.price}</p>
-                <p>{product.quantity}</p>
-                <select onClick={handleSubmit}>
-                  <option value={0} name="quantity" onClick={handleChange}>
-                    0
-                  </option>
-                  <option value={1} name="quantity" onClick={handleChange}>
-                    1
-                  </option>
-                  <option value={2} name="quantity" onClick={handleChange}>
-                    2
-                  </option>
-                  <option value={3} name="quantity" onClick={handleChange}>
-                    3
-                  </option>
-                  <option value={4} name="quantity" onClick={handleChange}>
-                    4
-                  </option>
-                  <option value={5} name="quantity" onClick={handleChange}>
-                    5
-                  </option>
-                </select>
+                <p>Quantity: 
+                    {product.quantity}
+                    <button onClick={()=>{
+                      decrement(product.id, product.quantity)
+                    }}>-</button>
+                    <button onClick={()=>{
+                      increment(product.id, product.quantity)
+                    }}>+</button>
+                </p>
+                
                 {product.on_sale == true ? (
                   <p>{product.sale_percentage}% off</p>
                 ) : null}
@@ -75,6 +84,7 @@ const Cart = ({ cart, setCart }) => {
         )}
       </div>
       <div>
+        <div className="subtotal"></div>
         <Link to={"/checkout"}>
           <button>Checkout Here!</button>
         </Link>

@@ -109,7 +109,7 @@ const[navGreeting, setNavGreeting] = useState("")
             />
           }
         />
-        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} cartProducts={cartProducts}/>} />
         <Route path="/checkout" element={<Checkout cart={cart} userAccount={userAccount}/>} />
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route path="/admin" element={<AdminDashboard />} />
