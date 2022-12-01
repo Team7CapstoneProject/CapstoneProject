@@ -4,6 +4,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Navbar = ({navGreeting, setNavGreeting}) => {
   const navigate = useNavigate();
+
+  //------Log out function------
   function onClickLogOut(event) {
     event.preventDefault();
     localStorage.removeItem("userId");
@@ -15,7 +17,6 @@ const Navbar = ({navGreeting, setNavGreeting}) => {
     navigate("/");
   }
 
-  const firstName = localStorage.getItem("first_name");
   const isAdmin = localStorage.getItem("isAdmin");
 
   return (

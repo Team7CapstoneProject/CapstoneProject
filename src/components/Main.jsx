@@ -27,8 +27,16 @@ import {
 } from "../api";
 
 const Main = () => {
+  let token = localStorage.getItem("token");
 
-const[navGreeting, setNavGreeting] = useState("")
+  //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
+  let initialNavGreeting;
+  if (token) {
+    initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
+  } else {
+    initialNavGreeting = "";
+  }
+  const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
 
   //------------VISITING USER---------------------
   // const [unregisteredUser, setUnregisteredUser] = useState([]);
@@ -38,8 +46,6 @@ const[navGreeting, setNavGreeting] = useState("")
   // }, [])
 
   //------------GET MY ACCOUNT--------------------
-
-  // let token = localStorage.getItem("token");
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -98,10 +104,21 @@ const[navGreeting, setNavGreeting] = useState("")
   //-----------ROUTES------------------
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting}/>}>
+      <Route
+        path="/"
+        element={
+          <Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting} />
+        }
+      >
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LogIn setNavGreeting={setNavGreeting}/>} />
-        <Route path="/register" element={<Register setNavGreeting={setNavGreeting}/>} />
+        <Route
+          path="/login"
+          element={<LogIn setNavGreeting={setNavGreeting} />}
+        />
+        <Route
+          path="/register"
+          element={<Register setNavGreeting={setNavGreeting} />}
+        />
         <Route path="/account" element={<Account />} />
         <Route
           path="/products"
@@ -114,7 +131,10 @@ const[navGreeting, setNavGreeting] = useState("")
           }
         />
         <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
-        <Route path="/checkout" element={<Checkout cart={cart} userAccount={userAccount}/>} />
+        <Route
+          path="/checkout"
+          element={<Checkout cart={cart} userAccount={userAccount} />}
+        />
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Route>
