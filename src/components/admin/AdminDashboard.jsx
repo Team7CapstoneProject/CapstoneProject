@@ -44,6 +44,7 @@ const AdminDashboard = () => {
         <Users
           allUsers={allUsers}
           displayUsers={displayUsers}
+          setAllUsers={setAllUsers}
           setDisplayCreateProduct={setDisplayCreateProduct}
           setDisplayUsers={setDisplayUsers}
           setDisplayAdminProducts={setDisplayAdminProducts}
