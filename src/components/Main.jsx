@@ -50,7 +50,6 @@ const Main = () => {
   useEffect(() => {
     async function fetchAllProducts() {
       const productResponse = await getAllProducts();
-      // console.log("all product data", productResponse)
       setAllProducts(productResponse);
     }
     fetchAllProducts();
@@ -62,29 +61,26 @@ const Main = () => {
     async function fetchCart() {
       const token = localStorage.getItem("token");
       const user_id = localStorage.getItem("userId");
-      if(token){
-       const userCart = await getCartByUserId(token)
-       if(userCart){
-        setCart(userCart[0])
-       }else{
-        const newCart = await createCart(token, user_id);
-      console.log(newCart, "newCART")
-      setCart(newCart);
-       }
+      if (token) {
+        const userCart = await getCartByUserId(token);
+        if (userCart) {
+          setCart(userCart[0]);
+        } else {
+          const newCart = await createCart(token, user_id);
+          setCart(newCart);
+        }
       }
     }
     fetchCart();
   }, []);
   //-----------GET CART PRODUCTS BY CART ------------------
-console.log(cart)
   const [cartProducts, setCartProducts] = useState();
   useEffect(() => {
     async function fetchCartProducts() {
-      if(cart){
-         const cartId = cart.id;
-      const productsInCart = await getCartProductsByCart(cartId);
-      console.log(productsInCart)
-      setCartProducts(productsInCart);
+      if (cart) {
+        const cartId = cart.id;
+        const productsInCart = await getCartProductsByCart(cartId);
+        setCartProducts(productsInCart);
       }
     }
     fetchCartProducts();
@@ -108,23 +104,12 @@ console.log(cart)
             />
           }
         />
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              cart={cart}
-              setCart={setCart}
-              // userCart={userCart}
-              // setUserCart={setUserCart}
-            />
-          }
-        />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route path="/admin" element={<AdminDashboard />} />
       </Route>
     )
   );
-console.log(cart)
   return (
     <div id="main">
       <RouterProvider router={router}></RouterProvider>
