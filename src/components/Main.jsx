@@ -96,7 +96,7 @@ const[navGreeting, setNavGreeting] = useState("")
       <Route path="/" element={<Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting}/>}>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LogIn setNavGreeting={setNavGreeting}/>} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register setNavGreeting={setNavGreeting}/>} />
         <Route path="/account" element={<Account />} />
         <Route
           path="/products"
