@@ -22,6 +22,7 @@ import {
   createCart,
   getAllProducts,
   getCartProductsByCart,
+  getCartByUserId,
 } from "../api";
 
 const Main = () => {
@@ -61,21 +62,30 @@ const Main = () => {
     async function fetchCart() {
       const token = localStorage.getItem("token");
       const user_id = localStorage.getItem("userId");
-
-      const userCart = await createCart(token, user_id);
-
-      setCart(userCart);
+      if(token){
+       const userCart = await getCartByUserId(token)
+       if(userCart){
+        setCart(userCart[0])
+       }else{
+        const newCart = await createCart(token, user_id);
+      console.log(newCart, "newCART")
+      setCart(newCart);
+       }
+      }
     }
     fetchCart();
   }, []);
-  //-----------GET CARTPRODUCTS BY CART ------------------
-
+  //-----------GET CART PRODUCTS BY CART ------------------
+console.log(cart)
   const [cartProducts, setCartProducts] = useState();
   useEffect(() => {
     async function fetchCartProducts() {
-      const cart_id = cart.id;
-      const productsInCart = await getCartProductsByCart(cart_id);
+      if(cart){
+         const cartId = cart.id;
+      const productsInCart = await getCartProductsByCart(cartId);
+      console.log(productsInCart)
       setCartProducts(productsInCart);
+      }
     }
     fetchCartProducts();
   }, []);
@@ -114,7 +124,7 @@ const Main = () => {
       </Route>
     )
   );
-
+console.log(cart)
   return (
     <div id="main">
       <RouterProvider router={router}></RouterProvider>
