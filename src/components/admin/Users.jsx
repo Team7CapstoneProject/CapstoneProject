@@ -3,6 +3,7 @@ import { User } from "../";
 
 const Users = ({
   allUsers,
+  setAllUsers,
   displayUsers,
   setDisplayUsers,
   setDisplayCreateProduct,
@@ -24,14 +25,23 @@ const Users = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeAllUsers} className="navButton">See All Users</button>
+        <button onClick={handleClickSeeAllUsers} className="navButton">
+          See All Users
+        </button>
 
         <div>
           {displayUsers ? (
             <div className="userList">
               {allUsers.length ? (
                 allUsers.map((user) => {
-                  return <User key={`user-${user.id}`} user={user} />;
+                  return (
+                    <User
+                      key={`user-${user.id}`}
+                      user={user}
+                      allUsers={allUsers}
+                      setAllUsers={setAllUsers}
+                    />
+                  );
                 })
               ) : (
                 <div> No Users Found</div>
