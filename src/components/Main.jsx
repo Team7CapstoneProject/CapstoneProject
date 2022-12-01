@@ -48,12 +48,16 @@ const Main = () => {
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
-    async function fetchUserAccount() {
-      const accountOfUser = await myAccount(token);
-      setUserAccount(accountOfUser);
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token");
+      async function fetchUserAccount() {
+        const accountOfUser = await myAccount(token);
+        // console.log("user account object!!", accountOfUser)
+        setUserAccount(accountOfUser);
+        console.log("user account state data!!", userAccount)
+      }
+      fetchUserAccount();
     }
-    fetchUserAccount();
-    console.log("user account data!!", userAccount)
   }, []);
 
   //-----------GET PRODUCTS DATA------------------
@@ -136,6 +140,8 @@ const Main = () => {
       </Route>
     )
   );
+
+  console.log("user account state data!!", userAccount)
   return (
     <div id="main">
       <RouterProvider router={router}></RouterProvider>
