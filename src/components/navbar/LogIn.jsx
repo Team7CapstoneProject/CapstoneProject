@@ -21,7 +21,7 @@ const LogIn = ({setNavGreeting}) => {
 
     if (registeredUser.error) {
       const message = registeredUser.message
-      console.log("error message!!!", message)
+      // console.log("error message!!!", message)
       setLoginError(message)
     } else {
       const token = registeredUser.token;

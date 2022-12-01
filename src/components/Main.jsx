@@ -27,24 +27,6 @@ import {
 } from "../api";
 
 const Main = () => {
-  let token = localStorage.getItem("token");
-
-  //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
-  let initialNavGreeting;
-  if (token) {
-    initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
-  } else {
-    initialNavGreeting = "";
-  }
-  const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
-
-  //------------VISITING USER---------------------
-  // const [unregisteredUser, setUnregisteredUser] = useState([]);
-  // useEffect(()=>{
-  //   const visitingUser =
-  //   setUnregisteredUser(visitingUser)
-  // }, [])
-
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
@@ -54,11 +36,35 @@ const Main = () => {
         const accountOfUser = await myAccount(token);
         // console.log("user account object!!", accountOfUser)
         setUserAccount(accountOfUser);
-        console.log("user account state data!!", userAccount)
+        // console.log("user account state data!!", userAccount)
       }
       fetchUserAccount();
     }
   }, []);
+
+   //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
+   let initialNavGreeting;
+   if (userAccount.first_name) {
+     const nameDisplay = userAccount.first_name
+     initialNavGreeting = `Welcome back, ${nameDisplay}!`;
+   } else {
+     initialNavGreeting = "";
+   }
+   const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
+ 
+     // let initialNavGreeting;
+   // if (token) {
+   //   initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
+   // } else {
+   //   initialNavGreeting = "";
+   // }
+ 
+   //------------VISITING USER---------------------
+   // const [unregisteredUser, setUnregisteredUser] = useState([]);
+   // useEffect(()=>{
+   //   const visitingUser =
+   //   setUnregisteredUser(visitingUser)
+   // }, [])
 
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
@@ -107,7 +113,7 @@ const Main = () => {
       <Route
         path="/"
         element={
-          <Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting} />
+          <Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting} userAccount={userAccount} />
         }
       >
         <Route path="/" element={<Home />} />
