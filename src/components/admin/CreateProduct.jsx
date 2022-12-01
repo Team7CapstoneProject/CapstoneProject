@@ -57,7 +57,7 @@ const CreateProduct = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeCreateProduct}>Create Product</button>
+        <button onClick={handleClickSeeCreateProduct} className="navButton">Create Product</button>
         <div>
           {displayCreateProduct ? (
             <form onSubmit={handleSubmitCreateProduct}>

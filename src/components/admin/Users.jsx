@@ -24,7 +24,7 @@ const Users = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeAllUsers}>See All Users</button>
+        <button onClick={handleClickSeeAllUsers} className="navButton">See All Users</button>
 
         <div>
           {displayUsers ? (
