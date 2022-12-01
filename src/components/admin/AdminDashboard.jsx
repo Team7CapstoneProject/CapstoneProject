@@ -50,7 +50,9 @@ const AdminDashboard = () => {
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
         <AdminProducts
+        
           allAdminProducts={allAdminProducts}
+          setAllAdminProducts={setAllAdminProducts}
           displayAdminProducts={displayAdminProducts}
           setDisplayCreateProduct={setDisplayCreateProduct}
           setDisplayUsers={setDisplayUsers}
