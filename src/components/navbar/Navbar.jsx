@@ -24,7 +24,17 @@ const Navbar = () => {
           <h1 className="logo">GuitarStop</h1>
         </Link>
 
+
         <div className="navButtonGroup">
+
+        <div>
+            {firstName ? (
+              <h3 className="navGreeting">{`Hello ${firstName}!`}</h3>
+            ) : (
+              <></>
+            )}
+          </div>
+          
           <Link to={"/products"}>
             <button className="navButton">Products</button>
           </Link>
@@ -63,13 +73,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div>
-            {firstName ? (
-              <h3 className="navGreeting">{`Hello ${firstName}!`}</h3>
-            ) : (
-              <></>
-            )}
-          </div>
+       
         </div>
       </div>
       <Outlet />

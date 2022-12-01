@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { User } from "../";
 
-const Users = ({ allUsers }) => {
-  const [displayUsers, setDisplayUsers] = useState(false);
+const Users = ({
+  allUsers,
+  displayUsers,
+  setDisplayUsers,
+  setDisplayCreateProduct,
+  setDisplayAdminProducts,
+}) => {
+  // const [displayUsers, setDisplayUsers] = useState(false);
 
   function handleClickSeeAllUsers(event) {
     if (!displayUsers) {
       event.preventDefault();
       setDisplayUsers(true);
+      setDisplayCreateProduct(false);
+      setDisplayAdminProducts(false);
     } else {
       setDisplayUsers(false);
     }
@@ -20,7 +28,7 @@ const Users = ({ allUsers }) => {
 
         <div>
           {displayUsers ? (
-            <div>
+            <div className="userList">
               {allUsers.length ? (
                 allUsers.map((user) => {
                   return <User key={`user-${user.id}`} user={user} />;
