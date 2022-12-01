@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { register } from "../../api";
+import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+
+const Register = ({setNavGreeting}) => {
+  let navigate = useNavigate()
   const [registerMessage, setRegisterMessage] = useState("Register here!");
   const [registerInfo, setRegisterInfo] = useState({
     first_name: "",
@@ -24,8 +27,6 @@ const Register = () => {
       password
     );
 
-    setRegisterMessage(registeredUser.message);
-    
     if (!registeredUser.error) {
       localStorage.removeItem("userId");
       localStorage.removeItem("first_name");
@@ -35,12 +36,16 @@ const Register = () => {
       localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", registeredUser.token);
+      setNavGreeting(registeredUser.message)
+      navigate("/")
       // setRegisterInfo({
       //   first_name: "",
       //   last_name: "",
       //   email: "",
       //   password: "",
       // });
+    } else {
+      setRegisterMessage(registeredUser.message);
     }
   }
 

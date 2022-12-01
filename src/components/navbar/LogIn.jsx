@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = ({setNavGreeting}) => {
   const navigate = useNavigate();
-  const [logInMessage, setLogInMessage] = useState("Login Below");
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -36,7 +35,6 @@ const LogIn = ({setNavGreeting}) => {
       localStorage.setItem("token", token);
 
       setNavGreeting(registeredUser.message)
-      setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
       navigate("/");
 
       setLogInInfo({ email: "", password: "" });
@@ -45,7 +43,7 @@ const LogIn = ({setNavGreeting}) => {
 
   return (
     <>
-      <h3>{logInMessage}</h3>
+      <h3>Log in here!</h3>
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">email:</label>

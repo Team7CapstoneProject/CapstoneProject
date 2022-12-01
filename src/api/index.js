@@ -36,6 +36,7 @@ export async function register(first_name, last_name, email, password) {
   };
   const response = await fetch(`${BASE_URL}/api/users/register`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -50,6 +51,7 @@ export async function myAccount(token) {
   };
   const response = await fetch(`${BASE_URL}/api/users/me`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -63,6 +65,7 @@ export async function getUserById(userId) {
   };
   const response = await fetch(`${BASE_URL}/api/users/${userId}`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -77,6 +80,7 @@ export async function deleteMyAccount(token) {
   };
   const response = await fetch(`${BASE_URL}/api/users/me`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -91,6 +95,7 @@ export async function getAllProducts() {
   };
   const response = await fetch(`${BASE_URL}/api/products`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -107,6 +112,7 @@ export async function getProductByProductId(productId) {
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -130,6 +136,7 @@ export async function addProductToCart(token, cart_id, product_id, quantity) {
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -143,6 +150,7 @@ export async function getCartProductsByCart(cartId) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/${cartId}/cart_products`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -157,6 +165,7 @@ export async function createCart(token, user_id) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/${user_id}`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -171,6 +180,7 @@ export async function getCartByEmail(token) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/myCartByEmail`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -184,6 +194,7 @@ export async function getCartByUserId(token) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/myCartByUserId`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -198,6 +209,7 @@ export async function updateCartCompletion(token, cart_id) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/${cart_id}`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -212,6 +224,7 @@ export async function deleteCart(token, cartId) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/${cartId}`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -238,6 +251,7 @@ export async function updateCartProductQuantity(
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -255,6 +269,7 @@ export async function deleteCartProduct(token, cartProductId) {
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -288,6 +303,7 @@ export async function createProduct(
   };
   const response = await fetch(`${BASE_URL}/api/admin/products`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -304,6 +320,7 @@ export async function deleteProduct(token, productId) {
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -339,6 +356,7 @@ export async function updateProduct(
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -353,6 +371,7 @@ export async function getAllUsers(token) {
   };
   const response = await fetch(`${BASE_URL}/api/admin/users`, options);
   const result = await response.json();
+  console.log(result);
   return result;
 }
 
@@ -370,5 +389,6 @@ export async function deleteUserAccountAsAdmin(token, userId) {
     options
   );
   const result = await response.json();
+  console.log(result);
   return result;
 }
