@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { updateProduct, deleteProduct } from "../../api";
 
-const EditProduct = ({ adminProduct }) => {
+const EditProduct = ({ adminProduct, setProductInfo }) => {
+  const [displayEditProduct, setDisplayEditProduct] = useState(false);
+
   async function onClickEditProduct(event) {
     event.preventDefault();
 
     let token = localStorage.getItem("token");
     let productId = adminProduct.id;
 
-    let name = "cow";
+    let name = "pear";
     let description = "bunny";
     let price = 10000;
     let image_url = "www.bunny.com";
@@ -28,7 +30,9 @@ const EditProduct = ({ adminProduct }) => {
       sale_percentage
     );
 
-    console.log(editProduct, "this is editProduct");
+    if (!editProduct.error) {
+      setProductInfo(editProduct.updatedProduct);
+    }
   }
 
   async function onClickDeleteProduct(event) {

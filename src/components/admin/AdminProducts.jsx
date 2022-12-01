@@ -3,6 +3,7 @@ import { AdminProduct } from "..";
 
 const AdminProducts = ({
   allAdminProducts,
+  setAllAdminProducts,
   displayAdminProducts,
   setDisplayAdminProducts,
   setDisplayCreateProduct,
@@ -20,7 +21,6 @@ const AdminProducts = ({
       setDisplayAdminProducts(true);
       setDisplayCreateProduct(false);
       setDisplayUsers(false);
-
     } else {
       setDisplayAdminProducts(false);
     }
@@ -44,6 +44,8 @@ const AdminProducts = ({
                     <AdminProduct
                       key={`product-${adminProduct.id}`}
                       adminProduct={adminProduct}
+                      allAdminProducts={allAdminProducts}
+                      setAllAdminProducts={setAllAdminProducts}
                     />
                   );
                 })
