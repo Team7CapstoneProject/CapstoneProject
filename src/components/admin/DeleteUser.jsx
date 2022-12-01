@@ -14,7 +14,7 @@ const DeleteUser = ({ user }) => {
   return (
     <>
       <div>
-        <button onClick={handleClickDeleteUserAsAdmin}>Delete User</button>
+        <button onClick={handleClickDeleteUserAsAdmin} className="buttonDelete">Delete User</button>
       </div>
     </>
   );

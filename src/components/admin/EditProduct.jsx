@@ -18,9 +18,9 @@ const EditProduct = ({ adminProduct }) => {
 
   return (
     <>
-      <div>
-        <button onClick={onClickEditProduct}>Edit Product</button>
-        <button onClick={onClickDeleteProduct}>Delete Product</button>
+      <div className="editDeleteButtonGroup">
+        <button onClick={onClickEditProduct} className="buttonEdit">Edit Product</button>
+        <button onClick={onClickDeleteProduct} className="buttonDelete">Delete Product</button>
       </div>
     </>
   );

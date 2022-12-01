@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsers, getAllProducts } from "../../api";
 import { Users, AdminProducts, CreateProduct } from "../";
+import "./CSS/admin.css";
 
 const AdminDashboard = () => {
   //this state contains any products fetched from the use effect set up here
@@ -26,12 +27,34 @@ const AdminDashboard = () => {
 
   //currently just have 2 buttons for specific admin functionality
   //passing both pieces of state to respective components
+
+  const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
+  const [displayUsers, setDisplayUsers] = useState(false);
+  const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
+
   return (
     <>
       <div>
-        <Users allUsers={allUsers} />
-        <AdminProducts allAdminProducts={allAdminProducts} />
-        <CreateProduct />
+        <CreateProduct
+          displayCreateProduct={displayCreateProduct}
+          setDisplayCreateProduct={setDisplayCreateProduct}
+          setDisplayUsers={setDisplayUsers}
+          setDisplayAdminProducts={setDisplayAdminProducts}
+        />
+        <Users
+          allUsers={allUsers}
+          displayUsers={displayUsers}
+          setDisplayCreateProduct={setDisplayCreateProduct}
+          setDisplayUsers={setDisplayUsers}
+          setDisplayAdminProducts={setDisplayAdminProducts}
+        />
+        <AdminProducts
+          allAdminProducts={allAdminProducts}
+          displayAdminProducts={displayAdminProducts}
+          setDisplayCreateProduct={setDisplayCreateProduct}
+          setDisplayUsers={setDisplayUsers}
+          setDisplayAdminProducts={setDisplayAdminProducts}
+        />
       </div>
     </>
   );

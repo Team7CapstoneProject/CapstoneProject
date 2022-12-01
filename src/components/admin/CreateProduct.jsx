@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { createProduct } from "../../api";
 
-const CreateProduct = () => {
-  const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
+const CreateProduct = ({
+  displayCreateProduct,
+  setDisplayCreateProduct,
+  setDisplayUsers,
+  setDisplayAdminProducts,
+}) => {
+  // const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
 
   function handleClickSeeCreateProduct(event) {
     if (!displayCreateProduct) {
       event.preventDefault();
       setDisplayCreateProduct(true);
+      setDisplayUsers(false);
+      setDisplayAdminProducts(false);
     } else {
       setDisplayCreateProduct(false);
     }
@@ -54,29 +61,33 @@ const CreateProduct = () => {
         <div>
           {displayCreateProduct ? (
             <form onSubmit={handleSubmitCreateProduct}>
-              <label>Name:</label>
-              <input htmlFor="name" placeholder="Name" required></input>
-              <label>Description:</label>
-              <input
-                htmlFor="description"
-                placeholder="Description"
-                required
-              ></input>
-              <label>Price:</label>
-              <input htmlFor="price" placeholder="Price" required></input>
-              <label>Image Url:</label>
-              <input
-                htmlFor="image_url"
-                placeholder="Image URL"
-                required
-              ></input>
-              <label>Inventory:</label>
-              <input
-                htmlFor="inventory"
-                placeholder="Inventory"
-                required
-              ></input>
-              <button type="submit">Submit</button>
+              <div className="createProductCard">
+                <label>Name:</label>
+                <input htmlFor="name" placeholder="Name" required></input>
+                <label>Description:</label>
+                <input
+                  htmlFor="description"
+                  placeholder="Description"
+                  required
+                ></input>
+                <label>Price:</label>
+                <input htmlFor="price" placeholder="Price" required></input>
+                <label>Image Url:</label>
+                <input
+                  htmlFor="image_url"
+                  placeholder="Image URL"
+                  required
+                ></input>
+                <label>Inventory:</label>
+                <input
+                  htmlFor="inventory"
+                  placeholder="Inventory"
+                  required
+                ></input>
+                <button type="submit" className="buttonSubmit">
+                  Submit
+                </button>
+              </div>
             </form>
           ) : (
             <></>

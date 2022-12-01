@@ -1,20 +1,28 @@
 import React, { useState } from "react";
 import { AdminProduct } from "..";
 
-
-const AdminProducts = ({ allAdminProducts }) => {
+const AdminProducts = ({
+  allAdminProducts,
+  displayAdminProducts,
+  setDisplayAdminProducts,
+  setDisplayCreateProduct,
+  setDisplayUsers,
+}) => {
   //receiving products as prop here from admin dashboard component
-  
+
   //this piece of state works with the handleclick func below to display product data when state is true, defaults to false
-  const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
+  // const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
 
   //this handle click func prevents default so page does not reload and changes displayAdminProducts state to true/false on each click
   function handleClickSeeAllAdminProducts(event) {
     if (!displayAdminProducts) {
       event.preventDefault();
       setDisplayAdminProducts(true);
+      setDisplayCreateProduct(false);
+      setDisplayUsers(false);
+
     } else {
-        setDisplayAdminProducts(false);
+      setDisplayAdminProducts(false);
     }
   }
 
@@ -24,13 +32,20 @@ const AdminProducts = ({ allAdminProducts }) => {
   return (
     <>
       <div>
-        <button onClick={handleClickSeeAllAdminProducts}>See All Products</button>
+        <button onClick={handleClickSeeAllAdminProducts}>
+          See All Products
+        </button>
         <div>
           {displayAdminProducts ? (
-            <div>
+            <div className="adminProducts">
               {allAdminProducts && allAdminProducts.length ? (
                 allAdminProducts.map((adminProduct) => {
-                  return <AdminProduct key={`product-${adminProduct.id}`} adminProduct={adminProduct} />;
+                  return (
+                    <AdminProduct
+                      key={`product-${adminProduct.id}`}
+                      adminProduct={adminProduct}
+                    />
+                  );
                 })
               ) : (
                 <div> No Products Found</div>
