@@ -7,6 +7,8 @@ export { default as AdminProduct } from "./admin/AdminProduct";
 export { default as AdminProducts } from "./admin/AdminProducts";
 export { default as DeleteUser } from "./admin/DeleteUser";
 export { default as CreateProduct } from "./admin/CreateProduct";
+export { default as DeleteProduct } from "./admin/DeleteProduct";
+
 
 
 

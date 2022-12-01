@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateProduct, deleteProduct } from "../../api";
+import { updateProduct } from "../../api";
 
 const EditProduct = ({ adminProduct, setProductInfo }) => {
   const [displayEditProduct, setDisplayEditProduct] = useState(false);
@@ -35,23 +35,12 @@ const EditProduct = ({ adminProduct, setProductInfo }) => {
     }
   }
 
-  async function onClickDeleteProduct(event) {
-    event.preventDefault();
-    let productId = adminProduct.id;
-    let token = localStorage.getItem("token");
-    let deletedProduct = await deleteProduct(token, productId);
-    console.log(deletedProduct, "deleteProduct response");
-  }
-
   return (
     <>
       <div className="editDeleteButtonGroup">
         <button onClick={onClickEditProduct} className="buttonEdit">
           Edit Product
-        </button>
-        <button onClick={onClickDeleteProduct} className="buttonDelete">
-          Delete Product
-        </button>
+        </button>{" "}
       </div>
     </>
   );
