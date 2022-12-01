@@ -8,7 +8,7 @@ const DeleteUser = ({ user }) => {
     let userId = user.id;
     let token = localStorage.getItem("token");
     let deleteUserResponse = await deleteUserAccountAsAdmin(token, userId);
-    console.log(deleteUserResponse, "delete response");
+    console.log(deleteUserResponse);
   }
 
   return (
