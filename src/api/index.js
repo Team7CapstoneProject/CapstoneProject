@@ -134,14 +134,14 @@ export async function addProductToCart(token, cart_id, product_id, quantity) {
 }
 
 // GET CART PRODUCTS
-export async function getCartProductsByCart() {
+export async function getCartProductsByCart(cartId) {
   const options = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-    },
+    }
   };
-  const response = await fetch(`${BASE_URL}/api/cart_products`, options);
+  const response = await fetch(`${BASE_URL}/api/carts/${cartId}/cart_products`, options);
   const result = await response.json();
   return result;
 }
