@@ -6,15 +6,15 @@ const Cart = ({ cart, setCart }) => {
   // let token = localStorage.getItem("token");
   // const [myCart, setMyCart] = useState([]);
 
-  console.log(cart, "CARTTT");
+  // console.log(cart, "CARTTT");
   return (
     <>
       <h2>cart:</h2>
       <div>
-        {cart.products.length ? (
+        {cart.products ? (
           cart.products.map((product) => {
             return (
-              <div className="productCard" key={`product-${product.id}`}>
+              <div key={`product-${product.id}`}>
                 <h3>{product.name}</h3>
                 <img
                   className="productImage"
@@ -22,6 +22,7 @@ const Cart = ({ cart, setCart }) => {
                   alt={`${product.name} Image`}
                 />
                 <p>${product.price}</p>
+                <p>{product.quantity}</p>
                 {product.on_sale == true ? (
                   <p>{product.sale_percentage}% off</p>
                 ) : null}
@@ -36,6 +37,9 @@ const Cart = ({ cart, setCart }) => {
             </Link>
           </div>
         )}
+      </div>
+      <div>
+        <Link to={"/checkout"}><button>Checkout Here!</button></Link>
       </div>
     </>
   );

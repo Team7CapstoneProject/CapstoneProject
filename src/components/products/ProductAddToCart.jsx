@@ -5,8 +5,7 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
   const [addCart, setAddCart] = useState(cart);
   const [attachToCart, setAttachToCart] = useState({});
 
-  //take the product id and set it in the cart
-
+  console.log(cart, "CARTTT")
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");
@@ -15,7 +14,12 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
     console.log(cart);
     console.log(product, "PRoD");
     const product_id = product.id;
-    const quantity = 1;
+    // const quantity = cart.products.map((product)=>{
+    // if(product.id == product.id){
+    //   return product.quantity
+    // }})
+    const quantity = 1
+    console.log(quantity, "QUANNNNN")
     // REMOVE HARD CODE LATER^
 
     const ProductAdded = await addProductToCart(

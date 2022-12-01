@@ -13,12 +13,13 @@ export { default as CreateProduct } from "./admin/CreateProduct";
 //-----------CART FOLDER-------------
 export { default as Cart } from "./cart/Cart";
 export { default as CompletedCarts } from "./cart/CompletedCarts";
-export { default as ProductsSearch } from "./products/ProductsSearch";
+export { default as Checkout } from "./cart/Checkout";
 
 //-----------PRODUCTS FOLDER-------------
 export { default as Product } from "./products/Product";
 export { default as ProductAddToCart } from "./products/ProductAddToCart";
 export { default as Products } from "./products/Products";
+export { default as ProductsSearch } from "./products/ProductsSearch";
 
 //-----------COMPONENTS FOLDER-------------
 export { default as Account } from "./navbar/Account";
