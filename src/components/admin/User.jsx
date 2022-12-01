@@ -1,13 +1,14 @@
 import React from "react";
 import { DeleteUser } from "../";
 
-const User = ({ user }) => {
+const User = ({ user, allUsers, setAllUsers }) => {
   return (
     <>
       <div className="userCard">
         {/* <div>{`User ID: ${user.id}`}</div> */}
         <div>{`First Name: ${user.first_name}`}</div>
         <div>{`Last Name: ${user.last_name}`}</div>
+        <div>{`User ID: ${user.id}`}</div>
         <div>{`Email: ${user.email}`}</div>
         <div>
           {user.is_admin === true ? (
@@ -17,7 +18,7 @@ const User = ({ user }) => {
           )}
         </div>
 
-        <div>{user.is_admin === true ? <></> : <DeleteUser user={user} />}</div>
+        <div>{user.is_admin === true ? <></> : <DeleteUser user={user} allUsers={allUsers} setAllUsers={setAllUsers}/>}</div>
       </div>
     </>
   );
