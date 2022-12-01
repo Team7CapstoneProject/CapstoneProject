@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { logInUser } from "../api";
+import { logInUser } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
@@ -17,26 +17,24 @@ const LogIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { email, password } = logInInfo;
-    console.log(logInInfo);
-    console.log(email, password);
     const registeredUser = await logInUser(email, password);
-    console.log(registeredUser, "this is registeredUser");
 
     if (registeredUser.error) {
       throw error;
       // replace above with corresponding error message
     } else {
       const token = registeredUser.token;
-      localStorage.removeItem("token");
-      localStorage.removeItem("email");
       localStorage.removeItem("userId");
-      localStorage.removeItem("isAdmin");
       localStorage.removeItem("first_name");
-      localStorage.setItem("token", token);
-      localStorage.setItem("email", email);
+      localStorage.removeItem("email");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("token");
       localStorage.setItem("userId", registeredUser.user.id);
-      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("first_name", registeredUser.user.first_name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      localStorage.setItem("token", token);
+
       setLogInMessage(`Welcome back ${registeredUser.user.first_name}!`);
       navigate("/");
 

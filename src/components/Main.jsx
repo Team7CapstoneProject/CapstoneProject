@@ -8,7 +8,6 @@ import {
   ProductsSearch,
   Cart,
   CompletedCarts,
-  EditProduct,
   AdminDashboard,
 } from "./";
 import {
@@ -22,7 +21,6 @@ import {
   myAccount,
   createCart,
   getAllProducts,
-  getCartByUserId,
   getCartProductsByCart,
 } from "../api";
 
@@ -70,7 +68,6 @@ const Main = () => {
     }
     fetchCart();
   }, []);
-  console.log(cart);
   //-----------GET CARTPRODUCTS BY CART ------------------
 
   const [cartProducts, setCartProducts] = useState();
@@ -78,9 +75,7 @@ const Main = () => {
     async function fetchCartProducts() {
       const cart_id = cart.id;
       const productsInCart = await getCartProductsByCart(cart_id);
-      console.log(productsInCart);
       setCartProducts(productsInCart);
-      console.log(productsInCart);
     }
     fetchCartProducts();
   }, []);
