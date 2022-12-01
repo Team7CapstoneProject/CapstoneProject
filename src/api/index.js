@@ -376,7 +376,7 @@ export async function getAllUsers(token) {
 }
 
 //DELETE USER ACCOUNT
-export async function deleteUserAccountAsAdmin(token, userId) {
+export async function deleteUserAsAdmin(token, userId) {
   const options = {
     method: "DELETE",
     headers: {

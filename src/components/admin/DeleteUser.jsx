@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteUserAccountAsAdmin } from "../../api";
+import { deleteUserAsAdmin } from "../../api";
 
 const DeleteUser = ({ user, allUsers, setAllUsers }) => {
   async function handleClickDeleteUserAsAdmin(event) {
@@ -10,7 +10,7 @@ const DeleteUser = ({ user, allUsers, setAllUsers }) => {
     let token = localStorage.getItem("token");
 
     if (userId && token) {
-      let deleteUserResponse = await deleteUserAccountAsAdmin(token, userId);
+      let deleteUserResponse = await deleteUserAsAdmin(token, userId);
 
       if (!deleteUserResponse.error) {
         allUsers = allUsers.filter((user) => user.id !== deleteUserResponse.id);
