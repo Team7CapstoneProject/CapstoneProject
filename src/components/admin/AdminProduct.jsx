@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EditProduct } from "../";
+import { EditProduct, DeleteProduct } from "../";
 
 const AdminProduct = ({
   adminProduct,
@@ -11,8 +11,8 @@ const AdminProduct = ({
   //component is receiving adminProduct data from AdminProducts component
   //here we are mapping through each relevant part of the products data we receive to seperate divs
 
-//Updates state of product info when product is being updated
-  const [productInfo, setProductInfo]=useState(adminProduct)
+  //Updates state of product info when product is being updated
+  const [productInfo, setProductInfo] = useState(adminProduct);
 
   return (
     <>
@@ -35,7 +35,16 @@ const AdminProduct = ({
           )}
         </div>
 
-        <EditProduct adminProduct={adminProduct} setProductInfo={setProductInfo}/>
+        <EditProduct
+          adminProduct={adminProduct}
+          setProductInfo={setProductInfo}
+        />
+        <DeleteProduct
+          allAdminProducts={allAdminProducts}
+          setAllAdminProducts={setAllAdminProducts}
+          adminProduct={adminProduct}
+          setProductInfo={setProductInfo}
+        />
       </div>
     </>
   );
