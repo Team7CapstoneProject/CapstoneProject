@@ -21,9 +21,9 @@ export { default as ProductAddToCart } from "./products/ProductAddToCart";
 export { default as Products } from "./products/Products";
 
 //-----------COMPONENTS FOLDER-------------
-export { default as Account } from "./Account";
-export { default as Home } from "./Home";
-export { default as LogIn } from "./LogIn";
+export { default as Account } from "./navbar/Account";
+export { default as Home } from "./navbar/Home";
+export { default as LogIn } from "./navbar/LogIn";
 export { default as Main } from "./Main";
-export { default as Navbar } from "./Navbar";
-export { default as Register } from "./Register";
+export { default as Navbar } from "./navbar/Navbar";
+export { default as Register } from "./navbar/Register";

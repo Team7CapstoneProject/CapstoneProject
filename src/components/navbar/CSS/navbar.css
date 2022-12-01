@@ -1,0 +1,66 @@
+/* ---------------------- In Navbar.jsx ---------------------- */
+
+#navbar {
+  font-family: "Poller One", Arial, sans-serif;
+  background-color: white;
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 3px solid red; */
+}
+
+/* -------Logo ------- */
+
+.logoLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 30px;
+  text-decoration: none;
+  /* border: 2px solid green; */
+}
+
+.logo {
+  margin: 10px;
+  font-size: 30;
+  color: darkblue;
+}
+
+/* -------Nav Buttons ------- */
+
+.navButtonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.navButton {
+  border: none;
+  background-color: darkorange;
+  white-space: nowrap;
+  color: white;
+  padding: 7px;
+  margin: 5px;
+  justify-content: flex-end;
+  align-self: flex-start;
+}
+
+.navButton:hover {
+  background-color: rgb(126, 194, 126);
+  transform: scale(1.1);
+}
+
+.navButton:active {
+  transform: scale(1);
+}
+
+.navGreeting {
+  color: darkblue;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+/* ---------------------- In Login.jsx ---------------------- */

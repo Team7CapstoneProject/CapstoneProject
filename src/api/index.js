@@ -175,7 +175,7 @@ export async function getCartByEmail(token) {
 }
 
 //GET CART BY USER ID
-export async function getCartByUserId(user_id, token) {
+export async function getCartByUserId(token) {
   const options = {
     headers: {
       "Content-Type": "application/json",
