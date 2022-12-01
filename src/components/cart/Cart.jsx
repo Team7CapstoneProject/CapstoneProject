@@ -3,44 +3,51 @@ import { updateCartProductQuantity } from "../../api";
 import { Link } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(1);
 
-async function increment(cartProductId, quantity){
-try {
-  const token = localStorage.getItem("token")
-  const updateQuantity = await updateCartProductQuantity(
-    token,
-    cartProductId,
-    quantity)
-    JSON.parse(JSON.stringify(cart));
-    const newQuantity = updateQuantity + 1
-    setQuantity(newQuantity)
-} catch (error) {
-  throw error;
-}
-}
+  async function increment(cartProductId, quantity) {
+    try {
+      const token = localStorage.getItem("token");
+      const newestQuantity = quantity + 1;
+      const updateQuantity = await updateCartProductQuantity(
+        token,
+        cartProductId,
+        newestQuantity
+      );
 
-async function decrement(cartProductId, quantity){
-  //make a patch request to db to update cart item
-  //change quantity
-  //quantity - 1
-  //make a copy of cart
-  //JSON.parse(JSON.stringify(object_to_copy))
-  //decrease quantity here by 1
-  //reset the state
-try {
-  const token = localStorage.getItem("token")
-  const updateQuantity = await updateCartProductQuantity(
-    token,
-    cartProductId,
-    quantity)
-    JSON.parse(JSON.stringify(cart));
-    const newQuantity = updateQuantity - 1
-    setQuantity(newQuantity)
-} catch (error) {
-  throw error;
-}
-}
+      const newCart = JSON.parse(JSON.stringify(cart));
+      newCart.products.forEach((e) => {
+        if (e.id === cartProductId) {
+          e.quantity = newestQuantity;
+        }
+      });
+      console.log(newCart, "NEWCART");
+      setCart(newCart);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async function decrement(cartProductId, quantity) {
+    try {
+      const token = localStorage.getItem("token");
+      const newestQuantity = quantity - 1;
+      const updateQuantity = await updateCartProductQuantity(
+        token,
+        cartProductId,
+        newestQuantity
+      );
+      const newCart = JSON.parse(JSON.stringify(cart));
+      newCart.products.forEach((e) => {
+        if (e.id === cartProductId) {
+          e.quantity = newestQuantity;
+        }
+      });
+      setCart(newCart);
+    } catch (error) {
+      throw error;
+    }
+  }
   console.log(cart);
   return (
     <>
@@ -48,7 +55,7 @@ try {
       <div>
         {cart.products ? (
           cart.products.map((product) => {
-            console.log(product, "THIS IS PRODUCT 35")
+            // console.log(product, "THIS IS PRODUCT 35");
             return (
               <div key={`product-${product.id}`}>
                 <h3>{product.name}</h3>
@@ -58,16 +65,25 @@ try {
                   alt={`${product.name} Image`}
                 />
                 <p>${product.price}</p>
-                <p>Quantity: 
-                    {product.quantity}
-                    <button onClick={()=>{
-                      decrement(product.id, product.quantity)
-                    }}>-</button>
-                    <button onClick={()=>{
-                      increment(product.id, product.quantity)
-                    }}>+</button>
+                <p>
+                  Quantity:
+                  {product.quantity}
+                  <button
+                    onClick={() => {
+                      decrement(product.id, product.quantity);
+                    }}
+                  >
+                    -
+                  </button>
+                  <button
+                    onClick={() => {
+                      increment(product.id, product.quantity);
+                    }}
+                  >
+                    +
+                  </button>
                 </p>
-                
+
                 {product.on_sale == true ? (
                   <p>{product.sale_percentage}% off</p>
                 ) : null}
