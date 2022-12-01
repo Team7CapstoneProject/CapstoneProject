@@ -26,13 +26,11 @@ const LogIn = ({setNavGreeting}) => {
     } else {
       const token = registeredUser.token;
       // localStorage.removeItem("userId");
-      // localStorage.removeItem("first_name");
-      // localStorage.removeItem("email");
+      localStorage.removeItem("first_name");
       // localStorage.removeItem("isAdmin");
       localStorage.removeItem("token");
       // localStorage.setItem("userId", registeredUser.user.id);
-      // localStorage.setItem("first_name", registeredUser.user.first_name);
-      // localStorage.setItem("email", email);
+      localStorage.setItem("first_name", registeredUser.user.first_name);
       // localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", token);
 
