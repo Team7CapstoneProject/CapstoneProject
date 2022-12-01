@@ -188,7 +188,7 @@ export async function getCartByUserId(token) {
 }
 
 //UPDATE CART COMPLETION
-export async function updateCartCompletion(cart_id) {
+export async function updateCartCompletion(token, cart_id) {
   const options = {
     method: "PATCH",
     headers: {
