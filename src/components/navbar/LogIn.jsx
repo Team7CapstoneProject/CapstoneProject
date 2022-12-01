@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = ({setNavGreeting}) => {
   const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("")
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -19,19 +20,20 @@ const LogIn = ({setNavGreeting}) => {
     const registeredUser = await logInUser(email, password);
 
     if (registeredUser.error) {
-      throw error;
-      // replace above with corresponding error message
+      const message = registeredUser.message
+      console.log("error message!!!", message)
+      setLoginError(message)
     } else {
       const token = registeredUser.token;
-      localStorage.removeItem("userId");
-      localStorage.removeItem("first_name");
-      localStorage.removeItem("email");
-      localStorage.removeItem("isAdmin");
+      // localStorage.removeItem("userId");
+      // localStorage.removeItem("first_name");
+      // localStorage.removeItem("email");
+      // localStorage.removeItem("isAdmin");
       localStorage.removeItem("token");
-      localStorage.setItem("userId", registeredUser.user.id);
-      localStorage.setItem("first_name", registeredUser.user.first_name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
+      // localStorage.setItem("userId", registeredUser.user.id);
+      // localStorage.setItem("first_name", registeredUser.user.first_name);
+      // localStorage.setItem("email", email);
+      // localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", token);
 
       setNavGreeting(registeredUser.message)
@@ -44,6 +46,9 @@ const LogIn = ({setNavGreeting}) => {
   return (
     <>
       <h3>Log in here!</h3>
+      {loginError ? (
+        <div id="loginErrorMessage">{`${loginError}`}</div>
+      ) : null }
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">email:</label>

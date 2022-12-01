@@ -53,6 +53,7 @@ const Main = () => {
       setUserAccount(accountOfUser);
     }
     fetchUserAccount();
+    console.log("user account data!!", userAccount)
   }, []);
 
   //-----------GET PRODUCTS DATA------------------
