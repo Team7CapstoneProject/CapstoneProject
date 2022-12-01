@@ -2,8 +2,9 @@ import React from "react";
 import "./CSS/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 
-const Navbar = ({navGreeting, setNavGreeting}) => {
+const Navbar = ({navGreeting, setNavGreeting, userAccount}) => {
   const navigate = useNavigate();
+  console.log("user data!!", userAccount)
 
   //------Log out function------
   function onClickLogOut(event) {
