@@ -8,29 +8,63 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    const cart_id = cart.id;
+    if (token) {
+      const cart_id = cart.id;
 
-    console.log(cart);
-    console.log(product, "PRoD");
-    const product_id = product.id;
-    // const quantity = cart.products.map((product)=>{
-    // if(product.id == product.id){
-    //   return product.quantity
-    // }})
-    const quantity = 1
-    console.log(quantity, "QUANNNNN")
-    // REMOVE HARD CODE LATER^
-
-    const ProductAdded = await addProductToCart(
-      token,
-      cart_id,
-      product_id,
-      quantity
-    );
-    if (ProductAdded) {
-      console.log("SUCCESSSS");
+      console.log(cart);
+      console.log(product, "PRoD");
+      const product_id = product.id;
+      // const quantity = cart.products.map((product)=>{
+      // if(product.id == product.id){
+      //   return product.quantity
+      // }})
+      const quantity = 1
+      console.log(quantity, "QUANNNNN")
+      // REMOVE HARD CODE LATER^
+  
+      const ProductAdded = await addProductToCart(
+        token,
+        cart_id,
+        product_id,
+        quantity
+      );
+      if (ProductAdded) {
+        console.log("SUCCESSSS");
+      }
+    } else {
+      console.log("test!")
+      console.log("product!", product)
+      setCart(product)
     }
   }
+
+  // async function handleAddToCart(event) {
+  //   event.preventDefault();
+  //   const token = localStorage.getItem("token");
+    
+  //   const cart_id = cart.id;
+
+  //   console.log(cart);
+  //   console.log(product, "PRoD");
+  //   const product_id = product.id;
+  //   // const quantity = cart.products.map((product)=>{
+  //   // if(product.id == product.id){
+  //   //   return product.quantity
+  //   // }})
+  //   const quantity = 1
+  //   console.log(quantity, "QUANNNNN")
+  //   // REMOVE HARD CODE LATER^
+
+  //   const ProductAdded = await addProductToCart(
+  //     token,
+  //     cart_id,
+  //     product_id,
+  //     quantity
+  //   );
+  //   if (ProductAdded) {
+  //     console.log("SUCCESSSS");
+  //   }
+  // }
 
   return (
     <>
