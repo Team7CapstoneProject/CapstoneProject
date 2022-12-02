@@ -23,7 +23,7 @@ const EditProduct = ({
 
   async function onSubmitEditProduct(event) {
     event.preventDefault();
-
+    console.log("finish edit button clicked");
     let token = localStorage.getItem("token");
     let productId = product.id;
 
@@ -119,7 +119,7 @@ const EditProduct = ({
                 />{" "}
                 <label htmlFor="name">Sale: </label>
                 <select>
-                  <option>No Sale</option>
+                  <option>Not on Sale</option>
                   <option>On Sale</option>
                 </select>
                 <label htmlFor="sale_percentage">Sale Percentage: </label>
