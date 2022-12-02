@@ -17,7 +17,7 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
     navigate("/");
   }
 
-  const isAdmin = localStorage.getItem("isAdmin");
+  const isAdmin = localStorage.getItem("first_name");
 
   return (
     <>
@@ -43,7 +43,7 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
           </Link>
 
           <div>
-            {isAdmin === "true" ? (
+            {isAdmin === "admin" ? (
               <div>
                 <Link to={"/admin"}>
                   <button className="navButton">Admin Dashboard</button>
