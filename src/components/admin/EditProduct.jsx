@@ -35,19 +35,19 @@ const EditProduct = ({
     let on_sale = event.target[5].value;
     let sale_percentage = event.target[6].value;
 
-    if (name === "") {
+    if (name === undefined || name === "") {
       name = product.name;
     }
-    if (description === "") {
+    if (description === undefined || description === "") {
       description = product.description;
     }
-    if (price === "") {
+    if (price === undefined || price === "") {
       price = product.price;
     }
-    if (image_url === "") {
+    if (image_url === undefined || image_url === "") {
       image_url = product.image_url;
     }
-    if (inventory === undefined || inventory === null) {
+    if (inventory === undefined || inventory === null || inventory === "") {
       inventory = product.inventory;
     }
     if (on_sale === "On Sale") {
@@ -55,7 +55,11 @@ const EditProduct = ({
     } else {
       on_sale = false;
     }
-    if (sale_percentage === undefined || sale_percentage === null) {
+    if (
+      sale_percentage === undefined ||
+      sale_percentage === null ||
+      sale_percentage === ""
+    ) {
       sale_percentage = product.sale_percentage;
     }
 
