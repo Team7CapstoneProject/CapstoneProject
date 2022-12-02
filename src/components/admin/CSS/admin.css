@@ -9,6 +9,8 @@
   margin: 10px;
   padding: 10px;
   box-shadow: 0px 0px 5px lightgrey;
+  font-family: 'Alexandria', sans-serif;
+  
 }
 
 /* ---------------------- In AdminProducts.jsx ---------------------- */
@@ -16,6 +18,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin: 20px 0 0 0;
   /* border: 3px solid red; */
 }
 
@@ -24,13 +27,31 @@
 .createProductCard {
   display: flex;
   flex-direction: column;
-  background-color: darkorange;
+  background-color: rgba(255, 0, 0, 0.64);
   color: white;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px;
+  width: 300px;
+  margin: 25px 0 0 0;
+  font-family: 'Alexandria', sans-serif;
+}
+.createProductCardDiv {
+ /* display: flex;
+  justify-content: center; */
+}
+.createProductForm {
+  /*  */
+}
+.subCreateProductFormDiv{
+  display: flex;
+  flex-direction: column;
+}
+.inputCP{
+  padding: 7px;
+  border: none;
+  border-radius: 16px;
   width: 200px;
-  margin: 20px;
 }
 
 /* -------Submit Button------- */
@@ -38,11 +59,13 @@
 .buttonSubmit {
   border: none;
   background-color: white;
-  color: darkorange;
-  padding: 5px;
+  border-radius: 16px;
+  color: rgba(255, 0, 0, 0.814);
+  padding: 8px 8px;
   margin-top: 10px;
   justify-content: flex-end;
   align-self: flex-start;
+  font-family: 'Alexandria', sans-serif;
 }
 
 .buttonSubmit:hover {
@@ -65,7 +88,8 @@
   padding: 10px;
   width: fit-content;
   height: 150px;
-  margin: 10px;
+  margin: 25px 0 10px 0;
+  font-family: 'Alexandria', sans-serif;
 }
 
 .isAdmin {
@@ -83,4 +107,25 @@
   flex-direction: row;
   flex-wrap: wrap;
   /* border: 3px solid red; */
+}
+.adminButton{
+  background-color: rgba(255, 228, 196, 0);
+  color: white;
+  font-family: 'Alexandria', sans-serif;
+  font-size: 20px;
+  border: none;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.adminBar{
+  display: flex;
+  background-color: black;
+  padding: 18px;
+  justify-content: space-between;
+  max-height: 30px;
+}
+.editMessage{
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-decoration: underline;
 }
