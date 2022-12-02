@@ -34,7 +34,7 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
     } else {
       console.log("test!")
       console.log("product!", product)
-      setCart(product)
+      setCart([...cart, product])
     }
   }
 
