@@ -119,3 +119,17 @@
   align-self: center;
   margin-top: 15px;
 }
+.saleImage{
+  width: 100%;
+  margin-top: 20px;
+}
+.newIn {
+  font-family: 'Alexandria', sans-serif;
+  text-transform: uppercase;
+  font-size: 35px;
+}
+
+.featProductDiv {
+  display: flex;
+  justify-content: center;
+}
