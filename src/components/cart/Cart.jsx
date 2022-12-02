@@ -60,10 +60,10 @@ const Cart = ({ cart, setCart }) => {
     }
   }
 
-  const [subtotal, setSubtotal]=useState()
+  //---------Functions for checking total price of combined products----------
+  //-----Declare state for subtotal changes. The useEffect renders the whole thing on load and refreshes every time cart changes (basically any time an item is added or subtracted from cart).
+  const [subtotal, setSubtotal] = useState();
   useEffect(() => {
-    //---------Functions for checking total price of combined products----------
-    //-----Declare state for subtotal
     let cartProducts = cart.products;
 
     //-----Isolate products that are not on sale and place in its own array
@@ -106,7 +106,7 @@ const Cart = ({ cart, setCart }) => {
       subTotal += mergedPriceArrays[i];
     }
 
-    setSubtotal(subTotal)
+    setSubtotal(subTotal);
   }, [cart]);
 
   return (
