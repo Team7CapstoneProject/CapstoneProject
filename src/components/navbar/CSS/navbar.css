@@ -1,12 +1,12 @@
 /* ---------------------- In Navbar.jsx ---------------------- */
 
 #navbar {
-  font-family: "Poller One", Arial, sans-serif;
-  background-color: white;
+  background-image: url("https://i.imgur.com/GHFSBsW.png");
   display: flex;
   flex: row;
   justify-content: space-between;
-  align-items: center;
+  height: 7em;
+
   /* border: 3px solid red; */
 }
 
@@ -14,18 +14,16 @@
 
 .logoLink {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  height: 30px;
+  align-items: flex-start;
+  margin: 10px; 
   text-decoration: none;
   /* border: 2px solid green; */
 }
 
 .logo {
-  margin: 10px;
-  font-size: 30;
-  color: darkblue;
+  margin-top: 40px;
+  width: 350px;
+  color: white;
 }
 
 /* -------Nav Buttons ------- */
@@ -40,18 +38,18 @@
 
 .navButton {
   border: none;
-  background-color: darkorange;
+  background-color: #7a7878;
   white-space: nowrap;
   color: white;
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  font-size: 15px;
   padding: 7px;
-  margin: 5px;
-  justify-content: flex-end;
-  align-self: flex-start;
+  margin: 65px 5px 0 5px;
 }
 
 .navButton:hover {
-  background-color: rgb(126, 194, 126);
-  transform: scale(1.1);
+  text-decoration: underline;
 }
 
 .navButton:active {
