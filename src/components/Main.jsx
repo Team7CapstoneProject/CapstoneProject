@@ -96,6 +96,18 @@ const Main = () => {
     }
     fetchCart();
   }, []);
+
+  //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
+  //need to add functionality for detecting if there is not a signed in user, this is for guest user functionality only to persist cart
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (!token) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
+
+
   //-----------GET CART PRODUCTS BY CART ------------------
   const [cartProducts, setCartProducts] = useState();
   useEffect(() => {
