@@ -25,7 +25,7 @@ const Users = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeAllUsers} className="navButton">
+        <button onClick={handleClickSeeAllUsers} className="adminButton">
           See All Users
         </button>
 
