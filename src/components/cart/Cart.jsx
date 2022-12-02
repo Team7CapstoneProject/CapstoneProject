@@ -62,8 +62,6 @@ const Cart = ({ cart, setCart }) => {
 
   //---------Functions for checking total price of combined products----------
   //-----Declare state for subtotal
-  const [subTotalPrice, setSubtotalPrice] = useState(0);
-
   let cartProducts = cart.products;
 
   //-----Isolate products that are not on sale and place in its own array
@@ -105,7 +103,6 @@ const Cart = ({ cart, setCart }) => {
     subTotal += mergedPriceArrays[i];
   }
 
-  setSubtotalPrice(subTotal)
 
   return (
     <>
@@ -172,7 +169,7 @@ const Cart = ({ cart, setCart }) => {
           )}
         </div>
         <div className="checkoutDiv">
-          <div className="subtotal"> {`Total: $${subTotalPrice}`}</div>
+          <div className="subtotal"> {`Total: $${subTotal}`}</div>
           <Link to={"/checkout"}>
             <button className="checkoutButton">Continue to checkout</button>
           </Link>
