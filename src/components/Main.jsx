@@ -26,6 +26,8 @@ import {
   getCartByUserId,
 } from "../api";
 
+const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]")
+
 const Main = () => {
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState([]);
@@ -79,7 +81,6 @@ const Main = () => {
   }, []);
 
   //-----------CREATE CART DATA------------------
-  const [cart, setCart] = useState([]);
   useEffect(() => {
     async function fetchCart() {
       const token = localStorage.getItem("token");
@@ -100,6 +101,9 @@ const Main = () => {
   //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
   //need to add functionality for detecting if there is not a signed in user, this is for guest user functionality only to persist cart
 
+  //trying this json parse method for pulling cart data from local storage for persistence on the users end 
+  const [cart, setCart] = useState(localStorageCart);
+  
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (!token) {
