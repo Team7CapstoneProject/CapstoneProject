@@ -59,9 +59,12 @@
 }
 
 .navGreeting {
-  color: darkblue;
+  color: black;
+  font-family: 'Alexandria', sans-serif;
   white-space: nowrap;
   margin-right: 10px;
+  font-size: 16px;
+  margin-bottom: 85px;
 }
 
 .form {
