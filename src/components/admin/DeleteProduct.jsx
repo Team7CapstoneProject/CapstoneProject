@@ -14,7 +14,6 @@ const DeleteProduct = ({
     let token = localStorage.getItem("token");
     let deletedProduct = await deleteProduct(token, productId);
 
-    console.log(deletedProduct, "this is deleted Product")
     if (!deletedProduct.error) {
       allProducts = allProducts.filter((product) => product.id !== deletedProduct.product.id);
         setAllProducts(allProducts);

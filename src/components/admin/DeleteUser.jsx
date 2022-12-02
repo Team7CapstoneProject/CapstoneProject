@@ -2,27 +2,23 @@ import React from "react";
 import { deleteUserAsAdmin } from "../../api";
 
 const DeleteUser = ({ user, allUsers, setAllUsers }) => {
-  async function handleClickDeleteUserAsAdmin(event) {
+  async function onClickDeleteUser(event) {
     event.preventDefault();
-
-    console.log("delete button pressed");
     let userId = user.id;
     let token = localStorage.getItem("token");
 
-    if (userId && token) {
-      let deleteUserResponse = await deleteUserAsAdmin(token, userId);
+    let deletedUser = await deleteUserAsAdmin(token, userId);
 
-      if (!deleteUserResponse.error) {
-        allUsers = allUsers.filter((user) => user.id !== deleteUserResponse.id);
-        setAllUsers(allUsers);
-      }
+    if (!deletedUser.error) {
+      allUsers = allUsers.filter((user) => user.id !== deletedUser.id);
+      setAllUsers(allUsers);
     }
   }
 
   return (
     <>
       <div>
-        <button onClick={handleClickDeleteUserAsAdmin} className="buttonDelete">
+        <button onClick={onClickDeleteUser} className="buttonDelete">
           Delete User
         </button>
       </div>
