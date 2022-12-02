@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { createProduct } from "../../api";
 
 const CreateProduct = ({
+  allAdminProducts,
+  setAllAdminProducts,
   displayCreateProduct,
   setDisplayCreateProduct,
   setDisplayUsers,
   setDisplayAdminProducts,
 }) => {
-  // const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
+  const [editMessage, setEditMessage] = useState("Create a new product");
 
   function handleClickSeeCreateProduct(event) {
     if (!displayCreateProduct) {
@@ -41,54 +43,58 @@ const CreateProduct = ({
       sale_percentage
     );
 
-    //THIS NEEDS BETTER ERROR HANDLING
-    if (!newProduct.name) {
-      console.log(newProduct.name, "Product response");
+    if (!newProduct.error) {
+      setEditMessage(newProduct.message);
+      setAllAdminProducts([...allAdminProducts, newProduct.product])
       event.target[0].value = null;
       event.target[1].value = null;
       event.target[2].value = null;
       event.target[3].value = null;
       event.target[4].value = null;
+    } else {
+      setEditMessage(newProduct.message);
     }
-    // } else {
-    //   console.log("Product could not be created");
-    // }
   }
   return (
     <>
       <div>
-        <button onClick={handleClickSeeCreateProduct} className="navButton">Create Product</button>
+        <button onClick={handleClickSeeCreateProduct} className="navButton">
+          Create Product
+        </button>
         <div>
           {displayCreateProduct ? (
-            <form onSubmit={handleSubmitCreateProduct}>
-              <div className="createProductCard">
-                <label>Name:</label>
-                <input htmlFor="name" placeholder="Name" required></input>
-                <label>Description:</label>
-                <input
-                  htmlFor="description"
-                  placeholder="Description"
-                  required
-                ></input>
-                <label>Price:</label>
-                <input htmlFor="price" placeholder="Price" required></input>
-                <label>Image Url:</label>
-                <input
-                  htmlFor="image_url"
-                  placeholder="Image URL"
-                  required
-                ></input>
-                <label>Inventory:</label>
-                <input
-                  htmlFor="inventory"
-                  placeholder="Inventory"
-                  required
-                ></input>
-                <button type="submit" className="buttonSubmit">
-                  Submit
-                </button>
-              </div>
-            </form>
+            <div className="createProductCard">
+              <div>{editMessage}</div>
+              <form onSubmit={handleSubmitCreateProduct}>
+                <div>
+                  <label>Name:</label>
+                  <input htmlFor="name" placeholder="Name" required></input>
+                  <label>Description:</label>
+                  <input
+                    htmlFor="description"
+                    placeholder="Description"
+                    required
+                  ></input>
+                  <label>Price:</label>
+                  <input htmlFor="price" placeholder="Price" required></input>
+                  <label>Image Link:</label>
+                  <input
+                    htmlFor="image_url"
+                    placeholder="Image Link"
+                    required
+                  ></input>
+                  <label>Inventory:</label>
+                  <input
+                    htmlFor="inventory"
+                    placeholder="Inventory"
+                    required
+                  ></input>
+                  <button type="submit" className="buttonSubmit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           ) : (
             <></>
           )}

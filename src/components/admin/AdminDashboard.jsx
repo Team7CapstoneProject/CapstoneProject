@@ -36,6 +36,8 @@ const AdminDashboard = () => {
     <>
       <div>
         <CreateProduct
+          allAdminProducts={allAdminProducts}
+          setAllAdminProducts={setAllAdminProducts}
           displayCreateProduct={displayCreateProduct}
           setDisplayCreateProduct={setDisplayCreateProduct}
           setDisplayUsers={setDisplayUsers}
@@ -50,7 +52,6 @@ const AdminDashboard = () => {
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
         <AdminProducts
-        
           allAdminProducts={allAdminProducts}
           setAllAdminProducts={setAllAdminProducts}
           displayAdminProducts={displayAdminProducts}
