@@ -1,21 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getAllUsers, getAllProducts } from "../../api";
+import { getAllUsers } from "../../api";
 import { Users, AdminProducts, CreateProduct } from "../";
 import "./CSS/admin.css";
 
-const AdminDashboard = () => {
-  //this state contains any products fetched from the use effect set up here
-  const [allAdminProducts, setAllAdminProducts] = useState([]);
-  useEffect(() => {
-    async function fetchAllAdminProducts() {
-      const productResponse = await getAllProducts();
-      // console.log("all product data", productResponse)
-      setAllAdminProducts(productResponse);
-    }
-    fetchAllAdminProducts();
-  }, []);
+const AdminDashboard = ({ allProducts, setAllProducts }) => {
 
-  //this state contains any users fetched from the use effect set up here
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     async function fetchAllUsers() {
@@ -25,9 +14,8 @@ const AdminDashboard = () => {
     fetchAllUsers();
   }, []);
 
-  //currently just have 2 buttons for specific admin functionality
-  //passing both pieces of state to respective components
 
+//Set of states that dictate which admin button(Create Product, See All Users, See All Products) is visible at any one time. Only one button should be displaying contents at a time.
   const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
   const [displayUsers, setDisplayUsers] = useState(false);
   const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
@@ -36,8 +24,8 @@ const AdminDashboard = () => {
     <>
       <div>
         <CreateProduct
-          allAdminProducts={allAdminProducts}
-          setAllAdminProducts={setAllAdminProducts}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
           displayCreateProduct={displayCreateProduct}
           setDisplayCreateProduct={setDisplayCreateProduct}
           setDisplayUsers={setDisplayUsers}
@@ -52,8 +40,8 @@ const AdminDashboard = () => {
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
         <AdminProducts
-          allAdminProducts={allAdminProducts}
-          setAllAdminProducts={setAllAdminProducts}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
           displayAdminProducts={displayAdminProducts}
           setDisplayCreateProduct={setDisplayCreateProduct}
           setDisplayUsers={setDisplayUsers}

@@ -5,7 +5,6 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
   const [addCart, setAddCart] = useState(cart);
   const [attachToCart, setAttachToCart] = useState({});
 
-  console.log(cart, "CARTTT")
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");

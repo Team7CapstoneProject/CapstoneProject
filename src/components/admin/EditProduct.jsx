@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { updateProduct } from "../../api";
 
 const EditProduct = ({
-  adminProduct,
+  product,
   productInfo,
   setProductInfo,
   displayEditProduct,
@@ -25,7 +25,7 @@ const EditProduct = ({
     event.preventDefault();
 
     let token = localStorage.getItem("token");
-    let productId = adminProduct.id;
+    let productId = product.id;
 
     let name = event.target[0].value;
     let description = event.target[1].value;
@@ -36,19 +36,19 @@ const EditProduct = ({
     let sale_percentage = event.target[6].value;
 
     if (name === "") {
-      name = adminProduct.name;
+      name = product.name;
     }
     if (description === "") {
-      description = adminProduct.description;
+      description = product.description;
     }
     if (price === "") {
-      price = adminProduct.price;
+      price = product.price;
     }
     if (image_url === "") {
-      image_url = adminProduct.image_url;
+      image_url = product.image_url;
     }
     if (inventory === undefined || inventory === null) {
-      inventory = adminProduct.inventory;
+      inventory = product.inventory;
     }
     if (on_sale === "On Sale") {
       on_sale = true;
@@ -56,7 +56,7 @@ const EditProduct = ({
       on_sale = false;
     }
     if (sale_percentage === undefined || sale_percentage === null) {
-      sale_percentage = adminProduct.sale_percentage;
+      sale_percentage = product.sale_percentage;
     }
 
     let editProduct = await updateProduct(

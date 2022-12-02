@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { createProduct } from "../../api";
 
 const CreateProduct = ({
-  allAdminProducts,
-  setAllAdminProducts,
+  allProducts,
+  setAllProducts,
   displayCreateProduct,
   setDisplayCreateProduct,
   setDisplayUsers,
@@ -45,7 +45,7 @@ const CreateProduct = ({
 
     if (!newProduct.error) {
       setEditMessage(newProduct.message);
-      setAllAdminProducts([...allAdminProducts, newProduct.product])
+      setAllProducts([...allProducts, newProduct.product])
       event.target[0].value = null;
       event.target[1].value = null;
       event.target[2].value = null;

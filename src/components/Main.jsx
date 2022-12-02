@@ -42,29 +42,31 @@ const Main = () => {
     }
   }, []);
 
-   //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
-   let initialNavGreeting;
-   if (userAccount.first_name) {
-     const nameDisplay = userAccount.first_name
-     initialNavGreeting = `Welcome back, ${nameDisplay}!`;
-   } else {
-     initialNavGreeting = "";
-   }
-   const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
- 
-     // let initialNavGreeting;
-   // if (token) {
-   //   initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
-   // } else {
-   //   initialNavGreeting = "";
-   // }
- 
-   //------------VISITING USER---------------------
-   // const [unregisteredUser, setUnregisteredUser] = useState([]);
-   // useEffect(()=>{
-   //   const visitingUser =
-   //   setUnregisteredUser(visitingUser)
-   // }, [])
+  //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
+  // let initialNavGreeting;
+  // if (userAccount.first_name) {
+  //   const nameDisplay = userAccount.first_name;
+  //   initialNavGreeting = `Welcome back, ${nameDisplay}!`;
+  // } else {
+  //   initialNavGreeting = "";
+  // }
+
+  let initialNavGreeting;
+  let token = localStorage.getItem("token");
+
+  if (token) {
+    initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
+  } else {
+    initialNavGreeting = "";
+  }
+  const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
+
+  //------------VISITING USER---------------------
+  // const [unregisteredUser, setUnregisteredUser] = useState([]);
+  // useEffect(()=>{
+  //   const visitingUser =
+  //   setUnregisteredUser(visitingUser)
+  // }, [])
 
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
@@ -113,10 +115,19 @@ const Main = () => {
       <Route
         path="/"
         element={
-          <Navbar navGreeting={navGreeting} setNavGreeting={setNavGreeting} userAccount={userAccount} />
+          <Navbar
+            navGreeting={navGreeting}
+            setNavGreeting={setNavGreeting}
+            userAccount={userAccount}
+          />
         }
       >
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Home allProducts={allProducts} setAllProducts={setAllProducts} />
+          }
+        />
         <Route
           path="/login"
           element={<LogIn setNavGreeting={setNavGreeting} />}
@@ -142,12 +153,18 @@ const Main = () => {
           element={<Checkout cart={cart} userAccount={userAccount} />}
         />
         <Route path="/orderhistory" element={<CompletedCarts />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminDashboard
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
+            />
+          }
+        />
       </Route>
     )
   );
-
-  console.log("user account state data!!", userAccount)
   return (
     <div id="main">
       <RouterProvider router={router}></RouterProvider>
