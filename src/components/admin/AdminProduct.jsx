@@ -2,17 +2,12 @@ import React, { useState } from "react";
 import { EditProduct, DeleteProduct } from "../";
 
 const AdminProduct = ({
-  adminProduct,
-  allAdminProducts,
-  setAllAdminProducts,
+  allProducts,
+  setAllProducts,
+  product,
 }) => {
-  // console.log("adminProduct data", adminProduct);
-
-  //component is receiving adminProduct data from AdminProducts component
-  //here we are mapping through each relevant part of the products data we receive to seperate divs
-
   //Updates state of product info when product is being updated
-  const [productInfo, setProductInfo] = useState(adminProduct);
+  const [productInfo, setProductInfo] = useState(product);
 
   //This displays the edit product form and hides the delete product button so it doesn't get pressed on accident.
   const [displayEditProduct, setDisplayEditProduct] = useState(false);
@@ -32,10 +27,8 @@ const AdminProduct = ({
   return (
     <>
       <div className="adminProductCard">
-        {/* <div>{`Product ID: ${productInfo.id}`}</div> */}
         <div>{`Name: ${productInfo.name}`}</div>
         <div>{`Description: ${productInfo.description}`}</div>
-        {/* <div>{`Image URL: ${adminProduct.image_url}`}</div> */}
         <div>{`Inventory: ${productInfo.inventory}`}</div>
         <div>{`Price: $${productInfo.price}`}</div>
         <div>
@@ -50,7 +43,7 @@ const AdminProduct = ({
           )}
         </div>
         <EditProduct
-          adminProduct={adminProduct}
+          product={product}
           productInfo={productInfo}
           setProductInfo={setProductInfo}
           displayEditProduct={displayEditProduct}
@@ -59,9 +52,10 @@ const AdminProduct = ({
 
         {displayEditProduct === false ? (
           <DeleteProduct
-            adminProduct={adminProduct}
-            allAdminProducts={allAdminProducts}
-            setAllAdminProducts={setAllAdminProducts}
+          product={product}
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+
           />
         ) : (
           <></>

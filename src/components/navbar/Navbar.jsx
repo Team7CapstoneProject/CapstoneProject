@@ -4,7 +4,6 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
   const navigate = useNavigate();
-  console.log("user data!!", userAccount);
 
   //------Log out function------
   function onClickLogOut(event) {
@@ -24,7 +23,6 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
     <>
       <div id="navbar">
         <Link to={"/"} className="logoLink">
-          {/* <h1 className="logo">GuitarStop</h1> */}
           <img
             src="https://i.imgur.com/pW8C9X6.png"
             alt="GuitarStop"

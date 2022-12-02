@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { AdminProduct } from "..";
 
 const AdminProducts = ({
-  allAdminProducts,
-  setAllAdminProducts,
+  allProducts,
+  setAllProducts,
   displayAdminProducts,
   setDisplayAdminProducts,
   setDisplayCreateProduct,
   setDisplayUsers,
 }) => {
-  //receiving products as prop here from admin dashboard component
+  //receiving products as prop here from main component
 
   //this piece of state works with the handleclick func below to display product data when state is true, defaults to false
   // const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
@@ -38,14 +38,14 @@ const AdminProducts = ({
         <div>
           {displayAdminProducts ? (
             <div className="adminProducts">
-              {allAdminProducts && allAdminProducts.length ? (
-                allAdminProducts.map((adminProduct) => {
+              {allProducts && allProducts.length ? (
+                allProducts.map((product) => {
                   return (
                     <AdminProduct
-                      key={`product-${adminProduct.id}`}
-                      adminProduct={adminProduct}
-                      allAdminProducts={allAdminProducts}
-                      setAllAdminProducts={setAllAdminProducts}
+                      key={`product-${product.id}`}
+                      product={product}
+                      allProducts={allProducts}
+                      setAllProducts={setAllProducts}
                     />
                   );
                 })
