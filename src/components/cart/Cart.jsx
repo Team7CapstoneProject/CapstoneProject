@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { updateCartProductQuantity } from "../../api";
-import { Link } from "react-router-dom";
+import { deleteCartProduct, updateCartProductQuantity } from "../../api";
+import { Link, useParams } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
   const [quantity, setQuantity] = useState(1);
@@ -48,6 +48,19 @@ const Cart = ({ cart, setCart }) => {
       throw error;
     }
   }
+  async function handleDelete(e) {
+    try {
+      e.preventDefault();
+      // const { cartProductId } = useParams();
+      const toDelete = e.target.id;
+      console.log(toDelete);
+      const token = localStorage.getItem("token");
+      const deleted = await deleteCartProduct(token, toDelete);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   console.log(cart);
   return (
     <>
@@ -83,7 +96,12 @@ const Cart = ({ cart, setCart }) => {
                     +
                   </button>
                 </p>
-
+                <button
+                  onClick={handleDelete}
+                  id={product.cartProductId ? `${product.cartProductId}` : null}
+                >
+                  delete
+                </button>
                 {product.on_sale == true ? (
                   <p>{product.sale_percentage}% off</p>
                 ) : null}
