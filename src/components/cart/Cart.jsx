@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { deleteCartProduct, updateCartProductQuantity } from "../../api";
 import "./CSS/cart.css";
 import { Link, useParams } from "react-router-dom";
@@ -60,49 +60,54 @@ const Cart = ({ cart, setCart }) => {
     }
   }
 
-  //---------Functions for checking total price of combined products----------
-  //-----Declare state for subtotal
-  let cartProducts = cart.products;
+  const [subtotal, setSubtotal]=useState()
+  useEffect(() => {
+    //---------Functions for checking total price of combined products----------
+    //-----Declare state for subtotal
+    let cartProducts = cart.products;
 
-  //-----Isolate products that are not on sale and place in its own array
-  let productsNotOnSale = cartProducts.filter(
-    (product) => product.on_sale === false
-  );
-  //-----Take each product in the productsNotOnSale array and multiply the price by quantity in cart.
-  let productNotOnSalePriceArray = [];
-  productsNotOnSale.forEach((product) => {
-    let totalPrice = product.quantity * Number(product.price);
-    productNotOnSalePriceArray.push(totalPrice);
-  });
+    //-----Isolate products that are not on sale and place in its own array
+    let productsNotOnSale = cartProducts.filter(
+      (product) => product.on_sale === false
+    );
 
-  //-----Isolate products that are on sale and place in its own array
-  let productsOnSale = cartProducts.filter(
-    (product) => product.on_sale === true
-  );
-  //-----Take each product in the productsOnSale array and multiply the price (taking sale into account) by quantity in cart.
-  let productOnSalePriceArray = [];
-  productsOnSale.forEach((product) => {
-    let salePrice;
-    let finalSalePrice;
-    let percentageConversion = product.sale_percentage * 0.01;
-    salePrice = product.price * (1 - percentageConversion);
-    finalSalePrice = Number(salePrice.toFixed(2));
-    let totalPrice = product.quantity * finalSalePrice;
-    productOnSalePriceArray.push(totalPrice);
-  });
+    //-----Take each product in the productsNotOnSale array and multiply the price by quantity in cart.
+    let productNotOnSalePriceArray = [];
+    productsNotOnSale.forEach((product) => {
+      let totalPrice = product.quantity * Number(product.price);
+      productNotOnSalePriceArray.push(totalPrice);
+    });
 
-  //-----Merge both on sale and not on sale price arrays so that the price values are in one array
-  let mergedPriceArrays = [
-    ...productNotOnSalePriceArray,
-    ...productOnSalePriceArray,
-  ];
+    //-----Isolate products that are on sale and place in its own array
+    let productsOnSale = cartProducts.filter(
+      (product) => product.on_sale === true
+    );
+    //-----Take each product in the productsOnSale array and multiply the price (taking sale into account) by quantity in cart.
+    let productOnSalePriceArray = [];
+    productsOnSale.forEach((product) => {
+      let salePrice;
+      let finalSalePrice;
+      let percentageConversion = product.sale_percentage * 0.01;
+      salePrice = product.price * (1 - percentageConversion);
+      finalSalePrice = Number(salePrice.toFixed(2));
+      let totalPrice = product.quantity * finalSalePrice;
+      productOnSalePriceArray.push(totalPrice);
+    });
 
-  //-----Sum all values in the array to get subtotal
-  let subTotal = 0;
-  for (let i = 0; i < mergedPriceArrays.length; i++) {
-    subTotal += mergedPriceArrays[i];
-  }
+    //-----Merge both on sale and not on sale price arrays so that the price values are in one array
+    let mergedPriceArrays = [
+      ...productNotOnSalePriceArray,
+      ...productOnSalePriceArray,
+    ];
 
+    //-----Sum all values in the array to get subtotal
+    let subTotal = 0;
+    for (let i = 0; i < mergedPriceArrays.length; i++) {
+      subTotal += mergedPriceArrays[i];
+    }
+
+    setSubtotal(subTotal)
+  }, [cart]);
 
   return (
     <>
@@ -169,7 +174,7 @@ const Cart = ({ cart, setCart }) => {
           )}
         </div>
         <div className="checkoutDiv">
-          <div className="subtotal"> {`Total: $${subTotal}`}</div>
+          <div className="subtotal"> {`Total: $${subtotal}`}</div>
           <Link to={"/checkout"}>
             <button className="checkoutButton">Continue to checkout</button>
           </Link>
