@@ -42,3 +42,34 @@
     font-family: 'Alexandria', sans-serif;
     margin: 30px;
   }
+  .checkoutForm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px;
+    gap: 5px;
+  }
+  .checkoutFormDiv{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Alexandria', sans-serif;
+  }
+  .finalSubmitButton{
+    align-self: center;
+    margin-top: 20px;
+    padding: 10px 10px;
+    background-color: black;
+    border-radius: 16px;
+    color: white;
+    border: none;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    width: 200px;
+  }
+  .finalSubmitButton:hover{
+    background-color: #7a7878;
+  }
+  .addressInput{
+    max-height: 20px;
+  }
