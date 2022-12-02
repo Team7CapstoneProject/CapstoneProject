@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { logInUser } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 
-const LogIn = ({setNavGreeting}) => {
+const LogIn = ({ setNavGreeting }) => {
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("")
+  const [loginError, setLoginError] = useState("");
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -20,9 +20,9 @@ const LogIn = ({setNavGreeting}) => {
     const registeredUser = await logInUser(email, password);
 
     if (registeredUser.error) {
-      const message = registeredUser.message
+      const message = registeredUser.message;
       // console.log("error message!!!", message)
-      setLoginError(message)
+      setLoginError(message);
     } else {
       const token = registeredUser.token;
       // localStorage.removeItem("userId");
@@ -34,7 +34,7 @@ const LogIn = ({setNavGreeting}) => {
       // localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", token);
 
-      setNavGreeting(registeredUser.message)
+      setNavGreeting(registeredUser.message);
       navigate("/");
 
       setLogInInfo({ email: "", password: "" });
@@ -43,36 +43,43 @@ const LogIn = ({setNavGreeting}) => {
 
   return (
     <>
-      <h3>Log in here!</h3>
-      {loginError ? (
-        <div id="loginErrorMessage">{`${loginError}`}</div>
-      ) : null }
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">email:</label>
-          <input
-            type="text"
-            name="email"
-            onChange={handleChange}
-            required
-          />{" "}
-          <br></br>
-          <label htmlFor="password">password:</label>
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            required
-          />{" "}
-          <br></br>
-          <button type="submit">submit</button>
-        </form>{" "}
-      </div>
-      <div>
-        <Link to="/register">
-          {" "}
-          <button>Not registered? Create account here.</button>{" "}
-        </Link>
+      <div className="headDiv">
+        <h3 className="subHeader">Welcome back</h3>
+        {loginError ? (
+          <div id="loginErrorMessage">{`${loginError}`}</div>
+        ) : null}
+        <div className="formDiv">
+          <form onSubmit={handleSubmit} className="form">
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              name="email"
+              onChange={handleChange}
+              className="input"
+              required
+            />{" "}
+            <br />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              className="input"
+              required
+            />{" "}
+            <br />
+            <button type="submit" className="submitButton">
+              Submit
+            </button>
+          </form>{" "}
+        </div>
+        <p className="registerHereP">
+          Don't have a GuitarStop account?
+          <Link to="/register">
+            {" "}
+            <span className="registerHere">Sign up.</span>{" "}
+          </Link>
+        </p>
       </div>
     </>
   );

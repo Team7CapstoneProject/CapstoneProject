@@ -7,6 +7,8 @@
   justify-content: space-between;
   height: 7em;
 
+
+
   /* border: 3px solid red; */
 }
 
@@ -62,3 +64,58 @@
   margin-right: 10px;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  font-weight: 400;
+
+}
+.formDiv{
+  display: flex;
+  justify-content: center;
+}
+.headDiv{
+  font-family: 'Alexandria', sans-serif;
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  font-size: 15px;
+  color: #7a7878;
+}
+.subHeader{
+  font-size: 25px;
+  align-self: center;
+  margin-bottom: 50px;
+  color: black;
+}
+.submitButton{
+  align-self: center;
+  margin-top: 20px;
+  padding: 15px 20px;
+  background-color: black;
+  border-radius: 16px;
+  color: white;
+  border: none;
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  width: 200px;
+}
+.submitButton:hover{
+  background-color: #7a7878;
+}
+.input{
+  padding: 8px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 14px;
+}
+.registerHere{
+  color: black;
+}
+.registerHereP{
+  align-self: center;
+  margin-top: 15px;
+}

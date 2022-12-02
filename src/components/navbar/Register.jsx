@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { register } from "../../api";
 import { useNavigate } from "react-router-dom";
 
-
-const Register = ({setNavGreeting}) => {
-  let navigate = useNavigate()
-  const [registerMessage, setRegisterMessage] = useState("Register here!");
+const Register = ({ setNavGreeting }) => {
+  let navigate = useNavigate();
+  const [registerMessage, setRegisterMessage] = useState("Create your account");
   const [registerInfo, setRegisterInfo] = useState({
     first_name: "",
     last_name: "",
@@ -36,8 +35,8 @@ const Register = ({setNavGreeting}) => {
       localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", registeredUser.token);
-      setNavGreeting(registeredUser.message)
-      navigate("/")
+      setNavGreeting(registeredUser.message);
+      navigate("/");
       // setRegisterInfo({
       //   first_name: "",
       //   last_name: "",
@@ -51,26 +50,31 @@ const Register = ({setNavGreeting}) => {
 
   return (
     <>
-      <div className="Register">
-        <h3>{registerMessage}</h3>
-        <form onSubmit={handleSubmit}>
-          <label>First Name:</label>
-          <input htmlFor="first_name" placeholder="First Name" required></input>
-          <label>Last Name:</label>
-          <input htmlFor="last_name" placeholder="Last Name" required></input>
-          <label>Email:</label>
-          <input htmlFor="email" placeholder="Email" required></input>
-          <label>Password:</label>
-          <input
-            htmlFor="password"
-            type="password"
-            placeholder="Password"
-            required
-          ></input>
-          <button className="registerButton" type="submit">
-            Register
-          </button>
-        </form>
+      <div className="headDiv">
+        <h3 className="subHeader">{registerMessage}</h3>
+        <div className="formDiv">
+          <form onSubmit={handleSubmit} className="form">
+            <label>First Name</label>
+            <input htmlFor="first_name" className="input" required></input>{" "}
+            <br />
+            <label>Last Name</label>
+            <input htmlFor="last_name" className="input" required></input>{" "}
+            <br />
+            <label>Email</label>
+            <input htmlFor="email" className="input" required></input> <br />
+            <label>Password</label>
+            <input
+              htmlFor="password"
+              className="input"
+              type="password"
+              required
+            ></input>{" "}
+            <br />
+            <button className="submitButton" type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
