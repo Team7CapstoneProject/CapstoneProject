@@ -8,8 +8,6 @@ const Product = ({ product, cart, setCart }) => {
   if (product.on_sale === true) {
     let percentageConversion = product.sale_percentage * 0.01;
     salePrice = product.price * (1 - percentageConversion);
-    //.toFixed rounds up the number to the nearest 2 decimal places.
-    //finalSalePrice needs to be force coerced into a number since .toFixed returns a string.
     finalSalePrice = Number(salePrice.toFixed(2));
   } else {
     finalSalePrice = product.price;

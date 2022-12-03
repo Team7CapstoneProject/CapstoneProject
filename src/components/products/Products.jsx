@@ -10,7 +10,7 @@ const Products = ({ products, cart, setCart }) => {
         {products && products.length ? (
           products.map((product) => {
             productId = product.id;
-            return <Link className="productsLink" to={`${productId}`}><Product key={`product-${product.id}`} product={product} cart={cart} setCart={setCart}/></Link>;
+            return <Link className="productsLink" to={`${productId}`}><Product key={`productId-${product.id}`} product={product} cart={cart} setCart={setCart}/></Link>;
           })
         ) : (
           <div>No Products Found</div>

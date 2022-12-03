@@ -1,15 +1,22 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductAddToCart from "./ProductAddToCart";
 
 const ViewOfProducts = ({ allProducts }) => {
+  let navigate=useNavigate()
+
+  function handleClickReturnToProducts(event){
+    event.preventDefault()
+    navigate("/products")
+  }
+
   let { productId } = useParams();
   return (
     <div className="viewCard">
       {allProducts.map((product) => {
         if (productId == product.id) {
           return (
-            <div key={product.name} className="productView">
+            <div key={`productName=${product.name}`} className="productView">
               <img
                 className="productImageView"
                 src={product.image_url}
@@ -26,6 +33,7 @@ const ViewOfProducts = ({ allProducts }) => {
       })}
       <div className="addView">
       <ProductAddToCart />
+      <button onClick={handleClickReturnToProducts}>Back</button>
     </div>
     </div>
   );
