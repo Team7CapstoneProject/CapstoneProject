@@ -6,6 +6,7 @@ import {
   Register,
   Account,
   ProductsSearch,
+  ViewOfProducts,
   Cart,
   CompletedCarts,
   Checkout,
@@ -16,6 +17,7 @@ import {
   RouterProvider,
   createBrowserRouter,
   Route,
+  useParams
 } from "react-router-dom";
 
 import {
@@ -29,6 +31,7 @@ import {
 const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]")
 
 const Main = () => {
+  let { productId } = useParams();
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
@@ -169,6 +172,7 @@ const Main = () => {
           element={<Checkout cart={cart} userAccount={userAccount} />}
         />
         <Route path="/orderhistory" element={<CompletedCarts />} />
+        <Route path="/products/:productId" element={<ViewOfProducts allProducts={allProducts}/>} />
         <Route
           path="/admin"
           element={
