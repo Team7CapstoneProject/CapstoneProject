@@ -35,6 +35,10 @@
   border: 3px solid red;
 }
 
+.productsLink {
+  text-decoration: none;
+  color: black;
+}
 /* ---------------------- In Product.jsx ---------------------- */
 
 .productCard {
@@ -123,4 +127,40 @@
 
 .buttonAddToCart:active {
   transform: scale(1);
+}
+
+/* ---------------------- In ViewOfProducts.jsx ---------------------- */
+.viewCard {
+  background-color: rgb(228, 228, 228);
+  padding: 20px;
+  display: flex;
+}
+
+.productView {
+  display: flex;
+  
+}
+
+.productImageView {
+  height: 400px;
+  border: 2px solid black;
+}
+
+.productInfoView {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.nameView {
+  margin: 5px;
+  height: 40px;
+}
+
+.priceView {
+  margin-top: 10px;
+}
+
+.addView {
+  display: flex;
+  align-self:flex-end
 }
