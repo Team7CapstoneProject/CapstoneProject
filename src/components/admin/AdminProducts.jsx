@@ -32,7 +32,10 @@ const AdminProducts = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeAllAdminProducts} className="navButton">
+        <button
+          onClick={handleClickSeeAllAdminProducts}
+          className="adminButton"
+        >
           See All Products
         </button>
         <div>

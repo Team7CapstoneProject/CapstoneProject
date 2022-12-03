@@ -1,13 +1,16 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { Product } from "../";
 
 const Products = ({ products, cart, setCart }) => {
+  let { productId } = useParams();
   return (
     <>
       <div className="products">
         {products && products.length ? (
           products.map((product) => {
-            return <Product key={`product-${product.id}`} product={product} cart={cart} setCart={setCart}/>;
+            productId = product.id;
+            return <Link className="productsLink" to={`${productId}`}><Product key={`product-${product.id}`} product={product} cart={cart} setCart={setCart}/></Link>;
           })
         ) : (
           <div>No Products Found</div>

@@ -22,6 +22,9 @@ export { default as Product } from "./products/Product";
 export { default as ProductAddToCart } from "./products/ProductAddToCart";
 export { default as Products } from "./products/Products";
 export { default as ProductsSearch } from "./products/ProductsSearch";
+export { default as ViewOfProducts } from "./products/ViewOfProducts";
+
+
 
 //-----------COMPONENTS FOLDER-------------
 export { default as Account } from "./navbar/Account";

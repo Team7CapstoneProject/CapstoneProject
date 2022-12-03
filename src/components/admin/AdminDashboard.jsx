@@ -4,7 +4,6 @@ import { Users, AdminProducts, CreateProduct } from "../";
 import "./CSS/admin.css";
 
 const AdminDashboard = ({ allProducts, setAllProducts }) => {
-
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     async function fetchAllUsers() {
@@ -14,15 +13,14 @@ const AdminDashboard = ({ allProducts, setAllProducts }) => {
     fetchAllUsers();
   }, []);
 
-
-//Set of states that dictate which admin button(Create Product, See All Users, See All Products) is visible at any one time. Only one button should be displaying contents at a time.
+  //Set of states that dictate which admin button(Create Product, See All Users, See All Products) is visible at any one time. Only one button should be displaying contents at a time.
   const [displayCreateProduct, setDisplayCreateProduct] = useState(false);
   const [displayUsers, setDisplayUsers] = useState(false);
   const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
 
   return (
     <>
-      <div>
+      <div className="adminBar">
         <CreateProduct
           allProducts={allProducts}
           setAllProducts={setAllProducts}

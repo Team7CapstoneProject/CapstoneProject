@@ -45,7 +45,7 @@ const CreateProduct = ({
 
     if (!newProduct.error) {
       setEditMessage(newProduct.message);
-      setAllProducts([...allProducts, newProduct.product])
+      setAllProducts([...allProducts, newProduct.product]);
       event.target[0].value = null;
       event.target[1].value = null;
       event.target[2].value = null;
@@ -58,37 +58,58 @@ const CreateProduct = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeCreateProduct} className="navButton">
+        <button onClick={handleClickSeeCreateProduct} className="adminButton">
           Create Product
         </button>
-        <div>
+        <div className="createProductCardDiv">
           {displayCreateProduct ? (
             <div className="createProductCard">
-              <div>{editMessage}</div>
-              <form onSubmit={handleSubmitCreateProduct}>
-                <div>
+              <div className="editMessage">{editMessage}</div>
+              <form
+                onSubmit={handleSubmitCreateProduct}
+                className="createProductForm"
+              >
+                <div className="subCreateProductFormDiv">
                   <label>Name:</label>
-                  <input htmlFor="name" placeholder="Name" required></input>
+                  <input
+                    htmlFor="name"
+                    // placeholder="Name"
+                    className="inputCP"
+                    required
+                  ></input>{" "}
+                  <br />
                   <label>Description:</label>
                   <input
                     htmlFor="description"
-                    placeholder="Description"
+                    // placeholder="Description"
+                    className="inputCP"
                     required
-                  ></input>
+                  ></input>{" "}
+                  <br />
                   <label>Price:</label>
-                  <input htmlFor="price" placeholder="Price" required></input>
+                  <input
+                    htmlFor="price"
+                    // placeholder="Price"
+                    className="inputCP"
+                    required
+                  ></input>{" "}
+                  <br />
                   <label>Image Link:</label>
                   <input
                     htmlFor="image_url"
-                    placeholder="Image Link"
+                    // placeholder="Image Link"
+                    className="inputCP"
                     required
-                  ></input>
+                  ></input>{" "}
+                  <br />
                   <label>Inventory:</label>
                   <input
                     htmlFor="inventory"
-                    placeholder="Inventory"
+                    // placeholder="Inventory"
+                    className="inputCP"
                     required
-                  ></input>
+                  ></input>{" "}
+                  <br />
                   <button type="submit" className="buttonSubmit">
                     Submit
                   </button>
