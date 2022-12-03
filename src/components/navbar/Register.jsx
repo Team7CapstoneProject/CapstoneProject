@@ -27,22 +27,12 @@ const Register = ({ setNavGreeting }) => {
     );
 
     if (!registeredUser.error) {
-      localStorage.removeItem("userId");
       localStorage.removeItem("first_name");
-      localStorage.removeItem("isAdmin");
       localStorage.removeItem("token");
-      localStorage.setItem("userId", registeredUser.user.id);
       localStorage.setItem("first_name", registeredUser.user.first_name);
-      localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", registeredUser.token);
       setNavGreeting(registeredUser.message);
       navigate("/");
-      // setRegisterInfo({
-      //   first_name: "",
-      //   last_name: "",
-      //   email: "",
-      //   password: "",
-      // });
     } else {
       setRegisterMessage(registeredUser.message);
     }

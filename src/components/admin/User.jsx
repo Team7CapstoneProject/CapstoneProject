@@ -18,7 +18,18 @@ const User = ({ user, allUsers, setAllUsers }) => {
           )}
         </div>
 
-        <div>{user.is_admin === true ? <></> : <DeleteUser user={user} allUsers={allUsers} setAllUsers={setAllUsers}/>}</div>
+        <div>
+          {user.is_admin === true ||
+          user.first_name === "Guest" ? (
+            <></>
+          ) : (
+            <DeleteUser
+              user={user}
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+            />
+          )}
+        </div>
       </div>
     </>
   );

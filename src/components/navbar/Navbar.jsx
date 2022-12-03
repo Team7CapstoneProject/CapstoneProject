@@ -1,6 +1,7 @@
 import React from "react";
 import "./CSS/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import { logInUser } from "../../api";
 
 const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
   const navigate = useNavigate();
@@ -18,6 +19,14 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
   }
 
   const isAdmin = localStorage.getItem("first_name");
+
+  async function onClickGuestSignIn() {
+    let guest = await logInUser("guestuser", "guestuser");
+    localStorage.setItem("first_name", guest.user.first_name);
+    localStorage.setItem("token", guest.token);
+    setNavGreeting(guest.message);
+    navigate("/");
+  }
 
   return (
     <>
@@ -55,7 +64,9 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
           </div>
 
           <div>
-            {!localStorage.getItem("token") ? (
+            {!localStorage.getItem("token") ||
+            (localStorage.getItem("token") &&
+              localStorage.getItem("first_name") === "Guest") ? (
               <div>
                 <Link to={"/login"}>
                   <button className="navButton">Login</button>
@@ -71,6 +82,22 @@ const Navbar = ({ navGreeting, setNavGreeting, userAccount }) => {
                 </button>
               </div>
             )}
+          </div>
+
+          <div>
+            <div>
+              {(localStorage.getItem("token") &&
+                localStorage.getItem("first_name") !== "Guest") ||
+              localStorage.getItem("first_name") === "Guest" ? (
+                <></>
+              ) : (
+                <div>
+                  <button className="navButton" onClick={onClickGuestSignIn}>
+                    Sign In As Guest
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
