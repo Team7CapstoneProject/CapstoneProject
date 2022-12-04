@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { UserEdit, UserDelete } from "../";
+import { UserDelete, UserEdit } from "../";
 
-const UserDashboard = ({ userAccount, setNavGreeting }) => {
+const UserDashboard = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
   let admin = localStorage.getItem("first_name");
-
+  
   return (
     <>
       <div>
@@ -26,7 +26,12 @@ const UserDashboard = ({ userAccount, setNavGreeting }) => {
             <></>
           ) : (
             <div>
-              <UserEdit userAccount={userAccount} />
+              <UserEdit
+                token={token}
+                userAccount={userAccount}
+                setUserAccount={setUserAccount}
+                setNavGreeting={setNavGreeting}
+              />
               <UserDelete
                 userAccount={userAccount}
                 setNavGreeting={setNavGreeting}

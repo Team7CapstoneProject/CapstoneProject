@@ -13,8 +13,8 @@ const EditProduct = ({
 
   //Toggles the edit product form on and off
   function handleClickSeeEditProductForm(event) {
+    event.preventDefault();
     if (!displayEditProduct) {
-      event.preventDefault();
       setDisplayEditProduct(true);
     } else {
       setDisplayEditProduct(false);
@@ -23,8 +23,8 @@ const EditProduct = ({
 
   //Actions taken when submit form is pressed:
   async function onSubmitEditProduct(event) {
+    
     //Prevents page refresh when button is pressed
-
     event.preventDefault();
     let token = localStorage.getItem("token");
     let productId = product.id;
