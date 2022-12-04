@@ -2,6 +2,7 @@ import React from "react";
 import { AdminProduct } from "..";
 
 const AdminProducts = ({
+  token,
   allProducts,
   setAllProducts,
   displayAdminProducts,
@@ -9,12 +10,8 @@ const AdminProducts = ({
   setDisplayCreateProduct,
   setDisplayUsers,
 }) => {
-  //receiving products as prop here from main component
 
-  //this piece of state works with the handleclick func below to display product data when state is true, defaults to false
-  // const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
-
-  //this handle click func prevents default so page does not reload and changes displayAdminProducts state to true/false on each click
+// The product tab can be toggled on and off to display/hide all the products. If it's on, it turns the create product tab and user tab off. 
   function handleClickSeeAllAdminProducts(event) {
     if (!displayAdminProducts) {
       event.preventDefault();
@@ -26,9 +23,6 @@ const AdminProducts = ({
     }
   }
 
-  //handleclick func from above is set up to activate on "See All Products" button
-  //products also will only display if the piece of state passes as true, then if product prop data has value/length it will map through the product id
-  //the ternary will display "no products found" div if there is no products to display
   return (
     <>
       <div>
@@ -46,6 +40,7 @@ const AdminProducts = ({
                   return (
                     <AdminProduct
                       key={`product-${product.id}`}
+                      token={token}
                       product={product}
                       allProducts={allProducts}
                       setAllProducts={setAllProducts}

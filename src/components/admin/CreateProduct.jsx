@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createProduct } from "../../api";
 
 const CreateProduct = ({
+  token,
   allProducts,
   setAllProducts,
   displayCreateProduct,
@@ -11,6 +12,7 @@ const CreateProduct = ({
 }) => {
   const [editMessage, setEditMessage] = useState("Create a new product");
 
+  // The create product tab can be toggled on and off to display/hide the create product form. If it's on, it turns the product tab and user tab off.
   function handleClickSeeCreateProduct(event) {
     if (!displayCreateProduct) {
       event.preventDefault();
@@ -21,9 +23,11 @@ const CreateProduct = ({
       setDisplayCreateProduct(false);
     }
   }
+
   async function handleSubmitCreateProduct(event) {
+    //Prevents page refresh when button is pressed
     event.preventDefault();
-    const token = localStorage.getItem("token");
+    //Takes form inputs and equates it to variable needed for createProduct function to pass.
     const name = event.target[0].value;
     const description = event.target[1].value;
     const price = event.target[2].value;
@@ -32,6 +36,7 @@ const CreateProduct = ({
     const on_sale = false;
     const sale_percentage = 0;
 
+    //Creates a new product
     const newProduct = await createProduct(
       token,
       name,
@@ -43,6 +48,11 @@ const CreateProduct = ({
       sale_percentage
     );
 
+    //If no error occurs:
+    //Update the card message so it tells the user that the post was successful
+    //Update the state of the products shown so that it includes the new product.
+    //If error occurs:
+    //Tells user what part of the create process failed.
     if (!newProduct.error) {
       setEditMessage(newProduct.message);
       setAllProducts([...allProducts, newProduct.product]);

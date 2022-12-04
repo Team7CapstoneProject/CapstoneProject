@@ -11,7 +11,7 @@ const EditProduct = ({
   //Displays to the user if editing the object was a success or not.
   const [editMessage, setEditMessage] = useState("Edit Form");
 
-  //When you hit the edit product, the form shows up.
+  //Toggles the edit product form on and off
   function handleClickSeeEditProductForm(event) {
     if (!displayEditProduct) {
       event.preventDefault();
@@ -21,12 +21,15 @@ const EditProduct = ({
     }
   }
 
+  //Actions taken when submit form is pressed:
   async function onSubmitEditProduct(event) {
+    //Prevents page refresh when button is pressed
+
     event.preventDefault();
-    console.log("finish edit button clicked");
     let token = localStorage.getItem("token");
     let productId = product.id;
 
+    //Takes form inputs and equates it to variable needed for updateProduct function to pass.
     let name = event.target[0].value;
     let description = event.target[1].value;
     let price = event.target[2].value;
@@ -35,6 +38,7 @@ const EditProduct = ({
     let on_sale = event.target[5].value;
     let sale_percentage = event.target[6].value;
 
+    //If any of these input fields are empty or undefined, it retains the existing value.
     if (name === undefined || name === "") {
       name = product.name;
     }
@@ -63,6 +67,7 @@ const EditProduct = ({
       sale_percentage = product.sale_percentage;
     }
 
+    //Run updateProduct function
     let editProduct = await updateProduct(
       token,
       productId,
@@ -75,13 +80,17 @@ const EditProduct = ({
       sale_percentage
     );
 
+    //If no error occurs:
+    //Update the edit card message so it tells the user that the update was successful
+    //Update state of product info so that it reflects the updated info without having to refresh the page.
+    //If error occurs:
+    //Tells user what part of the edit process failed.
     if (!editProduct.error) {
-      setProductInfo(editProduct.updatedProduct);
       setEditMessage(editProduct.message);
+      setProductInfo(editProduct.updatedProduct);
       setDisplayEditProduct(false);
     } else {
       setEditMessage(editProduct.message);
-      console.log(editProduct.message);
     }
   }
 

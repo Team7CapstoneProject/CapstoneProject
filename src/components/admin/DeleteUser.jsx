@@ -1,21 +1,21 @@
 import React from "react";
 import { deleteUserAsAdmin } from "../../api";
 
-const DeleteUser = ({ user, allUsers, setAllUsers }) => {
+const DeleteUser = ({ token, user, allUsers, setAllUsers }) => {
   async function onClickDeleteUser(event) {
+    //Prevents page refresh when button is pressed
     event.preventDefault();
-    console.log("delete user button clicked");
     let userId = user.id;
-    let token = localStorage.getItem("token");
 
-    try {
-      let deletedUser = await deleteUserAsAdmin(token, userId);
-      if (!deletedUser.error) {
-        allUsers = allUsers.filter((user) => user.id !== deletedUser.user.id);
-        setAllUsers(allUsers);
-      }
-    } catch (error) {
-      throw error;
+    //Run deleteUser function
+    let deletedUser = await deleteUserAsAdmin(token, userId);
+
+    //If no error occurs:
+    //Filter existing list of all users so that it does not include the deleted user.
+    //Sets state to all users so that it shows all users except the deleted user.
+    if (!deletedUser.error) {
+      allUsers = allUsers.filter((user) => user.id !== deletedUser.user.id);
+      setAllUsers(allUsers);
     }
   }
 

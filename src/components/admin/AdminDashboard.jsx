@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { getAllUsers } from "../../api";
 import { Users, AdminProducts, CreateProduct } from "../";
+import { getAllUsers } from "../../api";
 import "./CSS/admin.css";
 
-const AdminDashboard = ({ allProducts, setAllProducts }) => {
+const AdminDashboard = ({ token, allProducts, setAllProducts }) => {
   const [allUsers, setAllUsers] = useState([]);
   useEffect(() => {
     async function fetchAllUsers() {
-      const allFetchedUsers = await getAllUsers(localStorage.getItem("token"));
+      const allFetchedUsers = await getAllUsers(token);
       setAllUsers(allFetchedUsers);
     }
     fetchAllUsers();
@@ -18,10 +18,16 @@ const AdminDashboard = ({ allProducts, setAllProducts }) => {
   const [displayUsers, setDisplayUsers] = useState(false);
   const [displayAdminProducts, setDisplayAdminProducts] = useState(false);
 
+  //Initially sets displayUsers to true so that every time the admin dashboard button is pressed, all users are already displayed
+  useEffect(() => {
+    setDisplayUsers(true);
+  }, []);
+
   return (
     <>
       <div className="adminBar">
         <CreateProduct
+          token={token}
           allProducts={allProducts}
           setAllProducts={setAllProducts}
           displayCreateProduct={displayCreateProduct}
@@ -30,6 +36,7 @@ const AdminDashboard = ({ allProducts, setAllProducts }) => {
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
         <Users
+          token={token}
           allUsers={allUsers}
           displayUsers={displayUsers}
           setAllUsers={setAllUsers}
@@ -38,6 +45,7 @@ const AdminDashboard = ({ allProducts, setAllProducts }) => {
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
         <AdminProducts
+          token={token}
           allProducts={allProducts}
           setAllProducts={setAllProducts}
           displayAdminProducts={displayAdminProducts}

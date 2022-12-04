@@ -3,7 +3,12 @@ import "./CSS/navbar.css";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { logInUser } from "../../api";
 
-const Navbar = ({ navGreeting, setNavGreeting }) => {
+const Navbar = ({
+  userAccount,
+  setUserAccount,
+  navGreeting,
+  setNavGreeting,
+}) => {
   //------Global constants------
   const navigate = useNavigate();
   const userName = localStorage.getItem("first_name");
@@ -17,6 +22,8 @@ const Navbar = ({ navGreeting, setNavGreeting }) => {
     localStorage.removeItem("email");
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("token");
+    //setUserAccount to an empty object prevents admin dashboard button to show when logged out.
+    setUserAccount({});
     setNavGreeting("");
     navigate("/");
   }
@@ -63,7 +70,7 @@ const Navbar = ({ navGreeting, setNavGreeting }) => {
 
           {/* ------------------ ADMIN DASHBOARD BUTTON ------------------ */}
           <div>
-            {userName === "admin" ? (
+            {userAccount.is_admin === true ? (
               <div>
                 <Link to={"/admin"}>
                   <button className="navButton">Admin Dashboard</button>
