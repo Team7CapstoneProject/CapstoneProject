@@ -111,6 +111,7 @@
 .adminButton{
   background-color: rgba(255, 228, 196, 0);
   color: white;
+  white-space: nowrap;
   font-family: 'Alexandria', sans-serif;
   font-size: 20px;
   border: none;

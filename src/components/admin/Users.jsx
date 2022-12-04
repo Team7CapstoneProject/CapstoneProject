@@ -2,6 +2,7 @@ import React from "react";
 import { User } from "../";
 
 const Users = ({
+  token,
   allUsers,
   setAllUsers,
   displayUsers,
@@ -9,7 +10,6 @@ const Users = ({
   setDisplayCreateProduct,
   setDisplayAdminProducts,
 }) => {
-
   function handleClickSeeAllUsers(event) {
     event.preventDefault();
     if (!displayUsers) {
@@ -36,6 +36,7 @@ const Users = ({
                   return (
                     <User
                       key={`user-${user.id}`}
+                      token={token}
                       user={user}
                       allUsers={allUsers}
                       setAllUsers={setAllUsers}

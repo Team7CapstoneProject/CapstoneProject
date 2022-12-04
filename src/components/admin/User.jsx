@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { DeleteUser, PromoteUser } from "../";
 
-const User = ({ user, allUsers, setAllUsers }) => {
+const User = ({ token, user, allUsers, setAllUsers }) => {
+  const [userInfo, setUserInfo] = useState(user);
+
   return (
     <>
       <div className="userCard">
         {/* ------------------  USER INFO ------------------ */}
 
-        <div>{`ID: ${user.id}`}</div>
-        <div>{`First Name: ${user.first_name}`}</div>
-        <div>{`Last Name: ${user.last_name}`}</div>
-        <div>{`Email: ${user.email}`}</div>
+        <div>{`ID: ${userInfo.id}`}</div>
+        <div>{`First Name: ${userInfo.first_name}`}</div>
+        <div>{`Last Name: ${userInfo.last_name}`}</div>
+        <div>{`Email: ${userInfo.email}`}</div>
         <div>
-          {user.is_admin === true ? (
+          {userInfo.is_admin === true ? (
             <div className="isAdmin">{`Administrator`}</div>
           ) : (
             <div className="isNotAdmin">{`User`}</div>
@@ -21,12 +23,12 @@ const User = ({ user, allUsers, setAllUsers }) => {
 
         {/* ------------------ PROMOTE USER BUTTON ------------------ */}
         <div>
-          {user.is_admin === true ? (
+          {user.is_admin === true || user.first_name === "Guest" ? (
             <></>
           ) : (
             <div>
               {" "}
-              <PromoteUser user={user} />
+              <PromoteUser token={token} user={user} setUserInfo={setUserInfo} />
             </div>
           )}
         </div>
@@ -38,6 +40,7 @@ const User = ({ user, allUsers, setAllUsers }) => {
           ) : (
             <div>
               <DeleteUser
+                token={token}
                 user={user}
                 allUsers={allUsers}
                 setAllUsers={setAllUsers}
