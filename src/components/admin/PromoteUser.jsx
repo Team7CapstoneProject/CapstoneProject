@@ -9,15 +9,19 @@ const PromoteUser = ({ token, user, setUserInfo }) => {
     //Run promoteUser function
     let promotedUser = await promoteUser(token, user.id);
 
+    //If no error occurs:
+    //Updates info state so it reflects new status as admin.
     if (!promotedUser.error) {
-      setUserInfo(promoteUser.promoteUser);
+      setUserInfo(promotedUser.promotedUser);
     }
   }
 
   return (
     <>
       <div>
-        <button onClick={onClickPromoteUser} className="buttonEdit">Promote to Admin</button>
+        <button onClick={onClickPromoteUser} className="buttonEdit">
+          Promote to Admin
+        </button>
       </div>
     </>
   );

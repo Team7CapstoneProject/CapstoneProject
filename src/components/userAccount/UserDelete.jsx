@@ -13,7 +13,7 @@ const UserDelete = ({ setNavGreeting }) => {
       localStorage.removeItem("first_name");
       localStorage.removeItem("token");
       setNavGreeting(
-        `Your account was successfully deleted. Please sign in or register to continue.`
+        `We're sad to see you go!`
       );
       navigate("/");
     }
@@ -22,7 +22,7 @@ const UserDelete = ({ setNavGreeting }) => {
   return (
     <>
       <div>
-        <button onClick={onClickDeleteMyAccount}>Delete Account</button>
+        <button onClick={onClickDeleteMyAccount} className="buttonDelete">Delete Account</button>
       </div>
     </>
   );
