@@ -4,9 +4,9 @@ import {
   Home,
   LogIn,
   Register,
-  Account,
+  UserDashboard,
   ProductsSearch,
-  ViewOfProducts,
+  ProductView,
   Cart,
   CompletedCarts,
   Checkout,
@@ -17,7 +17,7 @@ import {
   RouterProvider,
   createBrowserRouter,
   Route,
-  useParams
+  useParams,
 } from "react-router-dom";
 
 import {
@@ -26,17 +26,18 @@ import {
   getAllProducts,
   getCartProductsByCart,
   getCartByUserId,
+  logInUser,
 } from "../api";
 
-const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]")
+const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Main = () => {
-  let { productId } = useParams();
+  let token = localStorage.getItem("token");
+
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      let token = localStorage.getItem("token");
       async function fetchUserAccount() {
         const accountOfUser = await myAccount(token);
         // console.log("user account object!!", accountOfUser)
@@ -55,10 +56,7 @@ const Main = () => {
   // } else {
   //   initialNavGreeting = "";
   // }
-
   let initialNavGreeting;
-  let token = localStorage.getItem("token");
-
   if (token) {
     initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
   } else {
@@ -104,16 +102,16 @@ const Main = () => {
   //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
   //need to add functionality for detecting if there is not a signed in user, this is for guest user functionality only to persist cart
 
-  //trying this json parse method for pulling cart data from local storage for persistence on the users end 
+  //trying this json parse method for pulling cart data from local storage for persistence on the users end
+
   const [cart, setCart] = useState(localStorageCart);
-  
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (!token) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
-
 
   //-----------GET CART PRODUCTS BY CART ------------------
   const [cartProducts, setCartProducts] = useState();
@@ -149,13 +147,22 @@ const Main = () => {
         />
         <Route
           path="/login"
-          element={<LogIn setNavGreeting={setNavGreeting} />}
+          element={<LogIn setNavGreeting={setNavGreeting} setUserAccount={setUserAccount}/>}
         />
         <Route
           path="/register"
           element={<Register setNavGreeting={setNavGreeting} />}
         />
-        <Route path="/account" element={<Account />} />
+        <Route
+          path="/account"
+          element={
+            <UserDashboard
+              userAccount={userAccount}
+              cart={cart}
+              setNavGreeting={setNavGreeting}
+            />
+          }
+        />
         <Route
           path="/products"
           element={
@@ -172,7 +179,10 @@ const Main = () => {
           element={<Checkout cart={cart} userAccount={userAccount} />}
         />
         <Route path="/orderhistory" element={<CompletedCarts />} />
-        <Route path="/products/:productId" element={<ViewOfProducts allProducts={allProducts}/>} />
+        <Route
+          path="/products/:productId"
+          element={<ProductView allProducts={allProducts} />}
+        />
         <Route
           path="/admin"
           element={

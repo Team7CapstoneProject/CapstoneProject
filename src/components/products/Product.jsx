@@ -2,14 +2,13 @@ import React from "react";
 import { ProductAddToCart } from "../";
 
 const Product = ({ product, cart, setCart }) => {
+  let token = localStorage.getItem("token");
   let salePrice;
   let finalSalePrice;
 
   if (product.on_sale === true) {
     let percentageConversion = product.sale_percentage * 0.01;
     salePrice = product.price * (1 - percentageConversion);
-    //.toFixed rounds up the number to the nearest 2 decimal places.
-    //finalSalePrice needs to be force coerced into a number since .toFixed returns a string.
     finalSalePrice = Number(salePrice.toFixed(2));
   } else {
     finalSalePrice = product.price;
@@ -48,7 +47,14 @@ const Product = ({ product, cart, setCart }) => {
             </div>
           )}
         </div>
-        <ProductAddToCart product={product} cart={cart} setCart={setCart} />
+        {token ? (
+          <div>
+            {" "}
+            <ProductAddToCart product={product} cart={cart} setCart={setCart} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

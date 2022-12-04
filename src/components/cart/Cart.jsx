@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 const Cart = ({ cart, setCart }) => {
   const [quantity, setQuantity] = useState(1);
+  const token = localStorage.getItem("token");
 
   async function increment(cartProductId, quantity) {
     try {
@@ -48,62 +49,52 @@ const Cart = ({ cart, setCart }) => {
       throw error;
     }
   }
+
   async function handleDelete(e) {
     try {
       e.preventDefault();
-      // const { cartProductId } = useParams();
+      console.log("delete button pressed");
       const toDelete = e.target.id;
-      const token = localStorage.getItem("token");
-      const deleted = await deleteCartProduct(token, toDelete);
+      const deletedItem = await deleteCartProduct(token, toDelete);
+
+      // let remainingCartProducts
+      if (!deletedItem.error) {
+        console.log(`Product ID ${toDelete} deleted`)
+        // remainingCartProducts = cart.products.filter(
+        //   (product) => product.id !== toDelete
+        // );
+      }
+      // setCart(remainingCartProducts)
     } catch (error) {
       throw error;
     }
   }
 
   //---------Functions for checking total price of combined products----------
-  //-----Declare state for subtotal changes. The useEffect renders the whole thing on load and refreshes every time cart changes (basically any time an item is added or subtracted from cart).
+  //-----Declare state for subtotal changes. The useEffect renders the whole thing on load and refreshes every time cart changes (basically any time an item is added or subtracted from cart, the subtotal updates.
   const [subtotal, setSubtotal] = useState();
   useEffect(() => {
     let cartProducts = cart.products;
-
-    //-----Isolate products that are not on sale and place in its own array
-    let productsNotOnSale = cartProducts.filter(
-      (product) => product.on_sale === false
-    );
-
-    //-----Take each product in the productsNotOnSale array and multiply the price by quantity in cart.
-    let productNotOnSalePriceArray = [];
-    productsNotOnSale.forEach((product) => {
-      let totalPrice = product.quantity * Number(product.price);
-      productNotOnSalePriceArray.push(totalPrice);
-    });
-
-    //-----Isolate products that are on sale and place in its own array
-    let productsOnSale = cartProducts.filter(
-      (product) => product.on_sale === true
-    );
-    //-----Take each product in the productsOnSale array and multiply the price (taking sale into account) by quantity in cart.
-    let productOnSalePriceArray = [];
-    productsOnSale.forEach((product) => {
-      let salePrice;
-      let finalSalePrice;
-      let percentageConversion = product.sale_percentage * 0.01;
-      salePrice = product.price * (1 - percentageConversion);
-      finalSalePrice = Number(salePrice.toFixed(2));
-      let totalPrice = product.quantity * finalSalePrice;
-      productOnSalePriceArray.push(totalPrice);
-    });
-
-    //-----Merge both on sale and not on sale price arrays so that the price values are in one array
-    let mergedPriceArrays = [
-      ...productNotOnSalePriceArray,
-      ...productOnSalePriceArray,
-    ];
-
-    //-----Sum all values in the array to get subtotal
+    let finalSalePrice;
+    let totalPrice;
+    let finalPriceArray = [];
     let subTotal = 0;
-    for (let i = 0; i < mergedPriceArrays.length; i++) {
-      subTotal += mergedPriceArrays[i];
+
+    cartProducts.forEach((product) => {
+      if (product.on_sale === false) {
+        totalPrice = product.quantity * Number(product.price);
+        finalPriceArray.push(totalPrice);
+      } else {
+        let percentageConversion = product.sale_percentage * 0.01;
+        let salePrice = product.price * (1 - percentageConversion);
+        finalSalePrice = Number(salePrice.toFixed(2));
+        totalPrice = product.quantity * finalSalePrice;
+        finalPriceArray.push(totalPrice);
+      }
+    });
+
+    for (let i = 0; i < finalPriceArray.length; i++) {
+      subTotal += finalPriceArray[i];
     }
 
     setSubtotal(subTotal);
@@ -116,7 +107,6 @@ const Cart = ({ cart, setCart }) => {
         <div className="cartProductDiv">
           {cart.products ? (
             cart.products.map((product) => {
-              // console.log(product, "THIS IS PRODUCT 35");
               return (
                 <div key={`product-${product.id}`} className="cartProduct">
                   <img
@@ -149,7 +139,7 @@ const Cart = ({ cart, setCart }) => {
                       </button>
                     </p>
 
-                    <p
+                    <button
                       onClick={handleDelete}
                       id={
                         product.cartProductId
@@ -159,7 +149,7 @@ const Cart = ({ cart, setCart }) => {
                       className="remove"
                     >
                       Remove from cart
-                    </p>
+                    </button>
                   </div>
                 </div>
               );

@@ -146,9 +146,12 @@ export async function getCartProductsByCart(cartId) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-    }
+    },
   };
-  const response = await fetch(`${BASE_URL}/api/carts/${cartId}/cart_products`, options);
+  const response = await fetch(
+    `${BASE_URL}/api/carts/${cartId}/cart_products`,
+    options
+  );
   const result = await response.json();
   // console.log(result);
   return result;
@@ -386,6 +389,24 @@ export async function deleteUserAsAdmin(token, userId) {
   };
   const response = await fetch(
     `${BASE_URL}/api/admin/users/${userId}`,
+    options
+  );
+  const result = await response.json();
+  // console.log(result);
+  return result;
+}
+
+//PROMOTE USER
+export async function promoteUser(token, userId) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await fetch(
+    `${BASE_URL}/api/admin/user/${userId}`,
     options
   );
   const result = await response.json();

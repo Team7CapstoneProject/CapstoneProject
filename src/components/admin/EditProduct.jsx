@@ -81,6 +81,7 @@ const EditProduct = ({
       setDisplayEditProduct(false);
     } else {
       setEditMessage(editProduct.message);
+      console.log(editProduct.message);
     }
   }
 
