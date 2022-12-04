@@ -138,7 +138,7 @@ const Main = () => {
             <UserDashboard
               token={token}
               userAccount={userAccount}
-              cart={cart}
+              setUserAccount={setUserAccount}
               setNavGreeting={setNavGreeting}
             />
           }

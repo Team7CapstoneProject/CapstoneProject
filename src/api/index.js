@@ -69,6 +69,26 @@ export async function getUserById(userId) {
   return result;
 }
 
+//UPDATE MY ACCOUNT
+export async function updateAccount(token, first_name, last_name, email) {
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+    }),
+  };
+  const response = await fetch(`${BASE_URL}/api/users/me`, options);
+  const result = await response.json();
+  // console.log(result);
+  return result;
+}
+
 //DELETE MY ACCOUNT
 export async function deleteMyAccount(token) {
   const options = {
@@ -405,10 +425,7 @@ export async function promoteUser(token, userId) {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await fetch(
-    `${BASE_URL}/api/admin/user/${userId}`,
-    options
-  );
+  const response = await fetch(`${BASE_URL}/api/admin/user/${userId}`, options);
   const result = await response.json();
   // console.log(result);
   return result;
