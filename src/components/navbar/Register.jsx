@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { register } from "../../api";
 import { useNavigate } from "react-router-dom";
 
-const Register = ({ setNavGreeting }) => {
+const Register = ({ setNavGreeting, setUserAccount }) => {
   let navigate = useNavigate();
   const [registerMessage, setRegisterMessage] = useState("Create your account");
   const [registerInfo, setRegisterInfo] = useState({
@@ -32,6 +32,7 @@ const Register = ({ setNavGreeting }) => {
       localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("token", registeredUser.token);
       setNavGreeting(registeredUser.message);
+      setUserAccount(registeredUser.user)
       navigate("/");
     } else {
       setRegisterMessage(registeredUser.message);

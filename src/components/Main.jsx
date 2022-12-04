@@ -188,7 +188,7 @@ const Main = () => {
         />
         <Route
           path="/register"
-          element={<Register setNavGreeting={setNavGreeting} />}
+          element={<Register setNavGreeting={setNavGreeting} setUserAccount={setUserAccount}/>}
         />
 
         <Route

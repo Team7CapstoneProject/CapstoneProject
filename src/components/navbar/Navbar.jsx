@@ -122,17 +122,15 @@ const Navbar = ({
 
           {/* ------------------ SIGN IN AS GUEST BUTTON ------------------ */}
           <div>
-            <div>
-              {(token && userName !== "Guest") || userName === "Guest" ? (
-                <></>
-              ) : (
-                <div>
-                  <button className="navButton" onClick={onClickGuestSignIn}>
-                    Sign In As Guest
-                  </button>
-                </div>
-              )}
-            </div>
+            {(token && userName !== "Guest") || userName === "Guest" ? (
+              <></>
+            ) : (
+              <div>
+                <button className="navButton" onClick={onClickGuestSignIn}>
+                  Sign In As Guest
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
