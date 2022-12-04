@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { logInUser } from "../../api";
+import { logInUser, register } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 
-const LogIn = ({ setNavGreeting }) => {
+const LogIn = ({ setNavGreeting, setUserAccount }) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [logInInfo, setLogInInfo] = useState({
@@ -21,20 +21,19 @@ const LogIn = ({ setNavGreeting }) => {
 
     if (registeredUser.error) {
       const message = registeredUser.message;
-      // console.log("error message!!!", message)
       setLoginError(message);
     } else {
       const token = registeredUser.token;
-      // localStorage.removeItem("userId");
       localStorage.removeItem("first_name");
-      // localStorage.removeItem("isAdmin");
       localStorage.removeItem("token");
-      // localStorage.setItem("userId", registeredUser.user.id);
       localStorage.setItem("first_name", registeredUser.user.first_name);
-      // localStorage.setItem("isAdmin", registeredUser.user.is_admin);
       localStorage.setItem("token", token);
 
+      //Set multiple useStates
       setNavGreeting(registeredUser.message);
+      setUserAccount(registeredUser.user);
+
+      //Return to home
       navigate("/");
 
       setLogInInfo({ email: "", password: "" });

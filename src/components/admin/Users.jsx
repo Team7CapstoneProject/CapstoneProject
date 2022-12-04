@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { User } from "../";
 
 const Users = ({
@@ -9,11 +9,10 @@ const Users = ({
   setDisplayCreateProduct,
   setDisplayAdminProducts,
 }) => {
-  // const [displayUsers, setDisplayUsers] = useState(false);
 
   function handleClickSeeAllUsers(event) {
+    event.preventDefault();
     if (!displayUsers) {
-      event.preventDefault();
       setDisplayUsers(true);
       setDisplayCreateProduct(false);
       setDisplayAdminProducts(false);

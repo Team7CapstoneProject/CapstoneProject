@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { addProductToCart } from "../../api";
 
 const ProductAddToCart = ({ product, cart, setCart }) => {
-  const [addCart, setAddCart] = useState(cart);
-  const [attachToCart, setAttachToCart] = useState({});
 
   async function handleAddToCart(event) {
     event.preventDefault();

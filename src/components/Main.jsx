@@ -4,9 +4,9 @@ import {
   Home,
   LogIn,
   Register,
-  Account,
+  UserDashboard,
   ProductsSearch,
-  ViewOfProducts,
+  ProductView,
   Cart,
   CompletedCarts,
   Checkout,
@@ -147,13 +147,22 @@ const Main = () => {
         />
         <Route
           path="/login"
-          element={<LogIn setNavGreeting={setNavGreeting} />}
+          element={<LogIn setNavGreeting={setNavGreeting} setUserAccount={setUserAccount}/>}
         />
         <Route
           path="/register"
           element={<Register setNavGreeting={setNavGreeting} />}
         />
-        <Route path="/account" element={<Account />} />
+        <Route
+          path="/account"
+          element={
+            <UserDashboard
+              userAccount={userAccount}
+              cart={cart}
+              setNavGreeting={setNavGreeting}
+            />
+          }
+        />
         <Route
           path="/products"
           element={
@@ -172,7 +181,7 @@ const Main = () => {
         <Route path="/orderhistory" element={<CompletedCarts />} />
         <Route
           path="/products/:productId"
-          element={<ViewOfProducts allProducts={allProducts} />}
+          element={<ProductView allProducts={allProducts} />}
         />
         <Route
           path="/admin"

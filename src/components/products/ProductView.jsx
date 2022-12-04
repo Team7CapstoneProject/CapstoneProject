@@ -2,12 +2,13 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAddToCart from "./ProductAddToCart";
 
-const ViewOfProducts = ({ allProducts }) => {
-  let navigate=useNavigate()
+const ProductView = ({ allProducts }) => {
+  let navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
-  function handleClickReturnToProducts(event){
-    event.preventDefault()
-    navigate("/products")
+  function handleClickReturnToProducts(event) {
+    event.preventDefault();
+    navigate("/products");
   }
 
   let { productId } = useParams();
@@ -26,17 +27,26 @@ const ViewOfProducts = ({ allProducts }) => {
                 <div className="nameView">{product.name}</div>
                 <div>Description: {product.description}</div>
                 <div className="priceView">${product.price}</div>
-            </div>
+              </div>
             </div>
           );
         }
       })}
       <div className="addView">
-      <ProductAddToCart />
-      <button onClick={handleClickReturnToProducts}>Back</button>
-    </div>
+        {token ? (
+          <div>
+            <ProductAddToCart />
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+
+      <button onClick={handleClickReturnToProducts} className="addView">
+        Back
+      </button>
     </div>
   );
 };
 
-export default ViewOfProducts;
+export default ProductView;

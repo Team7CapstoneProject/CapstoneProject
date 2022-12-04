@@ -2,6 +2,7 @@ import React from "react";
 import { ProductAddToCart } from "../";
 
 const Product = ({ product, cart, setCart }) => {
+  let token = localStorage.getItem("token");
   let salePrice;
   let finalSalePrice;
 
@@ -46,7 +47,14 @@ const Product = ({ product, cart, setCart }) => {
             </div>
           )}
         </div>
-        <ProductAddToCart product={product} cart={cart} setCart={setCart} />
+        {token ? (
+          <div>
+            {" "}
+            <ProductAddToCart product={product} cart={cart} setCart={setCart} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </>
   );

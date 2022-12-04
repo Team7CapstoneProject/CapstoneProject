@@ -1,8 +1,24 @@
 import React from "react";
-const PromoteUser = () => {
+import { promoteUser } from "../../api";
+
+const PromoteUser = ({ user }) => {
+  let token = localStorage.getItem("token");
+
+  async function onClickPromoteUser(event) {
+    event.preventDefault();
+    console.log("pressed promote user button");
+    let promotedUser = await promoteUser(token, user.id);
+
+    if (!promotedUser.error) {
+      console.log(user.first_name, "user was promoted");
+    }
+  }
+
   return (
     <>
-      <div>This is PromoteUser Component</div>
+      <div>
+        <button onClick={onClickPromoteUser}>Promote to Admin</button>
+      </div>
     </>
   );
 };
