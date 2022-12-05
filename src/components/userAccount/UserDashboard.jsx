@@ -22,7 +22,7 @@ const UserDashboard = ({ token, userAccount, setUserAccount, setNavGreeting }) =
         </div>
 
         <div>
-          {admin === "admin" ? (
+          {admin === "Admin" ? (
             <></>
           ) : (
             <div>

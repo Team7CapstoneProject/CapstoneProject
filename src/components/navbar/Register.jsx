@@ -27,9 +27,7 @@ const Register = ({ setNavGreeting, setUserAccount }) => {
     );
 
     if (!registeredUser.error) {
-      localStorage.removeItem("first_name");
       localStorage.removeItem("token");
-      localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("token", registeredUser.token);
       setNavGreeting(registeredUser.message);
       setUserAccount(registeredUser.user)

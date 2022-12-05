@@ -17,10 +17,6 @@ const Navbar = ({
   //------Log out function------
   function onClickLogOut(event) {
     event.preventDefault();
-    localStorage.removeItem("userId");
-    localStorage.removeItem("first_name");
-    localStorage.removeItem("email");
-    localStorage.removeItem("isAdmin");
     localStorage.removeItem("token");
     //setUserAccount to an empty object prevents admin dashboard button to show when logged out.
     setUserAccount({});
@@ -30,12 +26,10 @@ const Navbar = ({
 
   //------Guest sign-in function------
   async function onClickGuestSignIn() {
-    let guest = await logInUser("guestuser", "guestuser");
-    localStorage.removeItem("first_name");
     localStorage.removeItem("token");
-    localStorage.setItem("first_name", guest.user.first_name);
+    let guest = await logInUser("guestuser", "guestuser");
     localStorage.setItem("token", guest.token);
-    setNavGreeting(guest.message);
+    setNavGreeting("Welcome to GuitarStop!");
     navigate("/");
   }
 

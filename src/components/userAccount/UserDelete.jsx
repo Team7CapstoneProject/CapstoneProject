@@ -10,7 +10,6 @@ const UserDelete = ({ setNavGreeting }) => {
     event.preventDefault();
     let deletedAccount = await deleteMyAccount(token);
     if (!deletedAccount.error) {
-      localStorage.removeItem("first_name");
       localStorage.removeItem("token");
       setNavGreeting(
         `We're sad to see you go!`

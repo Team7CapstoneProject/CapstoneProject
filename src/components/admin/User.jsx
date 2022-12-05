@@ -40,7 +40,7 @@ const User = ({ token, user, allUsers, setAllUsers }) => {
 
         {/* ------------------ DELETE USER BUTTON ------------------ */}
         <div>
-          {user.first_name === "admin" || user.first_name === "Guest" ? (
+          {user.email === "admin@gmail.com" || user.email === "guestuser"  ? (
             <></>
           ) : (
             <div>
