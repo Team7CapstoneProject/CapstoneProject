@@ -9,7 +9,7 @@ const EditProduct = ({
   setDisplayEditProduct,
 }) => {
   //Displays to the user if editing the object was a success or not.
-  const [editMessage, setEditMessage] = useState("Edit Form");
+  const [editMessage, setEditMessage] = useState("Make product changes below.");
   const [error, setError] = useState(false);
 
   //Toggles the edit product form on and off
@@ -109,7 +109,7 @@ const EditProduct = ({
                 {error ? (
                   <div className="adminProductError">{editMessage}</div>
                 ) : (
-                  <div>{editMessage}</div>
+                  <div className="editMessageChanges">{editMessage}</div>
                 )}
               </div>
               <form
