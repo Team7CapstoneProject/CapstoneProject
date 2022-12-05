@@ -30,7 +30,13 @@ const Cart = ({ cart, setCart }) => {
 
   async function decrement(cartProductId, quantity) {
     try {
-      const newestQuantity = quantity - 1;
+      let newestQuantity = quantity;
+      if (newestQuantity === 0) {
+        return;
+      } else {
+        newestQuantity = quantity - 1;
+      }
+
       const updateQuantity = await updateCartProductQuantity(
         token,
         cartProductId,
