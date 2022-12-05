@@ -2,6 +2,9 @@ import React from "react";
 import { addProductToCart } from "../../api";
 
 const ProductAddToCart = ({ product, cart, setCart }) => {
+
+console.log(cart)
+
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");

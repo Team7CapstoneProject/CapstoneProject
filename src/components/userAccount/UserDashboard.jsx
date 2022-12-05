@@ -25,6 +25,9 @@ const UserDashboard = ({
           <Link to={"/cart"}>
             <button className="yourCartButton">Your Cart</button>
           </Link>
+          <Link to={"/orderHistory"}>
+            <button className="yourCartButton">Order History</button>
+          </Link>
         </div>
 
         <div>

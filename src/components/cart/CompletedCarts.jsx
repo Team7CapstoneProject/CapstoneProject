@@ -1,8 +1,11 @@
 import React from "react";
-const CompletedCarts = () => {
+
+const CompletedCarts = ({cart, setCart}) => {
+console.log(cart)
+
   return (
     <>
-      <div>This is CompletedCarts Component</div>
+      <div>Order History</div>
     </>
   );
 };
