@@ -1,27 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserDelete, UserEdit } from "../";
+import "./CSS/userAccount.css";
 
-const UserDashboard = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
-  
+const UserDashboard = ({
+  token,
+  userAccount,
+  setUserAccount,
+  setNavGreeting,
+}) => {
   return (
     <>
-      <div>
-        <div>
-          <div>Account Information:</div>
-          <div>{`First Name: ${userAccount.first_name}`}</div>
-          <div>{`Last Name: ${userAccount.last_name}`}</div>
-          <div>{`Email: ${userAccount.email}`}</div>
+      <div className="myAccountDiv">
+        <div className="myAccount">
+          <div className="accountInfo">
+            <div className="accountInfoHeader">Account Information:</div>
+            <div>{`First Name: ${userAccount.first_name}`}</div>
+            <div>{`Last Name: ${userAccount.last_name}`}</div>
+            <div>{`Email: ${userAccount.email}`}</div>
+          </div>
         </div>
 
         <div>
           <Link to={"/cart"}>
-            <button>Your Cart</button>
+            <button className="yourCartButton">Your Cart</button>
           </Link>
         </div>
 
         <div>
-          {userAccount.email==="admin" ? (
+          {userAccount.email === "admin" ? (
             <></>
           ) : (
             <div>

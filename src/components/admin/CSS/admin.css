@@ -2,7 +2,7 @@
 
 .adminProductCard {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: white;
   height: fit-content;
   width: fit-content;
@@ -21,19 +21,25 @@
   margin: 20px 0 0 0;
   /* border: 3px solid red; */
 }
-
+.productImageAdmin{
+  height: 300px;
+}
+.productImageAdminDiv{
+  display: flex;
+}
 /* ---------------------- In CreateProduct.jsx ---------------------- */
 
 .createProductCard {
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 0, 0, 0.64);
+  background-color: lightgrey;
   color: white;
   justify-content: flex-start;
   align-items: flex-start;
   padding: 20px;
   width: 300px;
   margin: 25px 0 0 0;
+  border-radius: 16px;
   font-family: 'Alexandria', sans-serif;
 }
 .createProductCardDiv {
@@ -60,12 +66,13 @@
   border: none;
   background-color: white;
   border-radius: 16px;
-  color: rgba(255, 0, 0, 0.814);
+  color: rgb(126, 194, 126);
   padding: 8px 8px;
   margin-top: 10px;
   justify-content: flex-end;
   align-self: flex-start;
   font-family: 'Alexandria', sans-serif;
+  font-size: 16px;
 }
 
 .buttonSubmit:hover {
@@ -128,7 +135,8 @@
 .editMessage{
   font-size: 20px;
   margin-bottom: 10px;
-  text-decoration: underline;
+  letter-spacing: 1px;
+  color: black;
 }
 
 
@@ -160,4 +168,7 @@
   padding: 5px;
   margin-top: 5px;
   font-family: 'Alexandria', sans-serif;
+}
+.editMessageChanges{
+  margin: 5px 0 5px 0;
 }

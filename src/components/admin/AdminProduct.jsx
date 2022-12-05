@@ -22,40 +22,49 @@ const AdminProduct = ({ token, allProducts, setAllProducts, product }) => {
   return (
     <>
       <div className="adminProductCard">
-        <div>{`Name: ${productInfo.name}`}</div>
-        <div>{`Description: ${productInfo.description}`}</div>
-        <div>{`Inventory: ${productInfo.inventory}`}</div>
-        <div>{`Price: $${productInfo.price}`}</div>
-        <div>
-          {productInfo.on_sale === true ? (
-            <div>
-              {" "}
-              <div>{`Sale Percentage: ${productInfo.sale_percentage}%`}</div>
-              <div>{`Sale Price: $${finalSalePrice}`}</div>
-            </div>
+        <div className="productImageAdminDiv">
+          <img
+            className="productImageAdmin"
+            src={productInfo.image_url}
+            alt={`${product.name} Image`}
+          />
+        </div>
+        <div className="productInfoColumn">
+          <div>{`Name: ${productInfo.name}`}</div>
+          <div>{`Description: ${productInfo.description}`}</div>
+          <div>{`Inventory: ${productInfo.inventory}`}</div>
+          <div>{`Price: $${productInfo.price}`}</div>
+          <div>
+            {productInfo.on_sale === true ? (
+              <div>
+                {" "}
+                <div>{`Sale Percentage: ${productInfo.sale_percentage}%`}</div>
+                <div>{`Sale Price: $${finalSalePrice}`}</div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <EditProduct
+            token={token}
+            product={product}
+            productInfo={productInfo}
+            setProductInfo={setProductInfo}
+            displayEditProduct={displayEditProduct}
+            setDisplayEditProduct={setDisplayEditProduct}
+          />
+
+          {displayEditProduct === false ? (
+            <DeleteProduct
+              token={token}
+              product={product}
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
+            />
           ) : (
             <></>
           )}
         </div>
-        <EditProduct
-          token={token}
-          product={product}
-          productInfo={productInfo}
-          setProductInfo={setProductInfo}
-          displayEditProduct={displayEditProduct}
-          setDisplayEditProduct={setDisplayEditProduct}
-        />
-
-        {displayEditProduct === false ? (
-          <DeleteProduct
-            token={token}
-            product={product}
-            allProducts={allProducts}
-            setAllProducts={setAllProducts}
-          />
-        ) : (
-          <></>
-        )}
       </div>
     </>
   );
