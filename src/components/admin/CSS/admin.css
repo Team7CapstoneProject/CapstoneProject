@@ -137,6 +137,10 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.adminButton:hover{
+ text-decoration: underline;
+}
 .adminBar{
   display: flex;
   background-color: black;

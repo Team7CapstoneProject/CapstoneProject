@@ -18,23 +18,23 @@ const UserDashboard = ({
             <div>{`First Name: ${userAccount.first_name}`}</div>
             <div>{`Last Name: ${userAccount.last_name}`}</div>
             <div>{`Email: ${userAccount.email}`}</div>
-          </div>
-        </div>
 
-        <div>
-          <Link to={"/cart"}>
-            <button className="yourCartButton">Your Cart</button>
-          </Link>
-          <Link to={"/orderHistory"}>
-            <button className="yourCartButton">Order History</button>
-          </Link>
+            <div>
+              <Link to={"/cart"}>
+                <button className="yourCartButton">Your Cart</button>
+              </Link>
+              <Link to={"/orderHistory"}>
+                <button className="yourCartButton">Order History</button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div>
           {userAccount.email === "admin" ? (
             <></>
           ) : (
-            <div>
+            <div className="editAccount">
               <UserEdit
                 token={token}
                 userAccount={userAccount}
