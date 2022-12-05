@@ -26,11 +26,6 @@ import {
   myAccount,
 } from "../api";
 
-<<<<<<< HEAD
-// const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-=======
->>>>>>> 146604ad04a1d811082998816c1e0e32a676a0bf
 const Main = () => {
   let token = localStorage.getItem("token");
 
@@ -59,23 +54,19 @@ const Main = () => {
     fetchAllProducts();
   }, []);
 
-<<<<<<< HEAD
-  //-----------CREATE CART DATA------------------
-  const [cart, setCart] = useState([]);
-  useEffect(() => {
-    async function fetchCart() {
-      const token = localStorage.getItem("token");
-      const user_id = userAccount.id;
-      if (token) {
-=======
+
+ 
+      
+
   //-----------CREATE OR FETCH CART DATA------------------
   const [cart, setCart] = useState();
 
   useEffect(() => {
     async function fetchCart() {
+    const token = localStorage.getItem("token");
       const user_id = userAccount.id;
       if (token && user_id) {
->>>>>>> 146604ad04a1d811082998816c1e0e32a676a0bf
+
         const userCart = await getCartByUserId(token);
         if (userCart) {
           setCart(userCart[0]);
@@ -86,7 +77,7 @@ const Main = () => {
       }
     }
     fetchCart();
-<<<<<<< HEAD
+
     console.log(cart)
   }, []);
   //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
@@ -113,9 +104,6 @@ const Main = () => {
   //   }
   //   fetchCartProducts();
   // }, []);
-=======
-  }, [userAccount]);
->>>>>>> 146604ad04a1d811082998816c1e0e32a676a0bf
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
