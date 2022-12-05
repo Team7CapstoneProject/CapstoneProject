@@ -31,7 +31,6 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
     if (registeredUser.error) {
       setLoginMessage(registeredUser.message);
     } else {
-      localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("token", registeredUser.token);
 
       //Set multiple useStates

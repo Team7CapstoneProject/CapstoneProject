@@ -22,12 +22,9 @@ import {
 import {
   createCart,
   getAllProducts,
-  getCartProductsByCart,
   getCartByUserId,
   myAccount,
 } from "../api";
-
-// const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Main = () => {
   let token = localStorage.getItem("token");
@@ -35,7 +32,7 @@ const Main = () => {
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState({});
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (token) {
       async function fetchUserAccount() {
         const response = await myAccount(token);
         setUserAccount(response);
@@ -44,14 +41,8 @@ const Main = () => {
     }
   }, []);
 
-  //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
-  let initialNavGreeting;
-  if (token && userAccount===undefined) {
-    initialNavGreeting = `Welcome back, ${userAccount.first_name}!`;
-  } else {
-    initialNavGreeting = "";
-  }
-  const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
+  //---------------------SETTING STATE FOR NAVBAR GREETING--------------------- 
+  const [navGreeting, setNavGreeting] = useState("");
 
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
@@ -63,13 +54,19 @@ const Main = () => {
     fetchAllProducts();
   }, []);
 
-  //-----------CREATE CART DATA------------------
-  const [cart, setCart] = useState([]);
+
+ 
+      
+
+  //-----------CREATE OR FETCH CART DATA------------------
+  const [cart, setCart] = useState();
+
   useEffect(() => {
     async function fetchCart() {
-      const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
       const user_id = userAccount.id;
-      if (token) {
+      if (token && user_id) {
+
         const userCart = await getCartByUserId(token);
         if (userCart) {
           setCart(userCart[0]);
@@ -80,6 +77,7 @@ const Main = () => {
       }
     }
     fetchCart();
+
     console.log(cart)
   }, []);
   //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
@@ -185,7 +183,12 @@ const Main = () => {
         />
         <Route
           path="/register"
-          element={<Register setNavGreeting={setNavGreeting} setUserAccount={setUserAccount}/>}
+          element={
+            <Register
+              setNavGreeting={setNavGreeting}
+              setUserAccount={setUserAccount}
+            />
+          }
         />
 
         <Route

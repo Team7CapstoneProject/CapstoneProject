@@ -43,29 +43,33 @@ const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
 
   return (
     <>
+    <div id = "accountEditDiv">
       <div>
-        <div>{editMessage}</div>
-        <form onSubmit={onSubmitEditUser}>
-          <label htmlFor="first_name">First Name: </label>
-          <input
-            type="text"
-            name="first_name"
-            placeholder={userAccount.first_name}
-          />
+        <div>
+          <div>{editMessage}</div>
 
-          <label htmlFor="last_name">Last Name: </label>
-          <input
-            type="text"
-            name="last_name"
-            placeholder={userAccount.last_name}
-          />
+          <form id = "accountDataEditForm" onSubmit={onSubmitEditUser}>
+            <label htmlFor="first_name">First Name: </label>
+            <input
+              type="text"
+              name="first_name"
+              placeholder={userAccount.first_name}
+            />
 
-          <label htmlFor="email">Email: </label>
-          <input type="text" name="email" placeholder={userAccount.email} />
+            <label htmlFor="last_name">Last Name: </label>
+            <input
+              type="text"
+              name="last_name"
+              placeholder={userAccount.last_name}
+            />
 
-          <button className="buttonEdit">Finish Edit</button>
-        </form>
-      </div>{" "}
+            <label htmlFor="email">Email: </label>
+            <input type="text" name="email" placeholder={userAccount.email} />
+            <button className="buttonEdit">Finish Edit</button>
+          </form>
+        </div>{" "}
+      </div>
+      </div>
     </>
   );
 };
