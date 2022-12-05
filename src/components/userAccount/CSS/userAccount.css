@@ -1,0 +1,31 @@
+.myAccount {
+    font-family: 'Alexandria', sans-serif;
+}
+.myAccountDiv {
+    font-family: 'Alexandria', sans-serif;
+    display: flex;
+    flex-direction: column;
+  margin: 30px 50px 10px 50px;
+}
+.accountInfo{
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+.accountInfoHeader{
+    font-size: 25px;
+}
+.yourCartButton{
+    background-color: black ;
+    color: white;
+    margin-top: 25px;
+    padding: 10px 10px;
+    border-radius: 16px;
+    border: none;
+    font-family: 'Alexandria', sans-serif;
+    font-size: 12px;
+    width: 100px;
+}
+.yourCartButton:hover{
+background-color: #7a7878;
+}

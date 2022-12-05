@@ -16,6 +16,7 @@ body {
   padding: 5px;
   margin-top: 5px;
   font-family: 'Alexandria', sans-serif;
+  border-radius: 16px;
 }
 
 .buttonDelete:hover {
@@ -34,6 +35,7 @@ body {
   margin-top: 5px;
   margin-right: 10px;
   font-family: 'Alexandria', sans-serif;
+  border-radius: 16px;
 }
 
 .buttonEdit:hover {
