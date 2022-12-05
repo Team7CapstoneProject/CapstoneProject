@@ -11,27 +11,11 @@ const AdminProducts = ({
   setDisplayUsers,
 }) => {
 
-// The product tab can be toggled on and off to display/hide all the products. If it's on, it turns the create product tab and user tab off. 
-  function handleClickSeeAllAdminProducts(event) {
-    if (!displayAdminProducts) {
-      event.preventDefault();
-      setDisplayAdminProducts(true);
-      setDisplayCreateProduct(false);
-      setDisplayUsers(false);
-    } else {
-      setDisplayAdminProducts(false);
-    }
-  }
+
 
   return (
     <>
       <div>
-        <button
-          onClick={handleClickSeeAllAdminProducts}
-          className="adminButton"
-        >
-          See All Products
-        </button>
         <div>
           {displayAdminProducts ? (
             <div className="adminProducts">

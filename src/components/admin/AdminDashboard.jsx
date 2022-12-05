@@ -23,37 +23,107 @@ const AdminDashboard = ({ token, allProducts, setAllProducts }) => {
     setDisplayUsers(true);
   }, []);
 
+  //----------- CREATE PRODUCT TAB TOGGLE ------------------
+
+  function handleClickSeeCreateProduct(event) {
+    if (!displayCreateProduct) {
+      event.preventDefault();
+      setDisplayCreateProduct(true);
+      setDisplayUsers(false);
+      setDisplayAdminProducts(false);
+    } else {
+      setDisplayCreateProduct(false);
+    }
+  }
+
+  //----------- SEE ALL USERS TAB TOGGLE ------------------
+  function handleClickSeeAllUsers(event) {
+    event.preventDefault();
+    if (!displayUsers) {
+      setDisplayUsers(true);
+      setDisplayCreateProduct(false);
+      setDisplayAdminProducts(false);
+    } else {
+      setDisplayUsers(false);
+    }
+  }
+
+  //----------- SEE ALL PRODUCTS TAB TOGGLE ------------------
+  function handleClickSeeAllAdminProducts(event) {
+    if (!displayAdminProducts) {
+      event.preventDefault();
+      setDisplayAdminProducts(true);
+      setDisplayCreateProduct(false);
+      setDisplayUsers(false);
+    } else {
+      setDisplayAdminProducts(false);
+    }
+  }
+
   return (
     <>
+      {/* ----------------------- ADMIN NAV BUTTONS ----------------------- */}
       <div className="adminBar">
-        <CreateProduct
-          token={token}
-          allProducts={allProducts}
-          setAllProducts={setAllProducts}
-          displayCreateProduct={displayCreateProduct}
-          setDisplayCreateProduct={setDisplayCreateProduct}
-          setDisplayUsers={setDisplayUsers}
-          setDisplayAdminProducts={setDisplayAdminProducts}
-        />
-        <UserSearch
-          token={token}
-          allUsers={allUsers}
-          displayUsers={displayUsers}
-          setAllUsers={setAllUsers}
-          setDisplayCreateProduct={setDisplayCreateProduct}
-          setDisplayUsers={setDisplayUsers}
-          setDisplayAdminProducts={setDisplayAdminProducts}
-        />
-        <AdminProducts
-          token={token}
-          allProducts={allProducts}
-          setAllProducts={setAllProducts}
-          displayAdminProducts={displayAdminProducts}
-          setDisplayCreateProduct={setDisplayCreateProduct}
-          setDisplayUsers={setDisplayUsers}
-          setDisplayAdminProducts={setDisplayAdminProducts}
-        />
+        <button onClick={handleClickSeeCreateProduct} className="adminButton">
+          Create Product
+        </button>
+
+        <button onClick={handleClickSeeAllUsers} className="adminButton">
+          See All Users
+        </button>
+
+        <button
+          onClick={handleClickSeeAllAdminProducts}
+          className="adminButton"
+        >
+          See All Products
+        </button>
       </div>
+
+      {/* ----------------------- CREATE PRODUCT ----------------------- */}
+      <div>
+        {displayCreateProduct ? (
+          <CreateProduct
+            token={token}
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            displayCreateProduct={displayCreateProduct}
+            setDisplayCreateProduct={setDisplayCreateProduct}
+            setDisplayUsers={setDisplayUsers}
+            setDisplayAdminProducts={setDisplayAdminProducts}
+          />
+        ) : null}
+      </div>
+      {/* ----------------------- USERS ----------------------- */}
+
+      <div>
+        {displayUsers ? (
+          <UserSearch
+            token={token}
+            allUsers={allUsers}
+            displayUsers={displayUsers}
+            setAllUsers={setAllUsers}
+            setDisplayCreateProduct={setDisplayCreateProduct}
+            setDisplayUsers={setDisplayUsers}
+            setDisplayAdminProducts={setDisplayAdminProducts}
+          />
+        ) : null}
+      </div>
+
+      {/* ----------------------- ADMIN PRODUCTS ----------------------- */}
+      {displayAdminProducts ? (
+        <div>
+          <AdminProducts
+            token={token}
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            displayAdminProducts={displayAdminProducts}
+            setDisplayCreateProduct={setDisplayCreateProduct}
+            setDisplayUsers={setDisplayUsers}
+            setDisplayAdminProducts={setDisplayAdminProducts}
+          />
+        </div>
+      ) : null}
     </>
   );
 };

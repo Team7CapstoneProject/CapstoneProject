@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ProductAddToCart } from "../";
 
 const Product = ({ product, cart, setCart }) => {
+  const [stockMessage, setStockMessage] = useState("Available!");
+  useEffect(() => {
+    if (product.inventory === 0) {
+      setStockMessage("Out of stock!");
+    }
+    if (product.inventory <= 10 && product.inventory > 0) {
+      setStockMessage("Only a few items left!");
+    }
+  }, [product]);
+
   let token = localStorage.getItem("token");
   let salePrice;
   let finalSalePrice;
@@ -41,14 +51,14 @@ const Product = ({ product, cart, setCart }) => {
               {/* {product.inventory <= 10 ? (
                 <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
               ) : null} */}
-              <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           ) : (
             <div className="productNoSale">
               <div className="productFinalPrice">{`$${finalSalePrice}`}</div>
-              <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           )}
+
+          <div className="productInventory">{`${stockMessage}`}</div>
         </div>
         {token ? (
           <div>

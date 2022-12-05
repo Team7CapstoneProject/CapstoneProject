@@ -36,25 +36,13 @@ const UserSearch = ({
     searchUsers(input.target.value);
   };
 
-  //----------- SEE ALL USERS TAB TOGGLE ------------------
-  function handleClickSeeAllUsers(event) {
-    event.preventDefault();
-    if (!displayUsers) {
-      setDisplayUsers(true);
-      setDisplayCreateProduct(false);
-      setDisplayAdminProducts(false);
-    } else {
-      setDisplayUsers(false);
-    }
-  }
+
 
   return (
     <>
       <div className="productPage">
         <div>
-          <button onClick={handleClickSeeAllUsers} className="adminButton">
-            See All Users
-          </button>
+  
         </div>
         {displayUsers ? (
           <div>
