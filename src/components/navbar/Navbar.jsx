@@ -11,7 +11,7 @@ const Navbar = ({
 }) => {
   //------Global constants------
   const navigate = useNavigate();
-  const userName = localStorage.getItem("first_name");
+  const userName = userAccount.first_name
   const token = localStorage.getItem("token");
 
   //------Log out function------
@@ -26,6 +26,7 @@ const Navbar = ({
 
   //------Guest sign-in function------
   async function onClickGuestSignIn() {
+    localStorage.removeItem("cart");
     localStorage.removeItem("token");
     let guest = await logInUser("guestuser", "guestuser");
     localStorage.setItem("token", guest.token);

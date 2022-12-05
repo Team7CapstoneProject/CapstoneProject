@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { UserDelete, UserEdit } from "../";
 
 const UserDashboard = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
-  let admin = localStorage.getItem("first_name");
   
   return (
     <>
@@ -22,7 +21,7 @@ const UserDashboard = ({ token, userAccount, setUserAccount, setNavGreeting }) =
         </div>
 
         <div>
-          {admin === "Admin" ? (
+          {userAccount.email==="admin" ? (
             <></>
           ) : (
             <div>

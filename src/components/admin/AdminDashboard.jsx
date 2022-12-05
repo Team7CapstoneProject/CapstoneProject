@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Users, AdminProducts, CreateProduct } from "../";
+import { UserSearch, AdminProducts, CreateProduct } from "../";
 import { getAllUsers } from "../../api";
 import "./CSS/admin.css";
 
@@ -35,7 +35,7 @@ const AdminDashboard = ({ token, allProducts, setAllProducts }) => {
           setDisplayUsers={setDisplayUsers}
           setDisplayAdminProducts={setDisplayAdminProducts}
         />
-        <Users
+        <UserSearch
           token={token}
           allUsers={allUsers}
           displayUsers={displayUsers}
