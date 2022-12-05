@@ -19,7 +19,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { createCart, getAllProducts, getCartByUserId, myAccount } from "../api";
+import { createCart, getAllProducts, getCartByUserId, myAccount, getCartProductsByCart } from "../api";
 
 const Main = () => {
   let token = localStorage.getItem("token");
@@ -67,6 +67,18 @@ const Main = () => {
     }
     fetchCart();
   }, [userAccount]);
+
+  //-----------GET CART PRODUCTS BY CART ------------------
+  const [cartProducts, setCartProducts] = useState();
+  useEffect(() => {
+    async function fetchCartProducts() {
+      const cartId = cart.id;
+      const cartProductsResponse = await getCartProductsByCart(cartId);
+      setCartProducts(cartProductsResponse);
+    }
+    fetchCartProducts();
+    console.log(cartProducts, "this is cart products from Main.jsx")
+  }, [cart]);
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
@@ -118,6 +130,8 @@ const Main = () => {
           element={
             <ProductsSearch
               token={token}
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
               allProducts={allProducts}
               cart={cart}
               setCart={setCart}

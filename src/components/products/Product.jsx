@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProductAddToCart } from "../";
 
-const Product = ({ product, cart, setCart }) => {
+const Product = ({ product, cartProducts, setCartProducts, cart, setCart }) => {
   const [stockMessage, setStockMessage] = useState("Available");
   useEffect(() => {
     if (product.inventory === 0) {
@@ -63,7 +63,7 @@ const Product = ({ product, cart, setCart }) => {
         {token ? (
           <div>
             {" "}
-            <ProductAddToCart product={product} cart={cart} setCart={setCart} />
+            <ProductAddToCart product={product} cartProducts={cartProducts} setCartProducts={setCartProducts} cart={cart} setCart={setCart} />
           </div>
         ) : (
           <></>

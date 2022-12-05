@@ -1,30 +1,44 @@
 import React from "react";
 import { addProductToCart } from "../../api";
 
-const ProductAddToCart = ({ product, cart, setCart }) => {
+const ProductAddToCart = ({ product, cartProducts, setCartProducts, cart }) => {
   async function handleAddToCart(event) {
     event.preventDefault();
-    console.log("add to cart pressed")
-    console.log(cart, "this is cart")
-
+    console.log("add to cart pressed");
 
     const token = localStorage.getItem("token");
     if (token) {
       const cart_id = cart.id;
-      const product_id = product.id;
+      const referenceProductId = product.id;
       const quantity = 1;
 
       const ProductAdded = await addProductToCart(
         token,
         cart_id,
-        product_id,
+        referenceProductId,
         quantity
       );
-      console.log(ProductAdded, "this is product added")
-      if (ProductAdded) {
+
+      let cartProductList = ProductAdded[0].products;
+
+      let productArray = [];
+      cartProductList.forEach((product) => {
+        if (product.id === referenceProductId) {
+          productArray.push(product);
+        }
+      });
+
+      if (!ProductAdded.error) {
         console.log(ProductAdded, "SUCCESSSS");
         //need to set updated cartproduct here
-        // setCart([...cart,ProductAdded])
+        console.log(cartProducts, "this is cart products before set")
+
+      
+        setCartProducts([...cartProducts, productArray[0]]);
+
+        console.log(cartProducts, "this is cart products after set")
+      } else {
+        console.log(`${product.name} is already in cart!`);
       }
     }
   }
