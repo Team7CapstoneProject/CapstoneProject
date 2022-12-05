@@ -4,9 +4,10 @@
 .myAccountDiv {
     font-family: 'Alexandria', sans-serif;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   margin: 30px 50px 10px 50px;
-  align-items: center;
+  justify-content: center;
+  gap: 70px;
 }
 .accountInfo{
 display: flex;
@@ -20,7 +21,7 @@ gap: 16px;
 .yourCartButton{
     background-color: black ;
     color: white;
-    margin-top: 25px;
+    margin: 20px 3px 0 3px;
     padding: 10px 10px;
     border-radius: 16px;
     border: none;
@@ -30,4 +31,15 @@ gap: 16px;
 }
 .yourCartButton:hover{
 background-color: #7a7878;
+}
+
+.editAccountInput{
+    margin: 2px 0 3px 0;
+    padding: 3px;
+    display: flex;
+    min-width: 200px;
+}
+.editAccountMessage{
+    font-size: 21px;
+    margin: 2px 0 10px 0;
 }
