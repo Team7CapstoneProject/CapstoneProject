@@ -9,7 +9,7 @@ const Home = ({ allProducts }) => {
   return (
     <>
       <img
-        src="https://i.imgur.com/Z4YeMD5.png"
+        src="https://i.imgur.com/X4Ry23P.png"
         alt="display of holiday sale items"
         className="saleImage"
       />

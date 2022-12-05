@@ -34,7 +34,7 @@
   flex-direction: column;
   background-color: lightgrey;
   color: white;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   width: 400px;
   margin: 25px 0 0 0;
@@ -42,11 +42,12 @@
   font-family: 'Alexandria', sans-serif;
 }
 .createProductCardDiv {
- display: flex;
+ display: flex; 
   justify-content: center;
 }
-.createProductForm {
-  /*  */
+.masterDivCP {
+  display: flex; 
+  justify-content: center;
 }
 .subCreateProductFormDiv{
   display: flex;
@@ -58,7 +59,13 @@
   border-radius: 16px;
   width: 350px;
 }
-
+.textCP{
+  padding: 7px;
+  border: none;
+  border-radius: 16px;
+  width: 350px;
+  font-family: Arial, Helvetica, sans-serif;
+}
 /* -------Submit Button------- */
 
 .buttonSubmit {
@@ -72,6 +79,7 @@
   align-self: flex-start;
   font-family: 'Alexandria', sans-serif;
   font-size: 16px;
+  align-self: center;
 }
 
 .buttonSubmit:hover {
@@ -105,7 +113,10 @@
 .isNotAdmin {
   color: blue;
 }
-
+.adminButtonDiv{
+  display: flex;
+  /* justify-content: flex-end; */
+}
 
 /* ---------------------- In Users.jsx ---------------------- */
 
