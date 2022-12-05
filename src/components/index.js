@@ -9,6 +9,8 @@ export { default as EditProduct } from "./admin/EditProduct";
 export { default as PromoteUser } from "./admin/PromoteUser";
 export { default as User } from "./admin/User";
 export { default as Users } from "./admin/Users";
+export { default as UserSearch } from "./admin/UserSearch";
+
 
 //-----------CART FOLDER-------------
 export { default as Cart } from "./cart/Cart";

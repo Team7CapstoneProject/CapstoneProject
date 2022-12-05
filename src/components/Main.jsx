@@ -37,10 +37,8 @@ const Main = () => {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       async function fetchUserAccount() {
-        const accountOfUser = await myAccount(token);
-        // console.log("user account object!!", accountOfUser)
-        setUserAccount(accountOfUser);
-        // console.log("user account state data!!", userAccount)
+        const response = await myAccount(token);
+        setUserAccount(response);
       }
       fetchUserAccount();
     }
@@ -48,8 +46,8 @@ const Main = () => {
 
   //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
   let initialNavGreeting;
-  if (token) {
-    initialNavGreeting = `Welcome back, ${localStorage.getItem("first_name")}!`;
+  if (token && userAccount===undefined) {
+    initialNavGreeting = `Welcome back, ${userAccount.first_name}!`;
   } else {
     initialNavGreeting = "";
   }
