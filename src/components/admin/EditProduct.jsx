@@ -10,6 +10,7 @@ const EditProduct = ({
 }) => {
   //Displays to the user if editing the object was a success or not.
   const [editMessage, setEditMessage] = useState("Edit Form");
+  const [error, setError] = useState(false);
 
   //Toggles the edit product form on and off
   function handleClickSeeEditProductForm(event) {
@@ -23,7 +24,6 @@ const EditProduct = ({
 
   //Actions taken when submit form is pressed:
   async function onSubmitEditProduct(event) {
-    
     //Prevents page refresh when button is pressed
     event.preventDefault();
     let token = localStorage.getItem("token");
@@ -88,8 +88,10 @@ const EditProduct = ({
     if (!editProduct.error) {
       setEditMessage(editProduct.message);
       setProductInfo(editProduct.updatedProduct);
+      setError(false);
       setDisplayEditProduct(false);
     } else {
+      setError(true);
       setEditMessage(editProduct.message);
     }
   }
@@ -103,8 +105,17 @@ const EditProduct = ({
         <div>
           {displayEditProduct ? (
             <div>
-              <div>{editMessage}</div>
-              <form onSubmit={onSubmitEditProduct}>
+              <div>
+                {error ? (
+                  <div className="adminProductError">{editMessage}</div>
+                ) : (
+                  <div>{editMessage}</div>
+                )}
+              </div>
+              <form
+                onSubmit={onSubmitEditProduct}
+                className="adminEditProductForm"
+              >
                 <label htmlFor="name">Name: </label>
                 <input type="text" name="name" placeholder={productInfo.name} />
                 <label htmlFor="description">Description: </label>

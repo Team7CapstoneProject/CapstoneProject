@@ -2,7 +2,7 @@
 // import { Products } from "../";
 // import "./CSS/products.css";
 
-// const ProductsSearch = ({ allProducts, cart, setCart }) => {
+// const AdminProductsSearch = ({ allProducts, cart, setCart }) => {
 //   const [products, setProducts] = useState(allProducts);
 
 //   useEffect(() => {
@@ -42,4 +42,4 @@
 //   );
 // };
 
-// export default ProductsSearch;
+// export default AdminProductsSearch;
