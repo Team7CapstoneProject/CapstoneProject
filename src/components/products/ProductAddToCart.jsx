@@ -2,21 +2,14 @@ import React from "react";
 import { addProductToCart } from "../../api";
 
 const ProductAddToCart = ({ product, cart, setCart }) => {
-console.log(cart)
   async function handleAddToCart(event) {
     event.preventDefault();
     const token = localStorage.getItem("token");
     if (token) {
       const cart_id = cart.id;
-
       const product_id = product.id;
-      // const quantity = cart.products.map((product)=>{
-      // if(product.id == product.id){
-      //   return product.quantity
-      // }})
-      const quantity = 1
-      // REMOVE HARD CODE LATER^
-  
+      const quantity = 1;
+
       const ProductAdded = await addProductToCart(
         token,
         cart_id,
@@ -27,10 +20,9 @@ console.log(cart)
         console.log(ProductAdded, "SUCCESSSS");
       }
     } else {
-      setCart([...cart, product])
+      setCart([...cart, product]);
     }
   }
-
 
   return (
     <>
