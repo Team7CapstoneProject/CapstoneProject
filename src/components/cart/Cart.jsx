@@ -59,7 +59,7 @@ const Cart = ({ cart, setCart }) => {
 
       // let remainingCartProducts
       if (!deletedItem.error) {
-        console.log(`Product ID ${toDelete} deleted`)
+        console.log(`Product ID ${toDelete} deleted`);
         // remainingCartProducts = cart.products.filter(
         //   (product) => product.id !== toDelete
         // );
@@ -110,7 +110,7 @@ const Cart = ({ cart, setCart }) => {
               return (
                 <div key={`product-${product.id}`} className="cartProduct">
                   <img
-                    className="productImage"
+                    className="cartProductImage"
                     src={product.image_url}
                     alt={`${product.name} Image`}
                   />
@@ -121,12 +121,12 @@ const Cart = ({ cart, setCart }) => {
                       <p>{product.sale_percentage}% off</p>
                     ) : null}
                     <p>
-                      Quantity:
-                      {product.quantity}
+                      Quantity: {product.quantity}
                       <button
                         onClick={() => {
                           decrement(product.id, product.quantity);
                         }}
+                        className="quantityButton"
                       >
                         -
                       </button>
@@ -134,12 +134,13 @@ const Cart = ({ cart, setCart }) => {
                         onClick={() => {
                           increment(product.id, product.quantity);
                         }}
+                        className="quantityButton"
                       >
                         +
                       </button>
                     </p>
 
-                    <button
+                    <p
                       onClick={handleDelete}
                       id={
                         product.cartProductId
@@ -149,7 +150,7 @@ const Cart = ({ cart, setCart }) => {
                       className="remove"
                     >
                       Remove from cart
-                    </button>
+                    </p>
                   </div>
                 </div>
               );

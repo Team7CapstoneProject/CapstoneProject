@@ -13,38 +13,43 @@ const ProductView = ({ allProducts }) => {
 
   let { productId } = useParams();
   return (
-    <div className="viewCard">
-      {allProducts.map((product) => {
-        if (productId == product.id) {
-          return (
-            <div key={`productName=${product.name}`} className="productView">
-              <img
-                className="productImageView"
-                src={product.image_url}
-                alt={`${product.name} Image`}
-              />
+    <div className="viewCardDiv">
+      <div className="viewCard">
+        {allProducts.map((product) => {
+          if (productId == product.id) {
+            return (
               <div className="productInfoView">
-                <div className="nameView">{product.name}</div>
-                <div>Description: {product.description}</div>
-                <div className="priceView">${product.price}</div>
+                <div
+                  key={`productName=${product.name}`}
+                  className="productView"
+                >
+                  <div className="nameView">{product.name}</div>
+                  <img
+                    className="productImageView"
+                    src={product.image_url}
+                    alt={`${product.name} Image`}
+                  />
+                  <div className="priceView">${product.price}</div>
+                  <div>{product.description}</div>
+                </div>
               </div>
+            );
+          }
+        })}
+        <div className="addView">
+          {token ? (
+            <div className="addViewButton">
+              <ProductAddToCart />
             </div>
-          );
-        }
-      })}
-      <div className="addView">
-        {token ? (
-          <div>
-            <ProductAddToCart />
-          </div>
-        ) : (
-          <></>
-        )}
-      </div>
+          ) : (
+            <></>
+          )}
+        </div>
 
-      <button onClick={handleClickReturnToProducts} className="addView">
-        Back
-      </button>
+        <button onClick={handleClickReturnToProducts} className="backButton">
+          Back
+        </button>
+      </div>
     </div>
   );
 };
