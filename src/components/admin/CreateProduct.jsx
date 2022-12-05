@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import { createProduct } from "../../api";
 
-const CreateProduct = ({
-  token,
-  allProducts,
-  setAllProducts,
-  displayCreateProduct,
-  setDisplayCreateProduct,
-  setDisplayUsers,
-  setDisplayAdminProducts,
-}) => {
+const CreateProduct = ({ token, allProducts, setAllProducts }) => {
   const [editMessage, setEditMessage] = useState("Create a new product");
-
-
 
   async function handleSubmitCreateProduct(event) {
     //Prevents page refresh when button is pressed
@@ -57,67 +47,58 @@ const CreateProduct = ({
   }
   return (
     <>
-      <div>
-
-        <div className="createProductCardDiv">
-          {displayCreateProduct ? (
-            <div className="createProductCard">
-              <div className="editMessage">{editMessage}</div>
-              <form
-                onSubmit={handleSubmitCreateProduct}
-                className="createProductForm"
-              >
-                <div className="subCreateProductFormDiv">
-                  <label>Name:</label>
-                  <input
-                    htmlFor="name"
-                    // placeholder="Name"
-                    className="inputCP"
-                    required
-                  ></input>{" "}
-                  <br />
-                  <label>Description:</label>
-                  <input
-                    htmlFor="description"
-                    // placeholder="Description"
-                    className="inputCP"
-                    required
-                  ></input>{" "}
-                  <br />
-                  <label>Price:</label>
-                  <input
-                    htmlFor="price"
-                    // placeholder="Price"
-                    className="inputCP"
-                    required
-                  ></input>{" "}
-                  <br />
-                  <label>Image Link:</label>
-                  <input
-                    htmlFor="image_url"
-                    // placeholder="Image Link"
-                    className="inputCP"
-                    required
-                  ></input>{" "}
-                  <br />
-                  <label>Inventory:</label>
-                  <input
-                    htmlFor="inventory"
-                    // placeholder="Inventory"
-                    className="inputCP"
-                    required
-                  ></input>{" "}
-                  <br />
-                  <button type="submit" className="buttonSubmit">
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
+      <div className="createProductCard">
+        <div className="editMessage">{editMessage}</div>
+        <form
+          onSubmit={handleSubmitCreateProduct}
+          className="createProductForm"
+        >
+          <div className="subCreateProductFormDiv">
+            <label>Name:</label>
+            <input
+              htmlFor="name"
+              // placeholder="Name"
+              className="inputCP"
+              required
+            ></input>{" "}
+            <br />
+            <label>Description:</label>
+            <input
+              htmlFor="description"
+              // placeholder="Description"
+              className="inputCP"
+              required
+            ></input>{" "}
+            <br />
+            <label>Price:</label>
+            <input
+              htmlFor="price"
+              // placeholder="Price"
+              className="inputCP"
+              required
+            ></input>{" "}
+            <br />
+            <label>Image Link:</label>
+            <input
+              htmlFor="image_url"
+              // placeholder="Image Link"
+              className="inputCP"
+              required
+            ></input>{" "}
+            <br />
+            <label>Inventory:</label>
+            <input
+              htmlFor="inventory"
+              // placeholder="Inventory"
+              className="inputCP"
+              required
+            ></input>{" "}
+            <br />
+            <button type="submit" className="buttonSubmit">
+              Submit
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );

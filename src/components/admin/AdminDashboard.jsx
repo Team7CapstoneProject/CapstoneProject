@@ -24,7 +24,6 @@ const AdminDashboard = ({ token, allProducts, setAllProducts }) => {
   }, []);
 
   //----------- CREATE PRODUCT TAB TOGGLE ------------------
-
   function handleClickSeeCreateProduct(event) {
     if (!displayCreateProduct) {
       event.preventDefault();
@@ -95,7 +94,6 @@ const AdminDashboard = ({ token, allProducts, setAllProducts }) => {
         ) : null}
       </div>
       {/* ----------------------- USERS ----------------------- */}
-
       <div>
         {displayUsers ? (
           <UserSearch
