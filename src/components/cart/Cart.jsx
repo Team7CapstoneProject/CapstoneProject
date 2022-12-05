@@ -180,7 +180,7 @@ const Cart = ({ cart, setCart }) => {
             </div>
           </div>
         ) : (
-          "Your cart is empty!"
+          <div>Your cart is empty!</div>
         )}
       </div>
     </>

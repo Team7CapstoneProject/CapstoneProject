@@ -4,6 +4,10 @@ import { addProductToCart } from "../../api";
 const ProductAddToCart = ({ product, cart, setCart }) => {
   async function handleAddToCart(event) {
     event.preventDefault();
+    console.log("add to cart pressed")
+    console.log(cart, "this is cart")
+
+
     const token = localStorage.getItem("token");
     if (token) {
       const cart_id = cart.id;
@@ -16,11 +20,12 @@ const ProductAddToCart = ({ product, cart, setCart }) => {
         product_id,
         quantity
       );
+      console.log(ProductAdded, "this is product added")
       if (ProductAdded) {
         console.log(ProductAdded, "SUCCESSSS");
+        //need to set updated cartproduct here
+        // setCart([...cart,ProductAdded])
       }
-    } else {
-      setCart([...cart, product]);
     }
   }
 
