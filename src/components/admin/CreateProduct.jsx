@@ -46,7 +46,7 @@ const CreateProduct = ({ token, allProducts, setAllProducts }) => {
     }
   }
   return (
-    <>
+    <div className="masterDivCP">
       <div className="createProductCard">
         <div className="editMessage">{editMessage}</div>
         <form
@@ -55,33 +55,21 @@ const CreateProduct = ({ token, allProducts, setAllProducts }) => {
         >
           <div className="subCreateProductFormDiv">
             <label>Name:</label>
-            <input
-              htmlFor="name"
-              // placeholder="Name"
-              className="inputCP"
-              required
-            ></input>{" "}
-            <br />
+            <input htmlFor="name" className="inputCP" required></input> <br />
             <label>Description:</label>
-            <input
+            <textarea
               htmlFor="description"
-              // placeholder="Description"
-              className="inputCP"
+              className="textCP"
+              rows="6"
+              cols="50"
               required
-            ></input>{" "}
+            ></textarea>{" "}
             <br />
             <label>Price:</label>
-            <input
-              htmlFor="price"
-              // placeholder="Price"
-              className="inputCP"
-              required
-            ></input>{" "}
-            <br />
+            <input htmlFor="price" className="inputCP" required></input> <br />
             <label>Image Link:</label>
             <input
               htmlFor="image_url"
-              // placeholder="Image Link"
               className="inputCP"
               required
             ></input>{" "}
@@ -89,7 +77,6 @@ const CreateProduct = ({ token, allProducts, setAllProducts }) => {
             <label>Inventory:</label>
             <input
               htmlFor="inventory"
-              // placeholder="Inventory"
               className="inputCP"
               required
             ></input>{" "}
@@ -100,7 +87,7 @@ const CreateProduct = ({ token, allProducts, setAllProducts }) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 export default CreateProduct;
