@@ -53,7 +53,6 @@ const AdminProduct = ({ token, allProducts, setAllProducts, product }) => {
             displayEditProduct={displayEditProduct}
             setDisplayEditProduct={setDisplayEditProduct}
           />
-
           {displayEditProduct === false ? (
             <DeleteProduct
               token={token}
