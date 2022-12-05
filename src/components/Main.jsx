@@ -67,7 +67,6 @@ const Main = () => {
     }
     fetchCart();
   }, [userAccount]);
-
   //-----------ROUTES------------------
   const router = createBrowserRouter(
     createRoutesFromElements(
