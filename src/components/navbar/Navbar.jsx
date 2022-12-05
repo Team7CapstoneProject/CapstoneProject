@@ -4,6 +4,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { logInUser } from "../../api";
 
 const Navbar = ({
+  cart,
   userAccount,
   setUserAccount,
   navGreeting,
@@ -87,7 +88,7 @@ const Navbar = ({
               <div>
                 {" "}
                 <Link to={"/cart"}>
-                  <button className="navButton">Cart</button>
+                  <button className="navButton">{`Cart [${cart.products.length}]`}</button>
                 </Link>
               </div>
             ) : (

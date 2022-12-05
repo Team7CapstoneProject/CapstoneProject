@@ -19,7 +19,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { createCart, getAllProducts, getCartByUserId, myAccount, getCartProductsByCart } from "../api";
+import {
+  createCart,
+  getAllProducts,
+  getCartByUserId,
+  myAccount,
+  getCartProductsByCart,
+} from "../api";
 
 const Main = () => {
   let token = localStorage.getItem("token");
@@ -77,7 +83,7 @@ const Main = () => {
       setCartProducts(cartProductsResponse);
     }
     fetchCartProducts();
-    console.log(cartProducts, "this is cart products from Main.jsx")
+    console.log(cartProducts, "this is cart products from Main.jsx");
   }, [cart]);
 
   //-----------ROUTES------------------
@@ -88,6 +94,7 @@ const Main = () => {
         element={
           <Navbar
             token={token}
+            cart={cart}
             setUserAccount={setUserAccount}
             userAccount={userAccount}
             navGreeting={navGreeting}
