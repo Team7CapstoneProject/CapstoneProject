@@ -45,6 +45,7 @@ const AdminProduct = ({ token, allProducts, setAllProducts, product }) => {
               <></>
             )}
           </div>
+
           <EditProduct
             token={token}
             product={product}

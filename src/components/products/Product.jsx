@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { ProductAddToCart } from "../";
 
 const Product = ({ product, cart, setCart }) => {
-  const [stockMessage, setStockMessage] = useState("Available!");
+  const [stockMessage, setStockMessage] = useState("Available");
   useEffect(() => {
     if (product.inventory === 0) {
-      setStockMessage("Out of stock!");
+      setStockMessage("Out of stock.");
     }
     if (product.inventory <= 10 && product.inventory > 0) {
       setStockMessage("Only a few items left!");
