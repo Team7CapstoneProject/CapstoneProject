@@ -25,7 +25,7 @@ const Product = ({ product, cart, setCart }) => {
 
         <div className="productInfo">
           <div>{product.name}</div>
-          <div>Description: {product.description}</div>
+          {/* <div>Description: {product.description}</div> */}
         </div>
 
         <div>
@@ -38,6 +38,9 @@ const Product = ({ product, cart, setCart }) => {
                   <strike>{`$${product.price}`}</strike>
                 </div>
               </div>
+              {/* {product.inventory <= 10 ? (
+                <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
+              ) : null} */}
               <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
             </div>
           ) : (
