@@ -12,17 +12,7 @@ const CreateProduct = ({
 }) => {
   const [editMessage, setEditMessage] = useState("Create a new product");
 
-  // The create product tab can be toggled on and off to display/hide the create product form. If it's on, it turns the product tab and user tab off.
-  function handleClickSeeCreateProduct(event) {
-    if (!displayCreateProduct) {
-      event.preventDefault();
-      setDisplayCreateProduct(true);
-      setDisplayUsers(false);
-      setDisplayAdminProducts(false);
-    } else {
-      setDisplayCreateProduct(false);
-    }
-  }
+
 
   async function handleSubmitCreateProduct(event) {
     //Prevents page refresh when button is pressed
@@ -68,9 +58,7 @@ const CreateProduct = ({
   return (
     <>
       <div>
-        <button onClick={handleClickSeeCreateProduct} className="adminButton">
-          Create Product
-        </button>
+
         <div className="createProductCardDiv">
           {displayCreateProduct ? (
             <div className="createProductCard">
