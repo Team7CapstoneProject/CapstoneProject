@@ -27,8 +27,6 @@ import {
   myAccount,
 } from "../api";
 
-const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
-
 const Main = () => {
   let token = localStorage.getItem("token");
 
@@ -46,7 +44,7 @@ const Main = () => {
 
   //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
   let initialNavGreeting;
-  if (token && userAccount===undefined) {
+  if (token && userAccount === undefined) {
     initialNavGreeting = `Welcome back, ${userAccount.first_name}!`;
   } else {
     initialNavGreeting = "";
@@ -63,12 +61,13 @@ const Main = () => {
     fetchAllProducts();
   }, []);
 
-  //-----------CREATE CART DATA------------------
+  //-----------CREATE OR FETCH CART DATA------------------
+  const [cart, setCart] = useState();
+
   useEffect(() => {
     async function fetchCart() {
-      const token = localStorage.getItem("token");
-      const user_id = localStorage.getItem("userId");
-      if (token) {
+      const user_id = userAccount.id;
+      if (token && user_id) {
         const userCart = await getCartByUserId(token);
         if (userCart) {
           setCart(userCart[0]);
@@ -79,33 +78,6 @@ const Main = () => {
       }
     }
     fetchCart();
-  }, []);
-
-  //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
-  //need to add functionality for detecting if there is not a signed in user, this is for guest user functionality only to persist cart
-
-  //trying this json parse method for pulling cart data from local storage for persistence on the users end
-
-  const [cart, setCart] = useState(localStorageCart);
-
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (!token) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  }, [cart]);
-
-  //-----------GET CART PRODUCTS BY CART ------------------
-  const [cartProducts, setCartProducts] = useState();
-  useEffect(() => {
-    async function fetchCartProducts() {
-      if (cart) {
-        const cartId = cart.id;
-        const productsInCart = await getCartProductsByCart(cartId);
-        setCartProducts(productsInCart);
-      }
-    }
-    fetchCartProducts();
   }, []);
 
   //-----------ROUTES------------------
@@ -186,7 +158,12 @@ const Main = () => {
         />
         <Route
           path="/register"
-          element={<Register setNavGreeting={setNavGreeting} setUserAccount={setUserAccount}/>}
+          element={
+            <Register
+              setNavGreeting={setNavGreeting}
+              setUserAccount={setUserAccount}
+            />
+          }
         />
 
         <Route
