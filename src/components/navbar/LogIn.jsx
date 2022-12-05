@@ -19,12 +19,13 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
     localStorage.removeItem("cart");
     localStorage.removeItem("token");
 
+    const { email, password } = logInInfo;
+
     //This prevents people from physically typing themselves into the guest account. Going into the guestuser account should only be allowable when clicking the "sign in as guest" button.
     if (email === "guestuser") {
       return;
     }
 
-    const { email, password } = logInInfo;
     const registeredUser = await logInUser(email, password);
 
     if (registeredUser.error) {
