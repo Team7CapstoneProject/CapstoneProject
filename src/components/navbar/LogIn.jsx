@@ -16,18 +16,22 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    localStorage.removeItem("cart");
+    localStorage.removeItem("token");
+
+    //This prevents people from physically typing themselves into the guest account. Going into the guestuser account should only be allowable when clicking the "sign in as guest" button.
+    if (email === "guestuser") {
+      return;
+    }
+
     const { email, password } = logInInfo;
     const registeredUser = await logInUser(email, password);
 
     if (registeredUser.error) {
-      const message = registeredUser.message;
-      setLoginError(message);
+      setLoginError(registeredUser.message);
     } else {
-      const token = registeredUser.token;
-      localStorage.removeItem("first_name");
-      localStorage.removeItem("token");
       localStorage.setItem("first_name", registeredUser.user.first_name);
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", registeredUser.token);
 
       //Set multiple useStates
       setNavGreeting(registeredUser.message);

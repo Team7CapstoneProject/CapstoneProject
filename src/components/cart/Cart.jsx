@@ -9,7 +9,6 @@ const Cart = ({ cart, setCart }) => {
 
   async function increment(cartProductId, quantity) {
     try {
-      const token = localStorage.getItem("token");
       const newestQuantity = quantity + 1;
       const updateQuantity = await updateCartProductQuantity(
         token,
@@ -31,7 +30,6 @@ const Cart = ({ cart, setCart }) => {
 
   async function decrement(cartProductId, quantity) {
     try {
-      const token = localStorage.getItem("token");
       const newestQuantity = quantity - 1;
       const updateQuantity = await updateCartProductQuantity(
         token,
@@ -75,7 +73,6 @@ const Cart = ({ cart, setCart }) => {
   const [subtotal, setSubtotal] = useState();
   useEffect(() => {
     let cartProducts = cart.products;
-    let finalSalePrice;
     let totalPrice;
     let finalPriceArray = [];
     let subTotal = 0;
@@ -87,8 +84,7 @@ const Cart = ({ cart, setCart }) => {
       } else {
         let percentageConversion = product.sale_percentage * 0.01;
         let salePrice = product.price * (1 - percentageConversion);
-        finalSalePrice = Number(salePrice.toFixed(2));
-        totalPrice = product.quantity * finalSalePrice;
+        totalPrice = product.quantity * salePrice;
         finalPriceArray.push(totalPrice);
       }
     });
@@ -97,7 +93,8 @@ const Cart = ({ cart, setCart }) => {
       subTotal += finalPriceArray[i];
     }
 
-    setSubtotal(subTotal);
+    let finalTotal = Number(subTotal.toFixed(2))
+    setSubtotal(finalTotal);
   }, [cart]);
 
   return (
