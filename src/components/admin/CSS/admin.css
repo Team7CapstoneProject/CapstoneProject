@@ -130,3 +130,34 @@
   margin-bottom: 10px;
   text-decoration: underline;
 }
+
+
+/* ---------------------- In EditProduct.jsx ---------------------- */
+.adminEditProductForm{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.adminProductNoError{
+  background-color: rgb(126, 194, 126);
+  color: white;
+  font-weight: 500;
+  align-self: flex-start;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+  font-family: 'Alexandria', sans-serif;
+}
+
+
+.adminProductError{
+  background-color: rgb(230, 62, 62);
+  color: white;
+  font-weight: 500;
+  align-self: flex-start;
+  border: none;
+  padding: 5px;
+  margin-top: 5px;
+  font-family: 'Alexandria', sans-serif;
+}

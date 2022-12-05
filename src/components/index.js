@@ -2,6 +2,7 @@
 export { default as AdminDashboard } from "./admin/AdminDashboard";
 export { default as AdminProduct } from "./admin/AdminProduct";
 export { default as AdminProducts } from "./admin/AdminProducts";
+export { default as AdminProductsSearch } from "./admin/AdminProductsSearch";
 export { default as CreateProduct } from "./admin/CreateProduct";
 export { default as DeleteProduct } from "./admin/DeleteProduct";
 export { default as DeleteUser } from "./admin/DeleteUser";
@@ -10,7 +11,6 @@ export { default as PromoteUser } from "./admin/PromoteUser";
 export { default as User } from "./admin/User";
 export { default as Users } from "./admin/Users";
 export { default as UserSearch } from "./admin/UserSearch";
-
 
 //-----------CART FOLDER-------------
 export { default as Cart } from "./cart/Cart";
@@ -22,7 +22,6 @@ export { default as Home } from "./navbar/Home";
 export { default as LogIn } from "./navbar/LogIn";
 export { default as Navbar } from "./navbar/Navbar";
 export { default as Register } from "./navbar/Register";
-
 
 //-----------PRODUCTS FOLDER-------------
 export { default as Product } from "./products/Product";

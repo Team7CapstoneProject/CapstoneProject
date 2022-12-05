@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = ({ setNavGreeting, setUserAccount }) => {
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState("");
+  const[loginMessage, setLoginMessage] = useState("Welcome Back")
   const [logInInfo, setLogInInfo] = useState({
     email: "",
     password: "",
@@ -29,7 +29,7 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
     const registeredUser = await logInUser(email, password);
 
     if (registeredUser.error) {
-      setLoginError(registeredUser.message);
+      setLoginMessage(registeredUser.message);
     } else {
       localStorage.setItem("first_name", registeredUser.user.first_name);
       localStorage.setItem("token", registeredUser.token);
@@ -48,10 +48,7 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
   return (
     <>
       <div className="headDiv">
-        <h3 className="subHeader">Welcome back</h3>
-        {loginError ? (
-          <div id="loginErrorMessage">{`${loginError}`}</div>
-        ) : null}
+        <h3 className="subHeader">{loginMessage}</h3>
         <div className="formDiv">
           <form onSubmit={handleSubmit} className="form">
             <label htmlFor="email">Email</label>
@@ -61,7 +58,7 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
               onChange={handleChange}
               className="input"
               required
-            />{" "}
+            />
             <br />
             <label htmlFor="password">Password</label>
             <input
@@ -70,18 +67,17 @@ const LogIn = ({ setNavGreeting, setUserAccount }) => {
               onChange={handleChange}
               className="input"
               required
-            />{" "}
+            />
             <br />
             <button type="submit" className="submitButton">
               Submit
             </button>
-          </form>{" "}
+          </form>
         </div>
         <p className="registerHereP">
           Don't have a GuitarStop account?
           <Link to="/register">
-            {" "}
-            <span className="registerHere">Sign up.</span>{" "}
+            <span className="registerHere">Sign up.</span>
           </Link>
         </p>
       </div>
