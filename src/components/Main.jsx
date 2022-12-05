@@ -27,7 +27,7 @@ import {
   myAccount,
 } from "../api";
 
-const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
+// const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 const Main = () => {
   let token = localStorage.getItem("token");
@@ -64,10 +64,11 @@ const Main = () => {
   }, []);
 
   //-----------CREATE CART DATA------------------
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     async function fetchCart() {
       const token = localStorage.getItem("token");
-      const user_id = localStorage.getItem("userId");
+      const user_id = userAccount.id;
       if (token) {
         const userCart = await getCartByUserId(token);
         if (userCart) {
@@ -79,34 +80,32 @@ const Main = () => {
       }
     }
     fetchCart();
+    console.log(cart)
   }, []);
-
   //-------TESTING CART TO LOCAL STORAGE FUNCTIONALITY-----
   //need to add functionality for detecting if there is not a signed in user, this is for guest user functionality only to persist cart
 
   //trying this json parse method for pulling cart data from local storage for persistence on the users end
 
-  const [cart, setCart] = useState(localStorageCart);
-
-  useEffect(() => {
-    let token = localStorage.getItem("token");
-    if (!token) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  }, [cart]);
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token");
+  //   if (!token) {
+  //     localStorage.setItem("cart", JSON.stringify(cart));
+  //   }
+  // }, [cart]);
 
   //-----------GET CART PRODUCTS BY CART ------------------
-  const [cartProducts, setCartProducts] = useState();
-  useEffect(() => {
-    async function fetchCartProducts() {
-      if (cart) {
-        const cartId = cart.id;
-        const productsInCart = await getCartProductsByCart(cartId);
-        setCartProducts(productsInCart);
-      }
-    }
-    fetchCartProducts();
-  }, []);
+  // const [cartProducts, setCartProducts] = useState();
+  // useEffect(() => {
+  //   async function fetchCartProducts() {
+  //     if (cart) {
+  //       const cartId = cart.id;
+  //       const productsInCart = await getCartProductsByCart(cartId);
+  //       setCartProducts(productsInCart);
+  //     }
+  //   }
+  //   fetchCartProducts();
+  // }, []);
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
@@ -195,7 +194,7 @@ const Main = () => {
             <Checkout token={token} cart={cart} userAccount={userAccount} />
           }
         />
-        <Route path="/orderHistory" element={<CompletedCarts />} />
+        <Route path="/orderHistory" element={<CompletedCarts cart={cart} setCart={setCart}/>} />
       </Route>
     )
   );
