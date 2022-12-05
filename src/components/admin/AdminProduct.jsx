@@ -38,8 +38,8 @@ const AdminProduct = ({ token, allProducts, setAllProducts, product }) => {
             {productInfo.on_sale === true ? (
               <div>
                 {" "}
-                <div>{`Sale Percentage: ${productInfo.sale_percentage}%`}</div>
-                <div>{`Sale Price: $${finalSalePrice}`}</div>
+                <div>{`Sale: ${productInfo.sale_percentage}% off`}</div>
+                <div>{`Discounted Price: $${finalSalePrice}`}</div>
               </div>
             ) : (
               <></>
