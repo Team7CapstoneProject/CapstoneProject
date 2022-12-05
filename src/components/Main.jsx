@@ -66,8 +66,6 @@ const Main = () => {
       }
     }
     fetchCart();
-
-    console.log(cart);
   }, [userAccount]);
 
   //-----------ROUTES------------------

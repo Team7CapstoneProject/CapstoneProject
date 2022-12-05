@@ -72,101 +72,116 @@ const Cart = ({ cart, setCart }) => {
   //-----Declare state for subtotal changes. The useEffect renders the whole thing on load and refreshes every time cart changes (basically any time an item is added or subtracted from cart, the subtotal updates.
   const [subtotal, setSubtotal] = useState();
   useEffect(() => {
-    let cartProducts = cart.products;
-    let totalPrice;
-    let finalPriceArray = [];
-    let subTotal = 0;
+    if (cart) {
+      let cartProducts = cart.products;
+      let totalPrice;
+      let finalPriceArray = [];
+      let subTotal = 0;
 
-    cartProducts.forEach((product) => {
-      if (product.on_sale === false) {
-        totalPrice = product.quantity * Number(product.price);
-        finalPriceArray.push(totalPrice);
-      } else {
-        let percentageConversion = product.sale_percentage * 0.01;
-        let salePrice = product.price * (1 - percentageConversion);
-        totalPrice = product.quantity * salePrice;
-        finalPriceArray.push(totalPrice);
+      cartProducts.forEach((product) => {
+        if (product.on_sale === false) {
+          totalPrice = product.quantity * Number(product.price);
+          finalPriceArray.push(totalPrice);
+        } else {
+          let percentageConversion = product.sale_percentage * 0.01;
+          let salePrice = product.price * (1 - percentageConversion);
+          totalPrice = product.quantity * salePrice;
+          finalPriceArray.push(totalPrice);
+        }
+      });
+
+      for (let i = 0; i < finalPriceArray.length; i++) {
+        subTotal += finalPriceArray[i];
       }
-    });
 
-    for (let i = 0; i < finalPriceArray.length; i++) {
-      subTotal += finalPriceArray[i];
+      let finalTotal = Number(subTotal.toFixed(2));
+      setSubtotal(finalTotal);
     }
-
-    let finalTotal = Number(subTotal.toFixed(2))
-    setSubtotal(finalTotal);
   }, [cart]);
 
   return (
     <>
-      <h2 className="cartHeader">Your shopping cart</h2>
-      <div className="cartPageDiv">
-        <div className="cartProductDiv">
-          {cart.products ? (
-            cart.products.map((product) => {
-              return (
-                <div key={`product-${product.id}`} className="cartProduct">
-                  <img
-                    className="cartProductImage"
-                    src={product.image_url}
-                    alt={`${product.name} Image`}
-                  />
-                  <div>
-                    <h3>{product.name}</h3>
-                    <p>${product.price}</p>
-                    {product.on_sale == true ? (
-                      <p>{product.sale_percentage}% off</p>
-                    ) : null}
-                    <p>
-                      Quantity: {product.quantity}
-                      <button
-                        onClick={() => {
-                          decrement(product.id, product.quantity);
-                        }}
-                        className="quantityButton"
+      <div>
+        {cart ? (
+          <div>
+            <h2 className="cartHeader">Your shopping cart</h2>
+            <div className="cartPageDiv">
+              <div className="cartProductDiv">
+                {cart.products ? (
+                  cart.products.map((product) => {
+                    return (
+                      <div
+                        key={`product-${product.id}`}
+                        className="cartProduct"
                       >
-                        -
-                      </button>
-                      <button
-                        onClick={() => {
-                          increment(product.id, product.quantity);
-                        }}
-                        className="quantityButton"
-                      >
-                        +
-                      </button>
-                    </p>
+                        <img
+                          className="cartProductImage"
+                          src={product.image_url}
+                          alt={`${product.name} Image`}
+                        />
+                        <div>
+                          <h3>{product.name}</h3>
+                          <p>${product.price}</p>
+                          {product.on_sale == true ? (
+                            <p>{product.sale_percentage}% off</p>
+                          ) : null}
+                          <p>
+                            Quantity: {product.quantity}
+                            <button
+                              onClick={() => {
+                                decrement(product.id, product.quantity);
+                              }}
+                              className="quantityButton"
+                            >
+                              -
+                            </button>
+                            <button
+                              onClick={() => {
+                                increment(product.id, product.quantity);
+                              }}
+                              className="quantityButton"
+                            >
+                              +
+                            </button>
+                          </p>
 
-                    <p
-                      onClick={handleDelete}
-                      id={
-                        product.cartProductId
-                          ? `${product.cartProductId}`
-                          : null
-                      }
-                      className="remove"
-                    >
-                      Remove from cart
-                    </p>
+                          <p
+                            onClick={handleDelete}
+                            id={
+                              product.cartProductId
+                                ? `${product.cartProductId}`
+                                : null
+                            }
+                            className="remove"
+                          >
+                            Remove from cart
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div>
+                    <Link to={"/products"}>
+                      {" "}
+                      <button>add products to cart!</button>{" "}
+                    </Link>
                   </div>
-                </div>
-              );
-            })
-          ) : (
-            <div>
-              <Link to={"/products"}>
-                {" "}
-                <button>add products to cart!</button>{" "}
-              </Link>
+                )}
+              </div>
+              <div className="checkoutDiv">
+                <div className="subtotal"> {`Total: $${subtotal}`}</div>
+                <Link to={"/checkout"}>
+                  <button className="checkoutButton">
+                    Continue to checkout
+                  </button>
+                </Link>
+              </div>
             </div>
-          )}
-        </div>
-        <div className="checkoutDiv">
-          <div className="subtotal"> {`Total: $${subtotal}`}</div>
-          <Link to={"/checkout"}>
-            <button className="checkoutButton">Continue to checkout</button>
-          </Link>
-        </div>
+          </div>
+        ) : (
+          "Your cart is empty!"
+        )}
       </div>
     </>
   );
