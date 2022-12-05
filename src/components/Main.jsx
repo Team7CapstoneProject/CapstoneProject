@@ -22,7 +22,6 @@ import {
 import {
   createCart,
   getAllProducts,
-  getCartProductsByCart,
   getCartByUserId,
   myAccount,
 } from "../api";
@@ -33,7 +32,7 @@ const Main = () => {
   //------------GET MY ACCOUNT--------------------
   const [userAccount, setUserAccount] = useState({});
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (token) {
       async function fetchUserAccount() {
         const response = await myAccount(token);
         setUserAccount(response);
@@ -42,14 +41,8 @@ const Main = () => {
     }
   }, []);
 
-  //---------------------SETTING STATE FOR NAVBAR GREETING---------------------
-  let initialNavGreeting;
-  if (token && userAccount === undefined) {
-    initialNavGreeting = `Welcome back, ${userAccount.first_name}!`;
-  } else {
-    initialNavGreeting = "";
-  }
-  const [navGreeting, setNavGreeting] = useState(initialNavGreeting);
+  //---------------------SETTING STATE FOR NAVBAR GREETING--------------------- 
+  const [navGreeting, setNavGreeting] = useState("");
 
   //-----------GET PRODUCTS DATA------------------
   const [allProducts, setAllProducts] = useState([]);
@@ -78,7 +71,7 @@ const Main = () => {
       }
     }
     fetchCart();
-  }, []);
+  }, [userAccount]);
 
   //-----------ROUTES------------------
   const router = createBrowserRouter(
