@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { updateAccount } from "../../api";
 
 const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
-  const [editMessage, setEditMessage] = useState("Edit Form");
+  const [editMessage, setEditMessage] = useState("Edit account details:");
 
   async function onSubmitEditUser(event) {
     event.preventDefault();
@@ -30,7 +30,7 @@ const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
       }
 
       let editUser = await updateAccount(token, first_name, last_name, email);
-      console.log(editUser, "this is editUser")
+      console.log(editUser, "this is editUser");
       if (!editUser.error) {
         setEditMessage(editUser.message);
         setNavGreeting(editUser.message);
@@ -43,32 +43,40 @@ const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
 
   return (
     <>
-    <div id = "accountEditDiv">
-      <div>
+      <div id="accountEditDiv">
         <div>
-          <div>{editMessage}</div>
+          <div>
+            <div className="editAccountMessage">{editMessage}</div>
 
-          <form id = "accountDataEditForm" onSubmit={onSubmitEditUser}>
-            <label htmlFor="first_name">First Name: </label>
-            <input
-              type="text"
-              name="first_name"
-              placeholder={userAccount.first_name}
-            />
-
-            <label htmlFor="last_name">Last Name: </label>
-            <input
-              type="text"
-              name="last_name"
-              placeholder={userAccount.last_name}
-            />
-
-            <label htmlFor="email">Email: </label>
-            <input type="text" name="email" placeholder={userAccount.email} />
-            <button className="buttonEdit">Finish Edit</button>
-          </form>
-        </div>{" "}
-      </div>
+            <form id="accountDataEditForm" onSubmit={onSubmitEditUser}>
+              <label htmlFor="first_name">First Name: </label>
+              <input
+                type="text"
+                name="first_name"
+                className="editAccountInput"
+                placeholder={userAccount.first_name}
+              />
+              <br />
+              <label htmlFor="last_name">Last Name: </label>
+              <input
+                type="text"
+                name="last_name"
+                className="editAccountInput"
+                placeholder={userAccount.last_name}
+              />
+              <br />
+              <label htmlFor="email">Email: </label>
+              <input
+                type="text"
+                name="email"
+                className="editAccountInput"
+                placeholder={userAccount.email}
+              />
+              <br />
+              <button className="buttonEdit">Finish Edit</button>
+            </form>
+          </div>{" "}
+        </div>
       </div>
     </>
   );
