@@ -5,8 +5,6 @@ const ProductAddToCart = ({
   token,
   userAccount,
   product,
-  cartProducts,
-  setCartProducts,
   cart,
   setCart,
 }) => {

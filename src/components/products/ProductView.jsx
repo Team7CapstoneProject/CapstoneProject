@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAddToCart from "./ProductAddToCart";
 
-const ProductView = ({ allProducts }) => {
+const ProductView = ({ allProducts, token, userAccount, cart, setCart }) => {
   let navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   function handleClickReturnToProducts(event) {
     event.preventDefault();
@@ -12,34 +11,37 @@ const ProductView = ({ allProducts }) => {
   }
 
   let { productId } = useParams();
+  let filteredProduct = allProducts.filter(
+    (product) => productId == product.id
+  );
+  let product = filteredProduct[0];
+
   return (
     <div className="viewCardDiv">
       <div className="viewCard">
-        {allProducts.map((product) => {
-          if (productId == product.id) {
-            return (
-              <div className="productInfoView">
-                <div
-                  key={`productName=${product.name}`}
-                  className="productView"
-                >
-                  <div className="nameView">{product.name}</div>
-                  <img
-                    className="productImageView"
-                    src={product.image_url}
-                    alt={`${product.name} Image`}
-                  />
-                  <div className="priceView">${product.price}</div>
-                  <div>{product.description}</div>
-                </div>
-              </div>
-            );
-          }
-        })}
+        <div className="productInfoView">
+          <div key={`productName=${product.name}`} className="productView">
+            <div className="nameView">{product.name}</div>
+            <img
+              className="productImageView"
+              src={product.image_url}
+              alt={`${product.name} Image`}
+            />
+            <div className="priceView">${product.price}</div>
+            <div>{product.description}</div>
+          </div>
+        </div>
+
         <div className="addViewButtonDiv">
           {token ? (
             <div className="addViewButton">
-              <ProductAddToCart />
+              <ProductAddToCart
+                token={token}
+                userAccount={userAccount}
+                product={product}
+                cart={cart}
+                setCart={setCart}
+              />
             </div>
           ) : (
             <></>
