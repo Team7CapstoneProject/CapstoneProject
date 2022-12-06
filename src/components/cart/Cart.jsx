@@ -4,7 +4,7 @@ import {
   updateCartProductQuantity,
   getCartByUserId,
   createCart,
-  updateCartCompletion
+  updateCartCompletion,
 } from "../../api";
 import "./CSS/cart.css";
 import { Link, useParams } from "react-router-dom";
@@ -96,7 +96,7 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
             setCart(newCart);
             console.log("checkout completed");
           } else {
-            console.log(newCart.error);
+            console.log(newCart.message);
           }
         }
       } else {
@@ -117,17 +117,19 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
       let finalPriceArray = [];
       let subTotal = 0;
 
-      cartProducts.forEach((product) => {
-        if (product.on_sale === false) {
-          totalPrice = product.quantity * Number(product.price);
-          finalPriceArray.push(totalPrice);
-        } else {
-          let percentageConversion = product.sale_percentage * 0.01;
-          let salePrice = product.price * (1 - percentageConversion);
-          totalPrice = product.quantity * salePrice;
-          finalPriceArray.push(totalPrice);
-        }
-      });
+      if (cartProducts) {
+        cartProducts.forEach((product) => {
+          if (product.on_sale === false) {
+            totalPrice = product.quantity * Number(product.price);
+            finalPriceArray.push(totalPrice);
+          } else {
+            let percentageConversion = product.sale_percentage * 0.01;
+            let salePrice = product.price * (1 - percentageConversion);
+            totalPrice = product.quantity * salePrice;
+            finalPriceArray.push(totalPrice);
+          }
+        });
+      }
 
       for (let i = 0; i < finalPriceArray.length; i++) {
         subTotal += finalPriceArray[i];
