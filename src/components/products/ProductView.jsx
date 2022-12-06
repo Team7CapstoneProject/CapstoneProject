@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAddToCart from "./ProductAddToCart";
 
@@ -11,10 +11,14 @@ const ProductView = ({ allProducts, token, userAccount, cart, setCart }) => {
   }
 
   let { productId } = useParams();
-  let filteredProduct = allProducts.filter(
-    (product) => productId == product.id
-  );
-  let product = filteredProduct[0];
+  let product;
+
+  if (allProducts) {
+    let filteredProduct = allProducts.filter(
+      (product) => productId == product.id
+    );
+    product = filteredProduct[0];
+  }
 
   return (
     <div className="viewCardDiv">
