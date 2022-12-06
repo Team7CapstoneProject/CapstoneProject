@@ -145,6 +145,7 @@ const Main = () => {
               allProducts={allProducts}
               cart={cart}
               setCart={setCart}
+              setNavGreeting={setNavGreeting}
             />
           }
         />

@@ -7,6 +7,7 @@ const ProductAddToCart = ({
   product,
   cart,
   setCart,
+  setNavGreeting
 }) => {
   async function handleAddToCart(event) {
     event.preventDefault();
@@ -38,8 +39,9 @@ const ProductAddToCart = ({
         let updatedCart = await getCartByUserId(token);
         updatedCart = updatedCart.filter((cart) => cart.is_complete === false);
         setCart(updatedCart[0]);
+        setNavGreeting(`Item added to cart!`)
       } else {
-        console.log(`${product.name} is already in cart!`);
+        setNavGreeting(`Item is already in cart!`);
       }
     }
   }

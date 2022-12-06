@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { Product } from "../";
 
-const Products = ({ token, userAccount, products, cart, setCart }) => {
+const Products = ({ token, userAccount, products, cart, setCart, setNavGreeting }) => {
   let { productId } = useParams();
   return (
     <>
@@ -23,6 +23,7 @@ const Products = ({ token, userAccount, products, cart, setCart }) => {
                   userAccount={userAccount}
                   cart={cart}
                   setCart={setCart}
+                  setNavGreeting={setNavGreeting}
                 />
               </Link>
             );

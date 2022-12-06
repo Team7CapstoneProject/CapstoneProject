@@ -9,6 +9,7 @@ const Product = ({
   setCartProducts,
   cart,
   setCart,
+  setNavGreeting
 }) => {
   const [stockMessage, setStockMessage] = useState("Available");
   useEffect(() => {
@@ -55,9 +56,6 @@ const Product = ({
                   <strike>{`$${product.price}`}</strike>
                 </div>
               </div>
-              {/* {product.inventory <= 10 ? (
-                <div className="productInventory">{`${product.inventory} item(s) left!`}</div>
-              ) : null} */}
             </div>
           ) : (
             <div className="productNoSale">
@@ -78,6 +76,7 @@ const Product = ({
               setCartProducts={setCartProducts}
               cart={cart}
               setCart={setCart}
+              setNavGreeting={setNavGreeting}
             />
           </div>
         ) : (
