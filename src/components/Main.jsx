@@ -193,7 +193,7 @@ const Main = () => {
         />
         <Route
           path="/orderHistory"
-          element={<CompletedCarts cart={cart} setCart={setCart} />}
+          element={<CompletedCarts cart={cart} setCart={setCart} userAccount={userAccount} />}
         />
       </Route>
     )
