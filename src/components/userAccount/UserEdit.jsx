@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { updateAccount } from "../../api";
+import { getAllUsers, updateAccount } from "../../api";
 
 const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
   const [editMessage, setEditMessage] = useState("Edit account details:");
@@ -29,14 +29,19 @@ const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
         email = userAccount.email;
       }
 
+      let users = await getAllUsers();
+      let existingUser = users.filter((user) => user.email === email);
+
+      if (existingUser) {
+        setEditMessage(`${email} already exists!`);
+        return;
+      }
+
       let editUser = await updateAccount(token, first_name, last_name, email);
-      console.log(editUser, "this is editUser");
       if (!editUser.error) {
         setEditMessage(editUser.message);
         setNavGreeting(editUser.message);
         setUserAccount(editUser.updatedUser);
-      } else {
-        setEditMessage(editUser.message);
       }
     }
   }
