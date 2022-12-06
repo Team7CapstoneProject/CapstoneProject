@@ -11,7 +11,7 @@ const AdminProductsSearch = ({ token, allProducts, setAllProducts }) => {
   function searchProducts(searchValue) {
     if (searchValue !== "") {
       const filteredProducts = allProducts.filter((product) => {
-        return Object.values(product)
+        return Object.values(product.name)
           .join("")
           .toLowerCase()
           .includes(searchValue.toLowerCase());
@@ -35,7 +35,7 @@ const AdminProductsSearch = ({ token, allProducts, setAllProducts }) => {
             <input
               className="productSearchInput"
               type="text"
-              placeholder="Search products"
+              placeholder="Search Product Name"
               onChange={handleChange}
               autoFocus
             />

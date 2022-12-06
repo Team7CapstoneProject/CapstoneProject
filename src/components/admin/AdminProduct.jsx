@@ -30,7 +30,7 @@ const AdminProduct = ({ token, allProducts, setAllProducts, product }) => {
           />
         </div>
         <div className="productInfoColumn">
-          <div>{`Name: ${productInfo.name}`}</div>
+          <div><u>{`Name: ${productInfo.name}`}</u></div>
           <div>{`Description: ${productInfo.description}`}</div>
           <div>{`Inventory: ${productInfo.inventory}`}</div>
           <div>{`Price: $${productInfo.price}`}</div>
