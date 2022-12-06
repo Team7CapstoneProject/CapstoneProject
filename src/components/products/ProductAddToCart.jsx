@@ -13,7 +13,24 @@ const ProductAddToCart = ({
   async function handleAddToCart(event) {
     event.preventDefault();
 
-    if (cart === undefined || cart.is_complete===true) {
+    const words = [
+      "spray",
+      "limit",
+      "elite",
+      "exuberant",
+      "destruction",
+      "present",
+    ];
+
+    const result = words.filter((word) => word === "limit");
+
+    if (result.length===1) {
+      console.log(result);
+    }else{console.log("no result")}
+
+
+
+    if (cart === undefined || cart.is_complete === true) {
       let newCart = await createCart(token, userAccount.id);
       if (!newCart.error) {
         setCart(newCart);
@@ -46,7 +63,6 @@ const ProductAddToCart = ({
         //need to set updated cartproduct here
 
         // setCartProducts([...cartProducts, productArray[0]]);
-
       } else {
         console.log(`${product.name} is already in cart!`);
       }
