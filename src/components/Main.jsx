@@ -62,7 +62,8 @@ const Main = () => {
     async function fetchCart() {
       const user_id = userAccount.id;
       if (token && user_id) {
-        const userCart = await getCartByUserId(token);
+        let userCart = await getCartByUserId(token);
+        userCart = userCart.filter((cart) => cart.is_complete === false);
         if (userCart) {
           setCart(userCart[0]);
         } else {
