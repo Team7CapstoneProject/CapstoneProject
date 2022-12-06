@@ -88,7 +88,7 @@ const Navbar = ({
               <div>
                 {" "}
                 <Link to={"/cart"}>
-                  <button className="navButton">{`Cart [${cart.products.length}]`}</button>
+                  <button className="navButton">{`Cart [${cart ? cart.products.length : null}]`}</button>
                 </Link>
               </div>
             ) : (
