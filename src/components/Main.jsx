@@ -159,6 +159,7 @@ const Main = () => {
               userAccount={userAccount}
               cart={cart}
               setCart={setCart}
+              setNavGreeting={setNavGreeting}
             />
           }
         />

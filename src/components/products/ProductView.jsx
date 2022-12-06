@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductAddToCart from "./ProductAddToCart";
 
-const ProductView = ({ allProducts, token, userAccount, cart, setCart }) => {
+const ProductView = ({ allProducts, token, userAccount, cart, setCart, setNavGreeting }) => {
   let navigate = useNavigate();
 
   function handleClickReturnToProducts(event) {
@@ -45,6 +45,7 @@ const ProductView = ({ allProducts, token, userAccount, cart, setCart }) => {
                 product={product}
                 cart={cart}
                 setCart={setCart}
+                setNavGreeting={setNavGreeting}
               />
             </div>
           ) : (
