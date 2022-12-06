@@ -91,3 +91,19 @@
   .cartProductImage{
     height: 300px;
   }
+  .userCompletedCarts{
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 20px;
+    margin-bottom: 50px;
+    margin-left: 20px;
+  }
+  .orderHistoryContainer{
+    font-family: 'Alexandria', sans-serif;
+  }
+  .individualOrderHistoryProduct{
+    margin-bottom: 10px;
+  }
+  .infoDiv{
+    margin-bottom: 2px;
+  }

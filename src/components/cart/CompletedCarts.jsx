@@ -20,35 +20,43 @@ const CompletedCarts = ({ token, userAccount }) => {
   }, []);
 
   return (
-    <div id="orderHistoryContainer">
-      <div>Order History</div>
+    <div className="orderHistoryContainer">
+      <h2 className="cartHeader">Your order history</h2>
       <div id="orderHistoryItems">
         {userCartHistory && userCartHistory.length ? (
           userCartHistory.map((cart) => {
             return (
-              <div id="userCompletedCarts" key={`Cart-${cart.id}`}>
-                <div>Order Number: {cart.id}</div>
-                <div>Content:</div>
+
+              <div className="userCompletedCarts" key={`Cart-${cart.id}`}>
+                <div>Order: {cart.id}</div>
+
                 <div id="orderHistoryProducts">
-                  {
-                    cart.products && cart.products.length ? (
-                      cart.products.map((product) => {
-                       return (
-                        <div key={`product-${product.id}`}>
-                          <div>Name: {product.name}</div>
-                          <div>Price: {product.price}</div>
-                          <div>Quantity: {product.quantity}</div>
-                        </div>
-                        )
+                  {cart.products && cart.products.length
+                    ? cart.products.map((product) => {
+                        return (
+                          <div
+                            className="individualOrderHistoryProduct"
+                            key={`product-${product.id}`}
+                          >
+                            <div className="infoDiv">
+                              Product purchased: {product.name}
+                            </div>
+                            <div className="infoDiv">
+                              Price: ${product.price}
+                            </div>
+                            <div className="infoDiv">
+                              Quantity: {product.quantity}
+                            </div>
+                          </div>
+                        );
                       })
-                    ) : null
-                  }
+                    : null}
                 </div>
               </div>
             );
           })
         ) : (
-          <div>No previous order found</div>
+          <div>No previous orders found</div>
         )}
       </div>
     </div>
