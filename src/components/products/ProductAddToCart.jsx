@@ -13,23 +13,6 @@ const ProductAddToCart = ({
   async function handleAddToCart(event) {
     event.preventDefault();
 
-    const words = [
-      "spray",
-      "limit",
-      "elite",
-      "exuberant",
-      "destruction",
-      "present",
-    ];
-
-    const result = words.filter((word) => word === "limit");
-
-    if (result.length===1) {
-      console.log(result);
-    }else{console.log("no result")}
-
-
-
     if (cart === undefined || cart.is_complete === true) {
       let newCart = await createCart(token, userAccount.id);
       if (!newCart.error) {
