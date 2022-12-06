@@ -78,12 +78,13 @@ const Main = () => {
   const [cartProducts, setCartProducts] = useState();
   useEffect(() => {
     async function fetchCartProducts() {
-      const cartId = cart.id;
-      const cartProductsResponse = await getCartProductsByCart(cartId);
-      setCartProducts(cartProductsResponse);
+      if (cart) {
+        const cartId = cart.id;
+        const cartProductsResponse = await getCartProductsByCart(cartId);
+        setCartProducts(cartProductsResponse);
+      }
     }
     fetchCartProducts();
-    console.log(cartProducts, "this is cart products from Main.jsx");
   }, [cart]);
 
   //-----------ROUTES------------------

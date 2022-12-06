@@ -129,7 +129,14 @@ const Cart = ({ cart, setCart }) => {
                           <h3>{product.name}</h3>
                           <p>${product.price}</p>
                           {product.on_sale == true ? (
-                            <p>{product.sale_percentage}% off</p>
+                            <div>
+                              {" "}
+                              <p>{product.sale_percentage}% off</p>
+                              <p>
+                                {`Discounted Price: $${(product.price *
+                                  (1 - (product.sale_percentage * 0.01))).toFixed(2)}`}
+                              </p>
+                            </div>
                           ) : null}
                           <p>
                             Quantity: {product.quantity}
