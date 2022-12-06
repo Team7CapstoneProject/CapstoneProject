@@ -151,7 +151,15 @@ const Main = () => {
 
         <Route
           path="/products/:productId"
-          element={<ProductView allProducts={allProducts} />}
+          element={
+            <ProductView
+              token={token}
+              allProducts={allProducts}
+              userAccount={userAccount}
+              cart={cart}
+              setCart={setCart}
+            />
+          }
         />
 
         <Route
