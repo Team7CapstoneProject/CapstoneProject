@@ -232,7 +232,7 @@ export async function updateCartCompletion(token, cart_id) {
   };
   const response = await fetch(`${BASE_URL}/api/carts/${cart_id}`, options);
   const result = await response.json();
-  console.log(result);
+  // console.log(result);
   return result;
 }
 

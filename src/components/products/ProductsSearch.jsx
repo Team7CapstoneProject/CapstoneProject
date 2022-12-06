@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Products } from "../";
 import "./CSS/products.css";
 
-const ProductsSearch = ({ token, userAccount, allProducts, cart, setCart }) => {
+const ProductsSearch = ({ token, userAccount, allProducts, cart, setCart, setNavGreeting }) => {
   const [products, setProducts] = useState(allProducts);
 
   useEffect(() => {
@@ -48,6 +48,7 @@ const ProductsSearch = ({ token, userAccount, allProducts, cart, setCart }) => {
           products={products}
           cart={cart}
           setCart={setCart}
+          setNavGreeting={setNavGreeting}
         />
       </div>
     </>
