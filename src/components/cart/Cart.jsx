@@ -207,9 +207,12 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
                   })
                 ) : (
                   <div>
+                    <p>Your cart is currently empty.</p>
                     <Link to={"/products"}>
                       {" "}
-                      <button>add products to cart!</button>{" "}
+                      <button className="emptyCartButton">
+                        Add products to cart!
+                      </button>{" "}
                     </Link>
                   </div>
                 )}

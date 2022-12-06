@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ProductAddToCart } from "../";
 
-const Product = ({ token, userAccount, product, cartProducts, setCartProducts, cart, setCart }) => {
+const Product = ({
+  token,
+  userAccount,
+  product,
+  cartProducts,
+  setCartProducts,
+  cart,
+  setCart,
+}) => {
   const [stockMessage, setStockMessage] = useState("Available");
   useEffect(() => {
     if (product.inventory === 0) {
@@ -59,7 +67,7 @@ const Product = ({ token, userAccount, product, cartProducts, setCartProducts, c
 
           <div className="productInventory">{`${stockMessage}`}</div>
         </div>
-        {token ? (
+        {token && product.inventory !== 0 ? (
           <div>
             {" "}
             <ProductAddToCart
