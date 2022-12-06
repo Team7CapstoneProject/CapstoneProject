@@ -1,5 +1,5 @@
 import React from "react";
-import { addProductToCart, createCart } from "../../api";
+import { addProductToCart, createCart, getCartByUserId } from "../../api";
 
 const ProductAddToCart = ({
   token,
@@ -20,6 +20,10 @@ const ProductAddToCart = ({
       }
     }
 
+    if (product.inventory === 0) {
+      return;
+    }
+
     if (token && cart) {
       const cart_id = cart.id;
       const referenceProductId = product.id;
@@ -32,20 +36,10 @@ const ProductAddToCart = ({
         quantity
       );
 
-      // let cartProductList = ProductAdded[0].products;
-
-      // let productArray = [];
-      // cartProductList.forEach((product) => {
-      //   if (product.id === referenceProductId) {
-      //     productArray.push(product);
-      //   }
-      // });
-
       if (!ProductAdded.error) {
-        console.log(ProductAdded, "SUCCESSSS");
-        //need to set updated cartproduct here
-
-        // setCartProducts([...cartProducts, productArray[0]]);
+        let updatedCart = await getCartByUserId(token);
+        updatedCart = updatedCart.filter((cart) => cart.is_complete === false);
+        setCart(updatedCart[0]);
       } else {
         console.log(`${product.name} is already in cart!`);
       }
