@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { deleteCartProduct, updateCartProductQuantity } from "../../api";
+import {
+  deleteCartProduct,
+  updateCartProductQuantity,
+  getCartByUserId,
+  createCart,
+  updateCartCompletion
+} from "../../api";
 import "./CSS/cart.css";
 import { Link, useParams } from "react-router-dom";
 
-const Cart = ({ cart, setCart }) => {
+const Cart = ({ token, userAccount, cart, setCart }) => {
   const [quantity, setQuantity] = useState(1);
-  const token = localStorage.getItem("token");
 
   async function increment(cartProductId, quantity) {
     try {
@@ -64,6 +69,8 @@ const Cart = ({ cart, setCart }) => {
       // let remainingCartProducts
       if (!deletedItem.error) {
         console.log(`Product ID ${toDelete} deleted`);
+        // setCart(newCart);
+
         // remainingCartProducts = cart.products.filter(
         //   (product) => product.id !== toDelete
         // );
@@ -71,6 +78,32 @@ const Cart = ({ cart, setCart }) => {
       // setCart(remainingCartProducts)
     } catch (error) {
       throw error;
+    }
+  }
+
+  async function checkout(event) {
+    event.preventDefault();
+
+    if (cart && cart.products.length > 0) {
+      let completedCart = await updateCartCompletion(token, cart.id);
+
+      if (!completedCart.error) {
+        let userCart = await getCartByUserId(token);
+        userCart = userCart.filter((_cart) => _cart.id === cart.id);
+        if (userCart[0].is_complete === true) {
+          let newCart = await createCart(token, userAccount.id);
+          if (!newCart.error) {
+            setCart(newCart);
+            console.log("checkout completed");
+          } else {
+            console.log(newCart.error);
+          }
+        }
+      } else {
+        console.log("Your order is failed to complete");
+      }
+    } else {
+      console.log("Your cart is empty");
     }
   }
 
@@ -133,8 +166,10 @@ const Cart = ({ cart, setCart }) => {
                               {" "}
                               <p>{product.sale_percentage}% off</p>
                               <p>
-                                {`Discounted Price: $${(product.price *
-                                  (1 - (product.sale_percentage * 0.01))).toFixed(2)}`}
+                                {`Discounted Price: $${(
+                                  product.price *
+                                  (1 - product.sale_percentage * 0.01)
+                                ).toFixed(2)}`}
                               </p>
                             </div>
                           ) : null}
@@ -184,11 +219,14 @@ const Cart = ({ cart, setCart }) => {
               </div>
               <div className="checkoutDiv">
                 <div className="subtotal"> {`Total: $${subtotal}`}</div>
-                <Link to={"/checkout"}>
-                  <button className="checkoutButton">
-                    Continue to checkout
-                  </button>
-                </Link>
+                {/* <Link to={"/checkout"}>
+                <button className="checkoutButton">
+                  Continue to checkout
+                </button>
+                </Link> */}
+                <button className="checkoutButton" onClick={checkout}>
+                  Continue to checkout
+                </button>
               </div>
             </div>
           </div>

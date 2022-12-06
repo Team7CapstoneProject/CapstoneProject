@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ProductAddToCart } from "../";
 
-const Product = ({ product, cartProducts, setCartProducts, cart, setCart }) => {
+const Product = ({ token, userAccount, product, cartProducts, setCartProducts, cart, setCart }) => {
   const [stockMessage, setStockMessage] = useState("Available");
   useEffect(() => {
     if (product.inventory === 0) {
@@ -12,7 +12,6 @@ const Product = ({ product, cartProducts, setCartProducts, cart, setCart }) => {
     }
   }, [product]);
 
-  let token = localStorage.getItem("token");
   let salePrice;
   let finalSalePrice;
 
@@ -63,7 +62,15 @@ const Product = ({ product, cartProducts, setCartProducts, cart, setCart }) => {
         {token ? (
           <div>
             {" "}
-            <ProductAddToCart product={product} cartProducts={cartProducts} setCartProducts={setCartProducts} cart={cart} setCart={setCart} />
+            <ProductAddToCart
+              token={token}
+              userAccount={userAccount}
+              product={product}
+              cartProducts={cartProducts}
+              setCartProducts={setCartProducts}
+              cart={cart}
+              setCart={setCart}
+            />
           </div>
         ) : (
           <></>

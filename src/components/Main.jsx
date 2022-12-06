@@ -138,6 +138,7 @@ const Main = () => {
           element={
             <ProductsSearch
               token={token}
+              userAccount={userAccount}
               cartProducts={cartProducts}
               setCartProducts={setCartProducts}
               allProducts={allProducts}
@@ -154,7 +155,14 @@ const Main = () => {
 
         <Route
           path="/cart"
-          element={<Cart token={token} cart={cart} setCart={setCart} />}
+          element={
+            <Cart
+              token={token}
+              userAccount={userAccount}
+              cart={cart}
+              setCart={setCart}
+            />
+          }
         />
 
         <Route
