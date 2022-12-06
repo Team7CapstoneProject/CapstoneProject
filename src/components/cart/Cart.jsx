@@ -69,6 +69,7 @@ const Cart = ({ token, userAccount, cart, setCart, setNavGreeting }) => {
         let updatedCart = await getCartByUserId(token);
         updatedCart = updatedCart.filter((cart) => cart.is_complete === false);
         setCart(updatedCart[0]);
+        setNavGreeting("Item removed from cart!")
       }
     } catch (error) {
       throw error;
