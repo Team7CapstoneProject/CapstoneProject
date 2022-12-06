@@ -64,7 +64,7 @@ const Main = () => {
       if (token && user_id) {
         let userCart = await getCartByUserId(token);
         userCart = userCart.filter((cart) => cart.is_complete === false);
-        if (userCart.length>=1) {
+        if (userCart.length >= 1) {
           setCart(userCart[0]);
         } else {
           const newCart = await createCart(token, user_id);
