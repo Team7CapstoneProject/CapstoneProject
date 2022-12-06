@@ -29,9 +29,9 @@ const UserEdit = ({ token, userAccount, setUserAccount, setNavGreeting }) => {
         email = userAccount.email;
       }
 
-      let users = await getAllUsers();
-      let existingUser = users.filter((user) => user.email === email);
-
+      let users = await getAllUsers(token);
+      let user = users.filter((user) => user.email === email);
+      let existingUser = user[0];
       if (existingUser) {
         setEditMessage(`${email} already exists!`);
         return;
