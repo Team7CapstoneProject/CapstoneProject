@@ -88,8 +88,8 @@ const Navbar = ({
               <div>
                 {" "}
                 <Link to={"/cart"}>
-                  <button className="navButton">Cart</button>
-                  {/* <button className="navButton">{`Cart [${cart ? cart.products.length : 0}]`}</button> */}
+                  {/* <button className="navButton">Cart</button> */}
+                  <button className="navButton">{`Cart [${cart && cart.products ? cart.products.length : 0}]`}</button>
                 </Link>
               </div>
             ) : (
