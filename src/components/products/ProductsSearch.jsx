@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Products } from "../";
 import "./CSS/products.css";
 
-const ProductsSearch = ({ allProducts, cart, setCart }) => {
+const ProductsSearch = ({ token, userAccount, allProducts, cart, setCart }) => {
   const [products, setProducts] = useState(allProducts);
 
   useEffect(() => {
@@ -33,10 +33,22 @@ const ProductsSearch = ({ allProducts, cart, setCart }) => {
       <div className="productPage">
         <div>
           <form className="productSearchForm">
-            <input className="productSearchInput" type="text" placeholder="Search in GuitarStop" onChange={handleChange} autoFocus/>
+            <input
+              className="productSearchInput"
+              type="text"
+              placeholder="Search in GuitarStop"
+              onChange={handleChange}
+              autoFocus
+            />
           </form>
         </div>
-        <Products products={products} cart={cart} setCart={setCart}/>
+        <Products
+          token={token}
+          userAccount={userAccount}
+          products={products}
+          cart={cart}
+          setCart={setCart}
+        />
       </div>
     </>
   );
