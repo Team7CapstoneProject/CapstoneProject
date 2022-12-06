@@ -37,7 +37,7 @@ const ProductView = ({ allProducts, token, userAccount, cart, setCart, setNavGre
         </div>
 
         <div className="addViewButtonDiv">
-          {token ? (
+          {token && product.inventory!==0 ? (
             <div className="addViewButton">
               <ProductAddToCart
                 token={token}
