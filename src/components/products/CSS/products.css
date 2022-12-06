@@ -178,7 +178,6 @@ font-size: 28px;
 }
 
 .addView {
-  align-self: center;
   margin-top: 20px;
   padding: 15px 20px;
   background-color: #7a7878;
@@ -187,13 +186,9 @@ font-size: 28px;
   border: none;
   width: 200px;
 }
-.addViewButton{
-  /* font-family: 'Alexandria', sans-serif;
-  font-weight: 900;
-  font-size: 16px; */
-  /* these are not working with the add to cart element */
-
-}
+.addViewButtonDiv{
+  align-self: center;
+  }
 .backButton {  
 align-self: center;
 margin-top: 20px;
@@ -207,3 +202,7 @@ font-weight: 900;
 font-size: 16px;
 width: 100px;
 }
+.backButton:hover {  
+  background-color: white;
+  color: black;
+  }

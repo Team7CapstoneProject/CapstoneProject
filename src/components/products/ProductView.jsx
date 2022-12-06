@@ -18,8 +18,9 @@ const ProductView = ({ allProducts }) => {
         {allProducts.map((product) => {
           if (productId == product.id) {
             return (
-              <div className="productInfoView" key={`productName=${product.name}`}>
+              <div className="productInfoView">
                 <div
+                  key={`productName=${product.name}`}
                   className="productView"
                 >
                   <div className="nameView">{product.name}</div>
@@ -35,7 +36,7 @@ const ProductView = ({ allProducts }) => {
             );
           }
         })}
-        <div className="addView">
+        <div className="addViewButtonDiv">
           {token ? (
             <div className="addViewButton">
               <ProductAddToCart />
