@@ -66,16 +66,11 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
       const toDelete = e.target.id;
       const deletedItem = await deleteCartProduct(token, toDelete);
 
-      // let remainingCartProducts
       if (!deletedItem.error) {
-        console.log(`Product ID ${toDelete} deleted`);
-        // setCart(newCart);
-
-        // remainingCartProducts = cart.products.filter(
-        //   (product) => product.id !== toDelete
-        // );
+        let updatedCart = await getCartByUserId(token);
+        updatedCart = updatedCart.filter((cart) => cart.is_complete === false);
+        setCart(updatedCart[0]);
       }
-      // setCart(remainingCartProducts)
     } catch (error) {
       throw error;
     }
