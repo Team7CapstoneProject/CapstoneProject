@@ -9,7 +9,7 @@ import {
 import "./CSS/cart.css";
 import { Link, useParams } from "react-router-dom";
 
-const Cart = ({ token, userAccount, cart, setCart }) => {
+const Cart = ({ token, userAccount, cart, setCart, setNavGreeting }) => {
   const [quantity, setQuantity] = useState(1);
 
   async function increment(cartProductId, quantity) {
@@ -62,7 +62,6 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
   async function handleDelete(e) {
     try {
       e.preventDefault();
-      console.log("delete button pressed");
       const toDelete = e.target.id;
       const deletedItem = await deleteCartProduct(token, toDelete);
 
@@ -79,7 +78,7 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
   async function checkout(event) {
     event.preventDefault();
 
-    if (cart && cart.products.length > 0) {
+    if (cart && cart.products) {
       let completedCart = await updateCartCompletion(token, cart.id);
 
       if (!completedCart.error) {
@@ -89,16 +88,16 @@ const Cart = ({ token, userAccount, cart, setCart }) => {
           let newCart = await createCart(token, userAccount.id);
           if (!newCart.error) {
             setCart(newCart);
-            console.log("checkout completed");
+            setNavGreeting("Your cart is checked out!");
           } else {
-            console.log(newCart.message);
+            setNavGreeting(newCart.message);
           }
         }
       } else {
-        console.log("Your order is failed to complete");
+        setNavGreeting("Your order is failed to complete");
       }
     } else {
-      console.log("Your cart is empty");
+      setNavGreeting("Your cart is empty!");
     }
   }
 
