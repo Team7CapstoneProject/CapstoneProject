@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { getCartByUserId } from "../../api";
 
-const CompletedCarts = ({ userAccount }) => {
-  console.log(userAccount);
-
+const CompletedCarts = ({ token, userAccount }) => {
   const [userCartHistory, setUserCartHistory] = useState();
 
   useEffect(() => {
-    let token = localStorage.getItem("token");
     if (token) {
       async function fetchAllUserCarts() {
         let userCarts = await getCartByUserId(token);
-        console.log("user cart data", userCarts);
         if (userCarts && userCarts.length) {
           let completedUserCarts = userCarts.filter(
             (cart) => cart.is_complete === true
           );
-          console.log("completed carts", completedUserCarts);
           setUserCartHistory(completedUserCarts);
         }
       }
@@ -24,7 +19,6 @@ const CompletedCarts = ({ userAccount }) => {
     }
   }, []);
 
-  console.log("user cart history data!", userCartHistory);
   return (
     <div className="orderHistoryContainer">
       <h2 className="cartHeader">Your order history</h2>
@@ -32,8 +26,10 @@ const CompletedCarts = ({ userAccount }) => {
         {userCartHistory && userCartHistory.length ? (
           userCartHistory.map((cart) => {
             return (
+
               <div className="userCompletedCarts" key={`Cart-${cart.id}`}>
                 <div>Order: {cart.id}</div>
+
                 <div id="orderHistoryProducts">
                   {cart.products && cart.products.length
                     ? cart.products.map((product) => {
