@@ -1,17 +1,13 @@
 import React from "react";
 import { AdminProduct } from "..";
 
-const AdminProducts = ({
-  token,
-  allProducts,
-  setAllProducts,
-}) => {
+const AdminProducts = ({ token, products, allProducts, setAllProducts }) => {
   return (
     <>
       <div>
         <div className="adminProducts">
-          {allProducts && allProducts.length ? (
-            allProducts.map((product) => {
+          {products && products.length ? (
+            products.map((product) => {
               return (
                 <AdminProduct
                   key={`product-${product.id}`}
