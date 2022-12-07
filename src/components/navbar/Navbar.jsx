@@ -12,7 +12,6 @@ const Navbar = ({
 }) => {
   //------Global constants------
   const navigate = useNavigate();
-  const userName = userAccount.first_name;
   const email = userAccount.email;
   const token = localStorage.getItem("token");
 
@@ -31,8 +30,9 @@ const Navbar = ({
     localStorage.removeItem("cart");
     localStorage.removeItem("token");
     let guest = await logInUser("guestuser", "guestuser");
-    if (!guest.error) {
+    if (guest.token) {
       localStorage.setItem("token", guest.token);
+      setUserAccount(guest.user)
       setNavGreeting("Welcome to GuitarStop!");
       navigate("/");
     } else {
@@ -126,7 +126,7 @@ const Navbar = ({
 
           {/* ------------------ SIGN IN AS GUEST BUTTON ------------------ */}
           <div>
-            {(token && userName !== "Guest") || userName === "Guest" ? (
+            {(token && email !== "guestuser") || email === "guestuser" ? (
               <></>
             ) : (
               <div>
