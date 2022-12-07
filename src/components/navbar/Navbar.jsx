@@ -12,7 +12,8 @@ const Navbar = ({
 }) => {
   //------Global constants------
   const navigate = useNavigate();
-  const userName = userAccount.first_name
+  const userName = userAccount.first_name;
+  const email = userAccount.email;
   const token = localStorage.getItem("token");
 
   //------Log out function------
@@ -30,9 +31,14 @@ const Navbar = ({
     localStorage.removeItem("cart");
     localStorage.removeItem("token");
     let guest = await logInUser("guestuser", "guestuser");
-    localStorage.setItem("token", guest.token);
-    setNavGreeting("Welcome to GuitarStop!");
-    navigate("/");
+    console.log(guest, "this is guest");
+    if (!guest.error) {
+      localStorage.setItem("token", guest.token);
+      setNavGreeting("Welcome to GuitarStop!");
+      navigate("/");
+    } else {
+      setNavGreeting("Error logging in as guest.");
+    }
   }
 
   return (
@@ -53,7 +59,7 @@ const Navbar = ({
             <h3 className="navGreeting">{navGreeting}</h3>
           </div>
           <div>
-            {token && userName !== "Guest" ? (
+            {token && email !== "guestuser" ? (
               <div>
                 <Link to={"/account"}>
                   <button className="navButton">My Account</button>
@@ -89,7 +95,9 @@ const Navbar = ({
                 {" "}
                 <Link to={"/cart"}>
                   {/* <button className="navButton">Cart</button> */}
-                  <button className="navButton">{`Cart [${cart && cart.products ? cart.products.length : 0}]`}</button>
+                  <button className="navButton">{`Cart [${
+                    cart && cart.products ? cart.products.length : 0
+                  }]`}</button>
                 </Link>
               </div>
             ) : (
@@ -99,7 +107,7 @@ const Navbar = ({
 
           {/* ------------------ LOGIN, REGISTER, LOGOUT BUTTON ------------------ */}
           <div>
-            {!token || (token && userName === "Guest") ? (
+            {!token || (token && email === "guestuser") ? (
               <div>
                 <Link to={"/login"}>
                   <button className="navButton">Login</button>
