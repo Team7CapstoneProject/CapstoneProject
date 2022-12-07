@@ -31,7 +31,6 @@ const Navbar = ({
     localStorage.removeItem("cart");
     localStorage.removeItem("token");
     let guest = await logInUser("guestuser", "guestuser");
-    console.log(guest, "this is guest");
     if (!guest.error) {
       localStorage.setItem("token", guest.token);
       setNavGreeting("Welcome to GuitarStop!");
