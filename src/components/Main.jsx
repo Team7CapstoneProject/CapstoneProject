@@ -111,29 +111,27 @@ const Main = () => {
           }
         />
 
+        {/* -------------- PUBLIC ROUTES -------------- */}
+
         <Route
-          path="/account"
+          path="/login"
           element={
-            <UserDashboard
-              token={token}
-              userAccount={userAccount}
-              setUserAccount={setUserAccount}
+            <LogIn
               setNavGreeting={setNavGreeting}
+              setUserAccount={setUserAccount}
             />
           }
         />
 
         <Route
-          path="/admin"
+          path="/register"
           element={
-            <AdminDashboard
-              token={token}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
+            <Register
+              setNavGreeting={setNavGreeting}
+              setUserAccount={setUserAccount}
             />
           }
         />
-
         <Route
           path="/products"
           element={
@@ -149,7 +147,6 @@ const Main = () => {
             />
           }
         />
-
         <Route
           path="/products/:productId"
           element={
@@ -163,7 +160,6 @@ const Main = () => {
             />
           }
         />
-
         <Route
           path="/cart"
           element={
@@ -178,41 +174,56 @@ const Main = () => {
         />
 
         <Route
-          path="/login"
-          element={
-            <LogIn
-              setNavGreeting={setNavGreeting}
-              setUserAccount={setUserAccount}
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <Register
-              setNavGreeting={setNavGreeting}
-              setUserAccount={setUserAccount}
-            />
-          }
-        />
-
-        <Route
           path="/checkout"
           element={
             <Checkout token={token} cart={cart} userAccount={userAccount} />
           }
         />
-        <Route
-          path="/orderHistory"
-          element={
-            <CompletedCarts
-              token={token}
-              cart={cart}
-              setCart={setCart}
-              userAccount={userAccount}
-            />
-          }
-        />
+
+        {/* -------------- USER ROUTES -------------- */}
+
+        {token && userAccount.email !== "guestuser" ? (
+          <Route
+            path="/orderHistory"
+            element={
+              <CompletedCarts
+                token={token}
+                cart={cart}
+                setCart={setCart}
+                userAccount={userAccount}
+              />
+            }
+          />
+        ) : null}
+
+        {token && userAccount.email !== "guestuser" ? (
+          <Route
+            path="/account"
+            element={
+              <UserDashboard
+                token={token}
+                userAccount={userAccount}
+                setUserAccount={setUserAccount}
+                setNavGreeting={setNavGreeting}
+              />
+            }
+          />
+        ) : null}
+
+        {/* -------------- ADMIN ROUTES -------------- */}
+
+        {userAccount.is_admin === true ? (
+          <Route
+            path="/admin"
+            element={
+              <AdminDashboard
+                token={token}
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+              />
+            }
+          />
+        ) : null}
       </Route>
     )
   );
